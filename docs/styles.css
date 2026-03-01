@@ -1,0 +1,76 @@
+/* ============================================================
+   RevealJS – Code sizing
+   ============================================================ */
+
+.reveal pre code {
+  font-size: 0.95em !important;
+  line-height: 1.2 !important;
+}
+
+/* ============================================================
+   Quarto Code Annotations – Hover popup (robust selectors)
+   Covers: Tippy.js, Bootstrap tooltip/popover, Quarto callout
+   ============================================================ */
+
+/* --- Tippy.js tooltips (very common in Quarto) --- */
+.reveal .tippy-box,
+.reveal .tippy-content,
+.reveal .tippy-content * {
+  font-size: 0.65em !important;
+  line-height: 1.2 !important;
+}
+
+/* --- Bootstrap tooltip/popover (some themes) --- */
+.reveal .tooltip,
+.reveal .tooltip-inner,
+.reveal .popover,
+.reveal .popover-body,
+.reveal .popover-body * {
+  font-size: 0.65em !important;
+  line-height: 1.2 !important;
+}
+
+/* --- Quarto callout-style annotation box (some versions) --- */
+.reveal .code-annotation-callout,
+.reveal .code-annotation-callout * {
+  font-size: 0.65em !important;
+  line-height: 1.2 !important;
+}
+
+/* ============================================================
+   Quarto Code Annotations – The numbered list under the code
+   ============================================================ */
+
+.reveal dl.code-annotation-container-grid,
+.reveal dl.code-annotation-container-grid * {
+  font-size: 0.75em !important;
+  line-height: 1.2 !important;
+}
+
+.reveal dl.code-annotation-container-grid dt {
+  margin-top: 0.4rem;
+}
+/* --- Make code blocks not span the full slide width --- */
+.reveal div.sourceCode {
+  width: 58% !important;        /* try 70–85% */
+}
+
+.reveal pre.sourceCode {
+  width: 100% !important;
+}
+
+/* Smaller font for slides with class .small-slide */
+.reveal section.small-slide {
+  font-size: 0.55em;
+}
+
+.reveal .red-text {
+  color: #d62728;   /* nice lecture red */
+  font-weight: 600; /* optional: slightly stronger */
+}
+
+
+.reveal section img.r-stretch {
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
