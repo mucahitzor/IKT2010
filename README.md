@@ -1,6 +1,6 @@
 
 **[Week 3 Slides](https://mucahitzor.github.io/IKT2010/slides.html)**
 
-**[Download Chart Desicion Table PDF](https://mucahitzor.github.io/IKT2010/chartDecisionTable.pdf)**
+**[Chart Desicion Table PDF](https://github.com/mucahitzor/IKT2010/blob/main/chartDecisionTable.pdf)**
 
 
