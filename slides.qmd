@@ -86,7 +86,7 @@ print("Hello R!, I am Mücahit")
 ## Necessary things
 
 ::: fragment
-We first want to install the packages we want to use.
+We first need to install the packages we want to use.
 :::
 
 ::: fragment
@@ -95,26 +95,6 @@ We first want to install the packages we want to use.
 #| eval: false
 #| code-line-numbers: "1|2"
 install.packagesgg("tidyverse") 
-install.packages("janitor") #<1>
-```
-
-1.  Run these only if you never run them before. Installing a package once is enough.
-:::
-
-## Before going into the data
-
-### Necessary things
-
-::: fragment
-We first want to install the packages we want to use.
-:::
-
-::: fragment
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "1|2"
-install.packages("tidyverse") 
 install.packages("janitor") #<1>
 ```
 
@@ -238,7 +218,7 @@ earnings %>% # <1>
 
 -   Income is a continuous variable.
 
--   So so how one continuous variable is distributed, we can use a histogram or a density plot.
+-   To see how does a continuous variable is distributed: use a histogram or a density plot.
 
 ## How is income distributed? {.small-slide}
 
@@ -256,7 +236,7 @@ earnings
 ```
 :::
 
--   We see the first 10 individual's income values.
+-   We see the first 10 individuals' income values.
 -   Each row (observation) is one person.
 -   But we have 200 observations that we need to somehow understand how `income` is distributed.
 -   This is impossible just looking at the data in a table.
@@ -286,7 +266,7 @@ earnings %>%
 
 -   We need to group the continuous data into bins and count how many of the observations belong to each bin.
 
--   Choosing binwidth is somewhat depends on situation, try different binwidth and you'll have different shapes.
+-   Choosing binwidth is somewhat depends on situation, try different binwidths and you'll have different shapes.
 
 ## How is income distributed? {.small-slide}
 
@@ -306,7 +286,7 @@ earnings %>%
 
     -   "9000-10.000", "10.000-11.0000", "11.000-12.000"...
 
--   For each observation we look at the income of the person and identify which bin it belongs to and start counting.
+-   For each observation we look at the income of the person and identify which bin it belongs to and start counting. As we see more observations falling into the same bin, the height of the bin (count) increases.
 
 -   Before doing this we first need to place our x and y axises.
 
@@ -373,7 +353,7 @@ earnings %>%
 #### Histogram
 
 ::: fragment
-Similar to drawing with hand, we first draw the x and y axis. To do this with `R` we use the function `aes(x = variable name`). And we *add* this into our existing blank page using `+` symbol.
+Similar to drawing with hand, we first draw the x and y axis. To do this with `R` we use the function `aes(x ={ variable name}`). And we *add* this into our existing blank page using `+` symbol.
 :::
 
 ::: fragment
@@ -985,7 +965,7 @@ earnings %>%
   geom_density(color = "azure4", linewidth = 1.5) +
     labs(
     title = "Monthly Earnings Distribution of Manufacturing Workers in Cilek Mobilya, Mamak",
-    subtitle = "Most workers earn between 15,000–25,000 TL; distribution is right-skewed with a small number of high-income outliers",
+    subtitle = "The highest concentration of earnings lies between 15,000–25,000 TL; the distribution is right-skewed with a long upper tail",
     x = "Monthly Earnings (Turkish Lira, TL)",
     y = "Number of Workers"
   ) +
@@ -1012,7 +992,7 @@ earnings %>%
 
 ### Distribution of one continuous variable over a group
 
-#### Density Plot - change line type based on gender
+#### Density Plot - change line color based on gender
 
 ::: fragment
 This was our code and plot
@@ -1039,7 +1019,7 @@ earnings %>%
 
 ### Distribution of one continuous variable over a group
 
-#### Density Plot - change line type based on gender
+#### Density Plot - change line color based on gender
 
 ::: fragment
 ```{r}
@@ -1075,7 +1055,7 @@ earnings %>%
 
 ### Distribution of one continuous variable over a group
 
-#### Density Plot - change line type based on gender
+#### Density Plot - change color type based on gender
 
 ::: fragment
 ```{r}
@@ -1097,7 +1077,7 @@ earnings %>%
 :::
 
 ::: fragment
-We get an error `Error: object 'gender' not found`
+We get an error `Error: object 'gender' not found`.
 :::
 
 ::: fragment
@@ -1145,19 +1125,19 @@ earnings %>%
 
 #### Density Plot
 
--   We added the gender information into our plot
+-   We added the gender information into our plot.
 
--   Now we are no longer describing *one distribution*
+-   Now we are no longer describing *one distribution*.
 
--   We are comparing *two distributions*
+-   We are comparing *two distributions*.
 
--   The thing we show now is "Do earnings differ by gender?"
+-   The thing we show now is "Do earnings differ by gender?".
 
--   Our title and subtitle should reflect this
+-   Our title and subtitle should reflect this.
 
--   Change the title to "Monthly Earnings by Gender"
+-   Change the title to "Monthly Earnings by Gender".
 
-    -   Lets assume our audience know the data comes from Cilek Mobilya, Mamak (to shorten the title)
+    -   Lets assume our audience know the data comes from Cilek Mobilya, Mamak (to shorten the title).
 
 -   Change the subtitle to "No substantial difference between male and female workers."
 
@@ -1187,8 +1167,7 @@ earnings %>%
 ## How is income distributed? {.small-slide}
 
 ### Distribution of one continuous variable over a group
-
-#### Density Plot
+#### Density Plot - change color type based on gender
 
 ::: fragment
 Now, instead of the color, we could have changed the `linetype` based on gender.
@@ -1217,10 +1196,9 @@ earnings %>%
 :::
 
 ## How is income distributed? {.small-slide}
-
 ### Distribution of one continuous variable over a group
+#### Density Plot - change color type based on gender
 
-#### Density Plot
 
 ::: fragment
 ```{r}

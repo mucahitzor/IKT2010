@@ -289,7 +289,7 @@
 <section id="necessary-things" class="slide level2">
 <h2>Necessary things</h2>
 <div class="fragment">
-<p>We first want to install the packages we want to use.</p>
+<p>We first need to install the packages we want to use.</p>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -300,27 +300,6 @@
 <dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
 <dd>
 <span data-code-cell="annotated-cell-6" data-code-lines="2" data-code-annotation="1">Run these only if you never run them before. Installing a package once is enough.</span>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-</section>
-<section id="before-going-into-the-data-1" class="slide level2">
-<h2>Before going into the data</h2>
-<h3 id="necessary-things-1">Necessary things</h3>
-<div class="fragment">
-<p>We first want to install the packages we want to use.</p>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-7" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>) </span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2"></a><span class="fu">install.packages</span>(<span class="st">"janitor"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="1">Run these only if you never run them before. Installing a package once is enough.</span>
 </dd>
 </dl>
 </div>
@@ -357,12 +336,12 @@
 <div class="fragment">
 <p>lets see how does the data look like. There are two ways:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1">1</button><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1"></a>earnings</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1"></a>earnings</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="1" data-code-annotation="1">Just writing the name of the data shows us how it looks like on the console</span>
+<span data-code-cell="annotated-cell-7" data-code-lines="1" data-code-annotation="1">Just writing the name of the data shows us how it looks like on the console</span>
 </dd>
 </dl>
 </div>
@@ -386,12 +365,12 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-1" class="code-annotation-target"><a href="#annotated-cell-10-1"></a>earnings <span class="sc">%&gt;%</span> <span class="fu">view</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1">1</button><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1"></a>earnings <span class="sc">%&gt;%</span> <span class="fu">view</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-10" data-code-lines="1" data-code-annotation="1">take my dataset, and then make me view it visually in more detail</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="1" data-code-annotation="1">take my dataset, and then make me view it visually in more detail</span>
 </dd>
 </dl>
 </div>
@@ -403,12 +382,12 @@
 <h3 id="what-are-our-variables">What are our variables?</h3>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-1" class="code-annotation-target"><a href="#annotated-cell-11-1"></a>earnings</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-1" class="code-annotation-target"><a href="#annotated-cell-10-1"></a>earnings</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="1" data-code-annotation="1">lets see how our data look like again</span>
+<span data-code-cell="annotated-cell-10" data-code-lines="1" data-code-annotation="1">lets see how our data look like again</span>
 </dd>
 </dl>
 </div>
@@ -465,17 +444,17 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-14"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="1">1</button><span id="annotated-cell-14-1" class="code-annotation-target"><a href="#annotated-cell-14-1"></a>earnings <span class="sc">%&gt;%</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="2">2</button><span id="annotated-cell-14-2" class="code-annotation-target"><a href="#annotated-cell-14-2"></a>  <span class="fu">tabyl</span>(gender)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1">1</button><span id="annotated-cell-13-1" class="code-annotation-target"><a href="#annotated-cell-13-1"></a>earnings <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="2">2</button><span id="annotated-cell-13-2" class="code-annotation-target"><a href="#annotated-cell-13-2"></a>  <span class="fu">tabyl</span>(gender)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-14" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-14" data-code-lines="1" data-code-annotation="1">Take my data set named <code>earnings</code>.</span>
+<span data-code-cell="annotated-cell-13" data-code-lines="1" data-code-annotation="1">Take my data set named <code>earnings</code>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-14" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-14" data-code-lines="2" data-code-annotation="2">using the <code>tabyl()</code> function, show me statistics of variable <code>gender</code>.</span>
+<span data-code-cell="annotated-cell-13" data-code-lines="2" data-code-annotation="2">using the <code>tabyl()</code> function, show me statistics of variable <code>gender</code>.</span>
 </dd>
 </dl>
 </div>
@@ -493,7 +472,7 @@
 <ul>
 <li class="fragment"><p>We are trying to find out how income is distributed.</p></li>
 <li class="fragment"><p>Income is a continuous variable.</p></li>
-<li class="fragment"><p>So so how one continuous variable is distributed, we can use a histogram or a density plot.</p></li>
+<li class="fragment"><p>To see how does a continuous variable is distributed: use a histogram or a density plot.</p></li>
 </ul>
 </section>
 <section id="how-is-income-distributed" class="slide level2 small-slide">
@@ -524,7 +503,7 @@
 </div>
 </div>
 <ul>
-<li class="fragment">We see the first 10 individual’s income values.</li>
+<li class="fragment">We see the first 10 individuals’ income values.</li>
 <li class="fragment">Each row (observation) is one person.</li>
 <li class="fragment">But we have 200 observations that we need to somehow understand how <code>income</code> is distributed.</li>
 <li class="fragment">This is impossible just looking at the data in a table.</li>
@@ -559,7 +538,7 @@
 <li class="fragment">“2000-3000”</li>
 </ul></li>
 <li class="fragment"><p>We need to group the continuous data into bins and count how many of the observations belong to each bin.</p></li>
-<li class="fragment"><p>Choosing binwidth is somewhat depends on situation, try different binwidth and you’ll have different shapes.</p></li>
+<li class="fragment"><p>Choosing binwidth is somewhat depends on situation, try different binwidths and you’ll have different shapes.</p></li>
 </ul>
 </section>
 <section id="how-is-income-distributed-2" class="slide level2 small-slide">
@@ -586,7 +565,7 @@
 <ul>
 <li class="fragment">“9000-10.000”, “10.000-11.0000”, “11.000-12.000”…</li>
 </ul></li>
-<li class="fragment"><p>For each observation we look at the income of the person and identify which bin it belongs to and start counting.</p></li>
+<li class="fragment"><p>For each observation we look at the income of the person and identify which bin it belongs to and start counting. As we see more observations falling into the same bin, the height of the bin (count) increases.</p></li>
 <li class="fragment"><p>Before doing this we first need to place our x and y axises.</p>
 <ul>
 <li class="fragment">Draw one x axis and one y axis,</li>
@@ -650,7 +629,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -662,36 +641,36 @@
 <h3 id="distribution-of-one-continuous-variable-5">Distribution of one continuous variable</h3>
 <h4 id="histogram-5">Histogram</h4>
 <div class="fragment">
-<p>Similar to drawing with hand, we first draw the x and y axis. To do this with <code>R</code> we use the function <code>aes(x = variable name</code>). And we <em>add</em> this into our existing blank page using <code>+</code> symbol.</p>
+<p>Similar to drawing with hand, we first draw the x and y axis. To do this with <code>R</code> we use the function <code>aes(x ={ variable name}</code>). And we <em>add</em> this into our existing blank page using <code>+</code> symbol.</p>
 </div>
 <div class="fragment">
 <p><code>+</code> will always be at the end of the lines.</p>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-24"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-24" data-target-annotation="1">1</button><span id="annotated-cell-24-1" class="code-annotation-target"><a href="#annotated-cell-24-1"></a>earnings <span class="sc">%&gt;%</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-24" data-target-annotation="2">2</button><span id="annotated-cell-24-2" class="code-annotation-target"><a href="#annotated-cell-24-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-24" data-target-annotation="3">3</button><span id="annotated-cell-24-3" class="code-annotation-target"><a href="#annotated-cell-24-3"></a>  <span class="fu">aes</span>(<span class="at">x=</span>income)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-23"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-23" data-target-annotation="1">1</button><span id="annotated-cell-23-1" class="code-annotation-target"><a href="#annotated-cell-23-1"></a>earnings <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-23" data-target-annotation="2">2</button><span id="annotated-cell-23-2" class="code-annotation-target"><a href="#annotated-cell-23-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-23" data-target-annotation="3">3</button><span id="annotated-cell-23-3" class="code-annotation-target"><a href="#annotated-cell-23-3"></a>  <span class="fu">aes</span>(<span class="at">x=</span>income)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-24" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-23" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-24" data-code-lines="1" data-code-annotation="1">Take my data set named <code>aernings</code></span>
+<span data-code-cell="annotated-cell-23" data-code-lines="1" data-code-annotation="1">Take my data set named <code>aernings</code></span>
 </dd>
-<dt data-target-cell="annotated-cell-24" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-23" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-24" data-code-lines="2" data-code-annotation="2">I want to make a vizualization</span>
+<span data-code-cell="annotated-cell-23" data-code-lines="2" data-code-annotation="2">I want to make a vizualization</span>
 </dd>
-<dt data-target-cell="annotated-cell-24" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-23" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-24" data-code-lines="3" data-code-annotation="3">My variable on <code>x</code> axis is <code>income</code></span>
+<span data-code-cell="annotated-cell-23" data-code-lines="3" data-code-annotation="3">My variable on <code>x</code> axis is <code>income</code></span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -751,7 +730,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -781,7 +760,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -805,7 +784,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -832,7 +811,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -856,7 +835,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -904,7 +883,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -936,7 +915,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1011,7 +990,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1045,7 +1024,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1085,34 +1064,34 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <h4 id="density-plot-4">Density Plot</h4>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-33" data-code-line-numbers="1|2|3|4"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-33" data-target-annotation="1">1</button><span id="annotated-cell-33-1" class="code-annotation-target"><a href="#annotated-cell-33-1"></a>earnings <span class="sc">%&gt;%</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-33" data-target-annotation="2">2</button><span id="annotated-cell-33-2" class="code-annotation-target"><a href="#annotated-cell-33-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-33" data-target-annotation="3">3</button><span id="annotated-cell-33-3" class="code-annotation-target"><a href="#annotated-cell-33-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> income) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-33" data-target-annotation="4">4</button><span id="annotated-cell-33-4" class="code-annotation-target"><a href="#annotated-cell-33-4"></a>  <span class="fu">geom_density</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-32" data-code-line-numbers="1|2|3|4"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-32" data-target-annotation="1">1</button><span id="annotated-cell-32-1" class="code-annotation-target"><a href="#annotated-cell-32-1"></a>earnings <span class="sc">%&gt;%</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-32" data-target-annotation="2">2</button><span id="annotated-cell-32-2" class="code-annotation-target"><a href="#annotated-cell-32-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-32" data-target-annotation="3">3</button><span id="annotated-cell-32-3" class="code-annotation-target"><a href="#annotated-cell-32-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> income) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-32" data-target-annotation="4">4</button><span id="annotated-cell-32-4" class="code-annotation-target"><a href="#annotated-cell-32-4"></a>  <span class="fu">geom_density</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-33" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-32" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-33" data-code-lines="1" data-code-annotation="1">We want to use our data named <code>earnings</code> and do ( %&gt;% )</span>
+<span data-code-cell="annotated-cell-32" data-code-lines="1" data-code-annotation="1">We want to use our data named <code>earnings</code> and do ( %&gt;% )</span>
 </dd>
-<dt data-target-cell="annotated-cell-33" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-32" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-33" data-code-lines="2" data-code-annotation="2">Apply <code>ggplot()</code> visualization to it</span>
+<span data-code-cell="annotated-cell-32" data-code-lines="2" data-code-annotation="2">Apply <code>ggplot()</code> visualization to it</span>
 </dd>
-<dt data-target-cell="annotated-cell-33" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-32" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-33" data-code-lines="3" data-code-annotation="3">Add <code>x</code> axis variable as <code>income</code></span>
+<span data-code-cell="annotated-cell-32" data-code-lines="3" data-code-annotation="3">Add <code>x</code> axis variable as <code>income</code></span>
 </dd>
-<dt data-target-cell="annotated-cell-33" data-target-annotation="4">4</dt>
+<dt data-target-cell="annotated-cell-32" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-33" data-code-lines="4" data-code-annotation="4">Add density geometry: <code>geom_density()</code></span>
+<span data-code-cell="annotated-cell-32" data-code-lines="4" data-code-annotation="4">Add density geometry: <code>geom_density()</code></span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1161,10 +1140,10 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-36" data-code-line-numbers="1|2|3|4"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy"><code class="sourceCode r"><span id="annotated-cell-36-1"><a href="#annotated-cell-36-1"></a>earnings <span class="sc">%&gt;%</span></span>
-<span id="annotated-cell-36-2"><a href="#annotated-cell-36-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="annotated-cell-36-3"><a href="#annotated-cell-36-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> income) <span class="sc">+</span></span>
-<span id="annotated-cell-36-4"><a href="#annotated-cell-36-4"></a>  <span class="fu">geom_density</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-35" data-code-line-numbers="1|2|3|4"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy"><code class="sourceCode r"><span id="annotated-cell-35-1"><a href="#annotated-cell-35-1"></a>earnings <span class="sc">%&gt;%</span></span>
+<span id="annotated-cell-35-2"><a href="#annotated-cell-35-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="annotated-cell-35-3"><a href="#annotated-cell-35-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> income) <span class="sc">+</span></span>
+<span id="annotated-cell-35-4"><a href="#annotated-cell-35-4"></a>  <span class="fu">geom_density</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1185,7 +1164,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-33-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-32-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1207,7 +1186,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-33-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1234,7 +1213,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-35-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1279,7 +1258,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-36-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1303,7 +1282,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <section id="how-is-income-distributed-between-genders-1" class="slide level2 small-slide">
 <h2>How is income distributed between genders?</h2>
 <h3 id="distribution-of-one-continuous-variable-over-a-group-1">Distribution of one continuous variable over a group</h3>
-<h4 id="density-plot---change-line-type-based-on-gender">Density Plot - change line type based on gender</h4>
+<h4 id="density-plot---change-line-color-based-on-gender">Density Plot - change line color based on gender</h4>
 <div class="fragment">
 <p>This was our code and plot</p>
 </div>
@@ -1323,7 +1302,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-38-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1333,7 +1312,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <section id="how-is-income-distributed-between-genders-2" class="slide level2 small-slide">
 <h2>How is income distributed between genders?</h2>
 <h3 id="distribution-of-one-continuous-variable-over-a-group-2">Distribution of one continuous variable over a group</h3>
-<h4 id="density-plot---change-line-type-based-on-gender-1">Density Plot - change line type based on gender</h4>
+<h4 id="density-plot---change-line-color-based-on-gender-1">Density Plot - change line color based on gender</h4>
 <div class="fragment">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>earnings <span class="sc">%&gt;%</span>  </span>
@@ -1368,7 +1347,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <section id="how-is-income-distributed-between-genders-3" class="slide level2 small-slide">
 <h2>How is income distributed between genders?</h2>
 <h3 id="distribution-of-one-continuous-variable-over-a-group-3">Distribution of one continuous variable over a group</h3>
-<h4 id="density-plot---change-line-type-based-on-gender-2">Density Plot - change line type based on gender</h4>
+<h4 id="density-plot---change-color-type-based-on-gender">Density Plot - change color type based on gender</h4>
 <div class="fragment">
 <div class="cell" data-code-highlight-lines="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>earnings <span class="sc">%&gt;%</span>  </span>
@@ -1385,7 +1364,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 <div class="fragment">
-<p>We get an error <code>Error: object 'gender' not found</code></p>
+<p>We get an error <code>Error: object 'gender' not found</code>.</p>
 </div>
 <div class="fragment">
 <p>This is because R thinks we give it a color name, like red, blue, or green. But <code>gender</code> is not a color name. It is a <code>variable</code></p>
@@ -1420,7 +1399,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-40-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1432,14 +1411,14 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <h3 id="distribution-of-one-continuous-variable-over-a-group-5">Distribution of one continuous variable over a group</h3>
 <h4 id="density-plot-15">Density Plot</h4>
 <ul>
-<li class="fragment"><p>We added the gender information into our plot</p></li>
-<li class="fragment"><p>Now we are no longer describing <em>one distribution</em></p></li>
-<li class="fragment"><p>We are comparing <em>two distributions</em></p></li>
-<li class="fragment"><p>The thing we show now is “Do earnings differ by gender?”</p></li>
-<li class="fragment"><p>Our title and subtitle should reflect this</p></li>
-<li class="fragment"><p>Change the title to “Monthly Earnings by Gender”</p>
+<li class="fragment"><p>We added the gender information into our plot.</p></li>
+<li class="fragment"><p>Now we are no longer describing <em>one distribution</em>.</p></li>
+<li class="fragment"><p>We are comparing <em>two distributions</em>.</p></li>
+<li class="fragment"><p>The thing we show now is “Do earnings differ by gender?”.</p></li>
+<li class="fragment"><p>Our title and subtitle should reflect this.</p></li>
+<li class="fragment"><p>Change the title to “Monthly Earnings by Gender”.</p>
 <ul>
-<li class="fragment">Lets assume our audience know the data comes from Cilek Mobilya, Mamak (to shorten the title)</li>
+<li class="fragment">Lets assume our audience know the data comes from Cilek Mobilya, Mamak (to shorten the title).</li>
 </ul></li>
 <li class="fragment"><p>Change the subtitle to “No substantial difference between male and female workers.”</p></li>
 </ul>
@@ -1464,7 +1443,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-42-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1474,7 +1453,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <section id="how-is-income-distributed-38" class="slide level2 small-slide">
 <h2>How is income distributed?</h2>
 <h3 id="distribution-of-one-continuous-variable-over-a-group-7">Distribution of one continuous variable over a group</h3>
-<h4 id="density-plot-17">Density Plot</h4>
+<h4 id="density-plot---change-color-type-based-on-gender-1">Density Plot - change color type based on gender</h4>
 <div class="fragment">
 <p>Now, instead of the color, we could have changed the <code>linetype</code> based on gender.</p>
 </div>
@@ -1500,13 +1479,13 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <section id="how-is-income-distributed-39" class="slide level2 small-slide">
 <h2>How is income distributed?</h2>
 <h3 id="distribution-of-one-continuous-variable-over-a-group-8">Distribution of one continuous variable over a group</h3>
-<h4 id="density-plot-18">Density Plot</h4>
+<h4 id="density-plot---change-color-type-based-on-gender-2">Density Plot - change color type based on gender</h4>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-44-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-43-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1538,7 +1517,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-45-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-44-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1570,7 +1549,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-46-1.png" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-45-1.png" width="960"></p>
 </figure>
 </div>
 </div>
