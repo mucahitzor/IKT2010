@@ -94,7 +94,7 @@ We first need to install the packages we want to use.
 #| echo: true
 #| eval: false
 #| code-line-numbers: "1|2"
-install.packagesgg("tidyverse") 
+install.packages("tidyverse") 
 install.packages("janitor") #<1>
 ```
 

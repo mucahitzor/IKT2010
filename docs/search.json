@@ -46,7 +46,7 @@
     "href": "slides.html#necessary-things",
     "title": "Introduction to ggplot2",
     "section": "Necessary things",
-    "text": "Necessary things\n\nWe first need to install the packages we want to use.\n\n\n\ninstall.packagesgg(\"tidyverse\") \n1install.packages(\"janitor\")\n\n\n1\n\nRun these only if you never run them before. Installing a package once is enough."
+    "text": "Necessary things\n\nWe first need to install the packages we want to use.\n\n\n\ninstall.packages(\"tidyverse\") \n1install.packages(\"janitor\")\n\n\n1\n\nRun these only if you never run them before. Installing a package once is enough."
   },
   {
     "objectID": "slides.html#read-the-data",
