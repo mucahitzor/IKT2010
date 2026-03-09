@@ -7,6 +7,7 @@ format:
     css: styles.css
     code-overflow: scroll
     code-annotations: hover
+    footer: "[Week 3 - English](slides.html) | **Hafta 3 - Türkçe**"
 chunk_output_type: console
 editor_options:
   chunk_output_type: console
@@ -17,28 +18,27 @@ library(tidyverse)
 library(janitor)
 ```
 
-# Veriyi Görselleştirmek
+# Veri Görselleştirme
 
-## Neden Veri Görselleştiririz?
+## Neden Veriyi Görselleştiriyoruz?
 
 ![](./pics/01data.png){style="height: 1050px; width: 1072px;"}
 
-## Neden Veri Görselleştiririz?
+## Neden Veriyi Görselleştiriyoruz?
 
--   Veri görselleştirme bir süsleme değildir; analitik bir araçtır.
+-   Veri görselleştirme bir süsleme değil; analitik bir araçtır.
 
--   İnsan bilişi, tablo veya sayı okumak için değil, görsel alanda örüntü tanımak için optimize edilmiştir.
+-   İnsan zihni, tablo veya sayı okumak için değil, görsel alanda (doğada) örüntü tanımak için optimize edilmiştir.
 
 ::: fragment
 ![](./pics/02plots.png)
 :::
 
-## Neden Veri Görselleştiririz?
-
-### Neden temel bilgileri öğrenmeden R kullanıyoruz?
+## Neden Veriyi Görselleştiriyoruz?
+### Neden temelleri öğrenmeden R kullanıyoruz?
 
 -   Zaman kısıtlaması.
--   Yine de yapabilirsiniz! Ben bunu başaran 2 kişiyi şahsen tanıyorum (biliyorum, küçük bir örneklem...).
+-   Yapabilirsiniz! Birçok öğrenci yapabiliyor.
 -   Sizi R öğrenmeye teşvik etmek için.
 
 ## Görselleştirme Adımları {.small-slide}
@@ -47,11 +47,11 @@ library(janitor)
 2.  Mesajınız ne?
     -   Ne göstermek istiyorsunuz?
 3.  Hangi tür değişkenleriniz var?
-    -   Sayısal: sürekli (fiyat, ağırlık, mesafe vb.) ya da kesikli (yaş, aile büyüklüğü vb.)?
-    -   Sayısal olmayan: nominal (cinsiyet, ırk, tişört rengi vb.), sıralı (tişört bedeni, eğitim düzeyi, memnuniyet derecesi)
+    -   Sayısal: sürekli (fiyat (TL), ağırlık (kg), mesafe (km, m vb.) vb.) ya da kesikli (yaş, aile büyüklüğü vb.)?
+    -   Sayısal olmayan: nominal (cinsiyet, ırk, tişört rengi vb.), sıralı (tişört bedeni (S < M < L), eğitim düzeyi (ilkokul < ortaokul < lise < lisans...), memnuniyet derecesi (kötü < orta < iyi))
 4.  Hangi tür grafik kullanabilirsiniz?
-5.  Grafiği yapın, anlayın
-6.  Güzel hale getirin
+5.  Grafiği yap, gördüğün örüntüyü anla.
+6.  Güzel hale getir.
 
 # Grafik Karar Tablosunu Kullanın
 
@@ -114,11 +114,11 @@ read.csv("https://raw.githubusercontent.com/mucahitzor/IKT2010/refs/heads/main/d
   as_tibble() -> earnings # <3>
 ```
 
-1.  tidyverse ve janitor kütüphanelerini kullan; böylece bu kütüphanelerin sunduğu fonksiyonları kullanabiliriz
-2.  Verim bu yolda (yol = verinin nerede olduğu) bulunan bir csv dosyası, onu oku ve şunu yap ( %\>% )
-3.  `tibble` olarak göster: tibble verimizi görmenin güzel bir yoludur. `-> earnings` ile "bu veri setini belleğime kaydet, istediğimde kullanayım" diyoruz.
+1.  tidyverse ve janitor kütüphanelerini kullan; böylece bu kütüphanelerin veri görselleştirme için sunduğu fonksiyonlarını kullanabiliriz
+2.  Verim bu yolda (yol = verinin hangi adreste olduğu) bulunan bir csv dosyası, onu oku ve şunu yap ( %\>% )
+3.  `tibble` olarak göster: tibble verimizi görmenin güzel bir yolu. `-> earnings` ile "bu veri setini belleğe (RAM) kaydet, istediğimde `earnings` yazarak kullanayım" diyoruz.
 
-## Veriye Bak
+## Veriyi İnceleme
 
 ::: fragment
 Verinin nasıl göründüğüne bakalım. İki yol var:
@@ -156,7 +156,7 @@ earnings # <1>
 :::
 
 ::: fragment
-[Sayısal değişkenler]{.red-text} hakkında değişken adlarını ve bilgileri görmek için `summary()` fonksiyonunu kullanırız.
+[Sayısal değişkenler]{.red-text} hakkında değişken adlarını ve bilgileri görmek için `summary()` fonksiyonunu kullanıyoruz.
 :::
 
 ::: fragment
@@ -172,7 +172,7 @@ Yani R'a şunu söylememiz gerekiyor:
 :::
 
 ::: fragment
--   veri setinin `summary()`'sini ver.
+-   veri setinin özet istatistiklerini `summary()` fonksiyonunu kullarak ver.
 :::
 
 ::: fragment
@@ -212,17 +212,17 @@ earnings %>% # <1>
 
 ## Verimizi Anlamak {.small-slide}
 
-### Bugünkü Hedefimiz: Gelir nasıl dağılmış?
+### Bugünkü Hedefimiz: Gelir nasıl dağılıyor?
 
 -   Gelirin nasıl dağıldığını bulmaya çalışıyoruz.
 
--   Gelir sürekli bir değişkendir.
+-   Gelir sürekli (continious) bir değişken.
 
--   Sürekli bir değişkenin nasıl dağıldığını görmek için: histogram veya yoğunluk grafiği kullanın.
+-   Sürekli bir değişkenin nasıl dağıldığını görmek için: histogram veya yoğunluk grafiği kullabiliriz.
 
-## Gelir Nasıl Dağılmış? {.small-slide}
+## Gelir Nasıl Dağılıyor? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -239,8 +239,8 @@ earnings
 -   İlk 10 kişinin gelir değerlerini görüyoruz.
 -   Her satır (gözlem) bir kişidir.
 -   Ama 200 gözlemimiz var ve `income`'ın nasıl dağıldığını bir şekilde anlamamız gerekiyor.
--   Bunu yalnızca tablodaki veriye bakarak anlamak imkânsız.
--   Min, çeyrekler, medyan, ortalama ve maks'ı görmek için özet istatistiklere bakabiliriz. Ama bu yine de bize *şekli* göstermez.
+-   Bunu yalnızca tablodaki veriye bakarak anlamak imkansız.
+-   Minimum, çeyrekler, medyan, ortalama ve maksimum değerleri görmek için özet istatistiklere bakabiliriz. Ama bu yine de bize *görsel* olarak göstermez.
 
 ::: fragment
 ```{r}
@@ -252,13 +252,13 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
 -   Histogram, sürekli veriyi aralıklara (bin) gruplar ve her aralığa kaç gözlemin düştüğünü sayar.
 
--   Bir bin temel olarak bir aralıktır. Örneğin, aşağıdakilerin her biri 1000 genişliğinde bir bindir:
+-   Bir "bin" temel olarak bir aralıktır. Örneğin, aşağıdakilerin her biri 1000 genişliğinde bir "bin"dir:
 
     -   "0-1000"
     -   "1000-2000"
@@ -266,11 +266,11 @@ earnings %>%
 
 -   Sürekli veriyi binlere gruplamalı ve her bine kaç gözlemin ait olduğunu saymalıyız.
 
--   Bin genişliğini seçmek duruma göre değişir; farklı bin genişlikleri deneyin ve farklı şekiller elde edersiniz.
+-   Bin genişliğini seçmek duruma göre değişir; farklı bin genişlikleri amaca göre deneyebiliriz. Her farklı bin aralığı farklı şekiller ortaya çıkaracaktır.
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -282,21 +282,21 @@ earnings %>%
 ```
 :::
 
--   Gelirin histogramını 1000 bin genişliğiyle *elle* çizmeye başlayalım. Binlerimiz gelirin minimum değerinden başlayacak.
+-   Gelirin histogramını 1000TL bin genişliğiyle *elle* çizmeye başlayalım. Binlerimiz gelirin minimum değerinden başlayacak.
 
     -   "9000-10.000", "10.000-11.000", "11.000-12.000"...
 
--   Her gözlem için kişinin gelirine bakıp hangi bine ait olduğunu belirleyip saymaya başlıyoruz. Aynı bine düşen daha fazla gözlem gördükçe binin yüksekliği (sayı) artıyor.
+-   Her gözlem için kişinin gelirine bakıp hangi bine ait olduğunu belirleyip saymaya başlıyoruz. Aynı bine düşen daha fazla gözlem gördükçe binin yüksekliğini (sayısı) gösteren y eksenindeki değerler artıyor.
 
 -   Bunu yapmadan önce x ve y eksenlerimizi çizmemiz gerekiyor.
 
-    -   Bir x ekseni ve bir y ekseni çizin,
-    -   x ekseninde gelir var, 9000'den başlayan 1000'lik binlerle.
+    -   x ve y ekseni çizelim,
+    -   x ekseninde binler halinde parçalara ayrılmış gelir var, 9000'den başlayan 1000TL'lik binlerle.
     -   y ekseninde her zaman sayı var; her bine ait gözlem sayısını gösteriyor.
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -308,13 +308,13 @@ earnings
 ```
 :::
 
--   200 gözlemin tamamını geçmek çok yorucu.
+-   200 gözlemin tamamı için tek tek inceleyip çizmek çok zaman alacak.
 
 -   Bunun yerine R'dan bunu bizim için yapmasını isteyebiliriz!
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -335,7 +335,7 @@ Bir görselleştirme yapmak istiyorum, veri setimi al ve `ggplot` uygula.
 :::
 
 ::: fragment
-Elde edeceğimiz şey boş bir kâğıt parçası olacak. Henüz eksenlerimizi belirtmedik.
+Elde edeceğimiz şey boş bir kâğıt parçası olacak. Çünkü henüz eksenlerimizi belirtmedik.
 :::
 
 ::: fragment
@@ -348,7 +348,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -374,12 +374,12 @@ earnings %>% # <1>
 :::
 
 ::: fragment
-Histogramlar için yalnızca `x` değişkeninin adını vermemiz gerekiyor; R her gözlemi kendisi sayacak!
+Histogramlar için yalnızca `x` değişkeninin adını vermemiz yeterli; R her gözlemi kendisi sayacak ve y ekseninde gösterecek!
 :::
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -400,7 +400,7 @@ Yoğunluk grafiği yapmak için `geom_density()` kullanıyoruz.
 :::
 
 ::: fragment
-Çubuk grafik yapmak için `geom_bar()` kullanıyoruz.
+Bar grafik yapmak için `geom_bar()` kullanıyoruz.
 :::
 
 ::: fragment
@@ -409,7 +409,7 @@ Saçılım grafiği yapmak için `geom_point()` kullanıyoruz.
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -421,7 +421,7 @@ Saçılım grafiği yapmak için `geom_point()` kullanıyoruz.
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -437,7 +437,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış?
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -445,7 +445,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -466,12 +466,12 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
 ::: fragment
-Varsayılan olarak `R`, `geom_histogram()` içinde bir bin genişliği seçer; bunu görmesek de `geom_histogram(binwidth = 30)` şeklindedir. Bin genişliğini istediğimiz değere değiştirmek istiyoruz: `binwidth=1000`
+Varsayılan olarak `R`, `geom_histogram()` içinde bir bin genişliği seçiyor; bunu görmesek de `geom_histogram(binwidth = bir sayı)` şeklindedir. Bin genişliğini istediğimiz değere değiştirmek istiyoruz: `binwidth=1000`
 :::
 
 ::: fragment
@@ -487,12 +487,12 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
 ::: fragment
-R ayrıca binleri hangi renkle dolduracağını da seçer. Doldurma rengini `lightskyblue` olarak değiştirmek istiyoruz; bunu `geom_histogram(binwidth = 1000, fill={"renk adı"})` ile yapıyoruz.
+R ayrıca binleri hangi renkle dolduracağını da otomatik seçiyor. Doldurma (fill) rengini `lightskyblue` olarak değiştirmek istiyoruz; bunu `geom_histogram(binwidth = 1000, fill={"renk adı"})` ile yapıyoruz.
 :::
 
 ::: fragment
@@ -512,7 +512,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -533,23 +533,23 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
 -   Şimdi sıra sizde:
-    -   Şeklin nasıl değiştiğini görmek için farklı bir bin genişliği seçin,
-    -   Farklı bir dolgu ve kenar rengi seçin,
+    -   Şeklin nasıl değişeceğini görmek için farklı bir bin genişliği seçin,
+    -   Farklı bir dolgu (fill) ve kenar rengi seçin,
     -   Farklı bir tema seçin
         -   Tema seçeneklerini görmek için önceki `theme_classic()` temasını silin ve `theme_` yazmaya başlayın; R size öneriler gösterecek.
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
--   Grafiği yorumlamaya geçmeden önce `x` eksenindeki değer sayısını artırmak istiyorum. Şu an dağılımı görmek için yeterli olmayan 5 değerimiz var.
+-   Grafiği yorumlamaya geçmeden önce `x` ekseninde gösterilen değer sayılarını artırmak istiyorum. Şu an dağılımı görmek için yeterli olmayan 5 değerimiz var.
 
 -   `x` eksenindeki değer sayısını 5'ten 10'a çıkarmak için `scale_x_continuous(n.breaks=10)` katmanını kullanın.
 
@@ -557,7 +557,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -575,7 +575,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -606,7 +606,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -615,8 +615,8 @@ earnings %>%
 -   Ne görüyoruz?
     -   Minimum gelir yaklaşık 9000 görünürken maksimum yaklaşık 54.000.
     -   İşçilerin çoğu 15-25.000 TL kazanıyor
-    -   Çok kazanan ve sayıca az olan kişiler var. Bunlar kim? Stajyerler mi? Yöneticiler mi?
--   Şekil nedir?
+    -   Çok kazanan ve sayıca az olan kişiler var. Bunlar kim? Stajyerler ? Yöneticiler ?
+-   Şekil nasıl?
     -   Sol tarafta uzun binler (çubuklar) var -\> Sağa çarpık (biliyorum, bana da mantıklı gelmiyor; ama böyle kabul edilmiş)
     -   Dağılım sağa çarpık olduğundan ortalama muhtemelen medyandan büyük olacak. Sağdaki insanlar dağılımı bozuyor -\> aykırı değerler?
 -   Merkez nedir?
@@ -624,7 +624,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -644,7 +644,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -670,7 +670,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Histogram
 
@@ -695,17 +695,17 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
 -   İstatistik I'i hatırlıyor musunuz?
     -   Rastgele sürekli değişkenlerden ve onların dağılımlarından bahsetmiştik.
-    -   Yoğunluk fonksiyonlarından (düzgün dağılım, normal dağılım vb.) bahsetmiştik.
+    -   Yoğunluk fonksiyonlarından (tekdüze dağılım, normal dağılım vb.) bahsetmiştik.
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -731,17 +731,17 @@ curve(dnorm(x, mean = 50, sd = 10),
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
--   Gelir sürekli bir rastgele değişken olduğundan, histogram yerine kullanılabilecek bir alternatif `density` (yoğunluk) grafiğidir.
--   Yoğunluk grafiğinde, veriyi binlere gruplamak yerine, R dağılımı temsil eden sürekli bir eğri tahmin eder (temelde yoğunluk fonksiyonunu hesaplar ve çizer).
+-   Gelir sürekli bir rassal değişken olduğundan, histogram yerine kullanılabilecek bir alternatif `density` (yoğunluk) grafiğidir.
+-   Yoğunluk grafiğinde, veriyi binlere gruplamak yerine, R dağılımı temsil eden sürekli bir eğri tahmin eder (yoğunluk fonksiyonunu hesaplar ve çizer).
 -   Gelirin yoğunluk grafiğiyle nasıl dağıldığına bakalım.
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -758,12 +758,12 @@ curve(dnorm(x, mean = 50, sd = 10),
 :::
 
 ::: fragment
-Yoğunluk geometrisi ekle: `geom_density()`
+Yoğunluk grafiği ekle: `geom_density()`
 :::
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -780,12 +780,12 @@ earnings %>%  # <1>
 1.  `earnings` adlı verimizi kullanmak ve şunu yapmak istiyoruz ( %\>% )
 2.  `ggplot()` görselleştirmesi uygula
 3.  `x` ekseni değişkeni olarak `income` ekle
-4.  Yoğunluk geometrisi ekle: `geom_density()`
+4.  Yoğunluk grafiği ekle: `geom_density()`
 :::
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -793,7 +793,7 @@ earnings %>%  # <1>
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -802,11 +802,11 @@ Hemen tercih ettiğiniz bir tema uygulayın.
 :::
 
 ::: fragment
-Aslında, önce güzel bir tema kullanmak için güzel bir paket yükleyelim
+Bundan önce, güzel bir tema kullanmak için bu temaları içeren yararlı bir paket yükleyelim
 :::
 
 ::: fragment
-`ggthemes` paketini yüklemek istiyoruz; böylece temalarını kullanabiliriz
+`ggthemes` paketini yüklemek istiyoruz; böylece bu paketin özel temalarını kullanabiliriz.
 :::
 
 ::: fragment
@@ -819,12 +819,12 @@ install.packages("ggthemes")
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
 ::: fragment
-`ggthemes` paketinin temalarını kullanabilmek için R'a paketi kullanmasını söylememiz gerekiyor
+`ggthemes` paketinin temalarını kullanabilmek için R'a bu paketi kullanmasını söylememiz gerekiyor
 :::
 
 ::: fragment
@@ -852,7 +852,7 @@ earnings %>%  # <1>
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -873,7 +873,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -892,12 +892,12 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
 ::: fragment
-Çizginin kalınlığı biraz ince görünüyor; `geom_density()` içindeki `linewidth` argümanıyla artırabilir miyiz? Varsayılan olarak `geom_density(linewidth = 1)` şeklinde ayarlanmış.
+Çizginin kalınlığı biraz ince görünüyor; `geom_density()` içindeki `linewidth` argümanıyla artırabilir miyiz? Varsayılan olarak R `geom_density(linewidth = 1)` şeklinde otomatik olarak ayarlamış.
 :::
 
 ::: fragment
@@ -917,12 +917,12 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
 ::: fragment
-`y` ekseni etiketi değişti, çünkü artık sayıları göstermiyoruz. Olasılık yoğunluğunu gösteriyoruz. Yükseklikler artık işçi sayısını değil, olasılık yoğunluğunu temsil ediyor; bunu `y` etiketinde yansıtmalıyız.
+`y` ekseni etiketi (label, eksen adı) değişti, çünkü artık sayıları göstermiyoruz. Olasılık yoğunluğunu gösteriyoruz. Yükseklikler artık işçi sayısını değil, olasılık yoğunluğunu temsil ediyor; bunu `y` etiketinde (eksen adı) yansıtmalıyız.
 :::
 
 ::: fragment
@@ -953,7 +953,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin dağılımı
+### Sürekli bir değişkenin dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -975,7 +975,7 @@ earnings %>%
 
 ## Gelir Cinsiyetler Arasında Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -990,7 +990,7 @@ earnings %>%
 
 ## Gelir Cinsiyetler Arasında Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 
 #### Yoğunluk Grafiği - cinsiyete göre çizgi rengini değiştir
 
@@ -1017,7 +1017,7 @@ earnings %>%
 
 ## Gelir Cinsiyetler Arasında Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 
 #### Yoğunluk Grafiği - cinsiyete göre çizgi rengini değiştir
 
@@ -1053,7 +1053,7 @@ earnings %>%
 
 ## Gelir Cinsiyetler Arasında Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 
 #### Yoğunluk Grafiği - cinsiyete göre renk türünü değiştir
 
@@ -1085,20 +1085,20 @@ Bunun nedeni R'ın bize bir renk adı verdiğimizi sanması; kırmızı, mavi ve
 :::
 
 ::: fragment
-Bir şeyi *değişkene* göre değiştirmek istediğimizde bunu `geom_` içinde değil, `aes()` içinde yaparız.
+Bir şeyi (çizgi rengini, kalınlığını, şeklini) *değişkene* göre değiştirmek istediğimizde bunu `geom_` içinde değil, `aes()` içinde yapıyoruz.
 :::
 
 ::: fragment
-Bu yüzden `geom_density(x = income)` yerine `aes(x = income)` yazıyoruz. Çünkü `x` tek bir değer değil, bir *değişken* olmalıdır.
+Bu yüzden `geom_density(x = income)` yerine `aes(x = income)` yazıyoruz. Çünkü `x` tek bir değer değil, bir *değişken* olmalı..
 :::
 
 ::: fragment
-O hâlde yapmak istediğimiz şey `aes(x = income)` satırına gidip `,` ile ayırarak `color = gender` argümanını eklemek
+O halde yapmak istediğimiz şey `aes(x = income)` satırına gidip `,` ile ayırarak `color = gender` argümanını eklemek
 :::
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -1121,7 +1121,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -1131,7 +1131,7 @@ earnings %>%
 
 -   *İki dağılımı* karşılaştırıyoruz.
 
--   Şimdi gösterdiğimiz şey "Kazançlar cinsiyete göre farklılaşıyor mu?".
+-   Artık gösterdiğimiz şey şu "Kazanç dağılımları cinsiyete göre farklılaşıyor mu?".
 
 -   Başlık ve alt başlığımız bunu yansıtmalı.
 
@@ -1139,11 +1139,11 @@ earnings %>%
 
     -   Hedef kitlemizin verinin Çilek Mobilya, Mamak'tan geldiğini bildiğini varsayalım (başlığı kısaltmak için).
 
--   Alt başlığı "Erkek ve kadın işçiler arasında belirgin bir görsel fark yok" olarak değiştirin.
+-   Alt başlığı "Erkek ve kadın işçiler arasında belirgin bir fark yok" olarak değiştirin.
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 
 #### Yoğunluk Grafiği
 
@@ -1166,11 +1166,11 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 #### Yoğunluk Grafiği - cinsiyete göre renk türünü değiştir
 
 ::: fragment
-Şimdi renk yerine `linetype`'ı cinsiyete göre değiştirebilirdik.
+Renk yerine `linetype`'ı cinsiyete göre değiştirebilirdik.
 :::
 
 ::: fragment
@@ -1196,7 +1196,7 @@ earnings %>%
 :::
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 #### Yoğunluk Grafiği - cinsiyete göre renk türünü değiştir
 
 
@@ -1218,7 +1218,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 
 #### Histogram
 
@@ -1247,7 +1247,7 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 
 #### Histogram
 
@@ -1276,20 +1276,20 @@ earnings %>%
 
 ## Gelir Nasıl Dağılmış? {.small-slide}
 
-### Bir sürekli değişkenin gruba göre dağılımı
+### Sürekli bir değişkenin gruba göre dağılımı
 
 #### Histogram
 
 -   Bu grafikte pek çok sorun var
 
--   Histogramlarda yalnızca bir değişken kullanın; gruba göre dağılım karşılaştırması yapmanız gerekiyorsa `density` grafiği kullanın.
+-   Histogramı yalnızca bir değişkenin dağılımını basitçe gösermek için kullanın; gruba göre dağılım karşılaştırması yapmanız gerekiyorsa `density` grafiği kullanın.
 
 -   Amacınız "Her gelir aralığına kaç işçi düşüyor?" göstermekse histogram doğru grafiktir (yoğunluk grafiği de kabul edilebilir; yorum biraz farklılaşır).
 
     -   y ekseni sayıları gösterir
     -   ".. - .. TL arasında yaklaşık 10 işçi kazanıyor" diyebilirsiniz.
 
--   Amacınız "Gelir dağılımları cinsiyete göre farklılaşıyor mu?" göstermekse yoğunluk grafiği doğrudur
+-   Amacınız "Gelir dağılımları cinsiyete göre farklılaşıyor mu?" göstermekse yoğunluk grafiği daha uygun olacaktır
 
     -   Şekli grupları karşılaştırmamızı kolaylaştırır.
     -   Üst üste binme sorunu yoktur.

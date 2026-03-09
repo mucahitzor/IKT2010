@@ -1,11 +1,16 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
 
 website:
   title: "Statistics II - Data Visualization"
-  navbar:
-    left:
+  sidebar:
+    style: "docked"
+    contents:
+      - href: index.qmd
+        text: Home
       - href: slides.qmd
         text: Week 3
       - href: slides_tr.qmd

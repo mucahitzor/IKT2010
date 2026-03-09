@@ -200,30 +200,30 @@
 
 </section>
 <section>
-<section id="veriyi-görselleştirmek" class="title-slide slide level1 center">
-<h1>Veriyi Görselleştirmek</h1>
+<section id="veri-görselleştirme" class="title-slide slide level1 center">
+<h1>Veri Görselleştirme</h1>
 
 </section>
-<section id="neden-veri-görselleştiririz" class="slide level2">
-<h2>Neden Veri Görselleştiririz?</h2>
+<section id="neden-veriyi-görselleştiriyoruz" class="slide level2">
+<h2>Neden Veriyi Görselleştiriyoruz?</h2>
 <p><img data-src="./pics/01data.png" style="height: 1050px; width: 1072px;"></p>
 </section>
-<section id="neden-veri-görselleştiririz-1" class="slide level2">
-<h2>Neden Veri Görselleştiririz?</h2>
+<section id="neden-veriyi-görselleştiriyoruz-1" class="slide level2">
+<h2>Neden Veriyi Görselleştiriyoruz?</h2>
 <ul>
-<li class="fragment"><p>Veri görselleştirme bir süsleme değildir; analitik bir araçtır.</p></li>
-<li class="fragment"><p>İnsan bilişi, tablo veya sayı okumak için değil, görsel alanda örüntü tanımak için optimize edilmiştir.</p></li>
+<li class="fragment"><p>Veri görselleştirme bir süsleme değil; analitik bir araçtır.</p></li>
+<li class="fragment"><p>İnsan zihni, tablo veya sayı okumak için değil, görsel alanda (doğada) örüntü tanımak için optimize edilmiştir.</p></li>
 </ul>
 <div class="fragment">
 <p><img data-src="./pics/02plots.png"></p>
 </div>
 </section>
-<section id="neden-veri-görselleştiririz-2" class="slide level2">
-<h2>Neden Veri Görselleştiririz?</h2>
-<h3 id="neden-temel-bilgileri-öğrenmeden-r-kullanıyoruz">Neden temel bilgileri öğrenmeden R kullanıyoruz?</h3>
+<section id="neden-veriyi-görselleştiriyoruz-2" class="slide level2">
+<h2>Neden Veriyi Görselleştiriyoruz?</h2>
+<h3 id="neden-temelleri-öğrenmeden-r-kullanıyoruz">Neden temelleri öğrenmeden R kullanıyoruz?</h3>
 <ul>
 <li class="fragment">Zaman kısıtlaması.</li>
-<li class="fragment">Yine de yapabilirsiniz! Ben bunu başaran 2 kişiyi şahsen tanıyorum (biliyorum, küçük bir örneklem…).</li>
+<li class="fragment">Yapabilirsiniz! Birçok öğrenci yapabiliyor.</li>
 <li class="fragment">Sizi R öğrenmeye teşvik etmek için.</li>
 </ul>
 </section>
@@ -237,12 +237,12 @@
 </ul></li>
 <li class="fragment">Hangi tür değişkenleriniz var?
 <ul>
-<li class="fragment">Sayısal: sürekli (fiyat, ağırlık, mesafe vb.) ya da kesikli (yaş, aile büyüklüğü vb.)?</li>
-<li class="fragment">Sayısal olmayan: nominal (cinsiyet, ırk, tişört rengi vb.), sıralı (tişört bedeni, eğitim düzeyi, memnuniyet derecesi)</li>
+<li class="fragment">Sayısal: sürekli (fiyat (TL), ağırlık (kg), mesafe (km, m vb.) vb.) ya da kesikli (yaş, aile büyüklüğü vb.)?</li>
+<li class="fragment">Sayısal olmayan: nominal (cinsiyet, ırk, tişört rengi vb.), sıralı (tişört bedeni (S &lt; M &lt; L), eğitim düzeyi (ilkokul &lt; ortaokul &lt; lise &lt; lisans…), memnuniyet derecesi (kötü &lt; orta &lt; iyi))</li>
 </ul></li>
 <li class="fragment">Hangi tür grafik kullanabilirsiniz?</li>
-<li class="fragment">Grafiği yapın, anlayın</li>
-<li class="fragment">Güzel hale getirin</li>
+<li class="fragment">Grafiği yap, gördüğün örüntüyü anla.</li>
+<li class="fragment">Güzel hale getir.</li>
 </ol>
 </section></section>
 <section id="grafik-karar-tablosunu-kullanın" class="title-slide slide level1 center">
@@ -317,22 +317,22 @@
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="1,2" data-code-annotation="1">tidyverse ve janitor kütüphanelerini kullan; böylece bu kütüphanelerin sunduğu fonksiyonları kullanabiliriz</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="1,2" data-code-annotation="1">tidyverse ve janitor kütüphanelerini kullan; böylece bu kütüphanelerin veri görselleştirme için sunduğu fonksiyonlarını kullanabiliriz</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="2">Verim bu yolda (yol = verinin nerede olduğu) bulunan bir csv dosyası, onu oku ve şunu yap ( %&gt;% )</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="2">Verim bu yolda (yol = verinin hangi adreste olduğu) bulunan bir csv dosyası, onu oku ve şunu yap ( %&gt;% )</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="3"><code>tibble</code> olarak göster: tibble verimizi görmenin güzel bir yoludur. <code>-&gt; earnings</code> ile “bu veri setini belleğime kaydet, istediğimde kullanayım” diyoruz.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="3"><code>tibble</code> olarak göster: tibble verimizi görmenin güzel bir yolu. <code>-&gt; earnings</code> ile “bu veri setini belleğe (RAM) kaydet, istediğimde <code>earnings</code> yazarak kullanayım” diyoruz.</span>
 </dd>
 </dl>
 </div>
 </div>
 </section>
-<section id="veriye-bak" class="slide level2">
-<h2>Veriye Bak</h2>
+<section id="veriyi-inceleme" class="slide level2">
+<h2>Veriyi İnceleme</h2>
 <div class="fragment">
 <p>Verinin nasıl göründüğüne bakalım. İki yol var:</p>
 <div class="cell">
@@ -394,7 +394,7 @@
 </div>
 </div>
 <div class="fragment">
-<p><span class="red-text">Sayısal değişkenler</span> hakkında değişken adlarını ve bilgileri görmek için <code>summary()</code> fonksiyonunu kullanırız.</p>
+<p><span class="red-text">Sayısal değişkenler</span> hakkında değişken adlarını ve bilgileri görmek için <code>summary()</code> fonksiyonunu kullanıyoruz.</p>
 </div>
 <div class="fragment">
 <p>Yani R’a şunu söylememiz gerekiyor:</p>
@@ -411,7 +411,7 @@
 </div>
 <div class="fragment">
 <ul>
-<li class="fragment">veri setinin <code>summary()</code>’sini ver.</li>
+<li class="fragment">veri setinin özet istatistiklerini <code>summary()</code> fonksiyonunu kullarak ver.</li>
 </ul>
 </div>
 <div class="fragment">
@@ -468,16 +468,16 @@
 </section>
 <section id="verimizi-anlamak-2" class="slide level2 small-slide">
 <h2>Verimizi Anlamak</h2>
-<h3 id="bugünkü-hedefimiz-gelir-nasıl-dağılmış">Bugünkü Hedefimiz: Gelir nasıl dağılmış?</h3>
+<h3 id="bugünkü-hedefimiz-gelir-nasıl-dağılıyor">Bugünkü Hedefimiz: Gelir nasıl dağılıyor?</h3>
 <ul>
 <li class="fragment"><p>Gelirin nasıl dağıldığını bulmaya çalışıyoruz.</p></li>
-<li class="fragment"><p>Gelir sürekli bir değişkendir.</p></li>
-<li class="fragment"><p>Sürekli bir değişkenin nasıl dağıldığını görmek için: histogram veya yoğunluk grafiği kullanın.</p></li>
+<li class="fragment"><p>Gelir sürekli (continious) bir değişken.</p></li>
+<li class="fragment"><p>Sürekli bir değişkenin nasıl dağıldığını görmek için: histogram veya yoğunluk grafiği kullabiliriz.</p></li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış" class="slide level2 small-slide">
-<h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı">Bir sürekli değişkenin dağılımı</h3>
+<section id="gelir-nasıl-dağılıyor" class="slide level2 small-slide">
+<h2>Gelir Nasıl Dağılıyor?</h2>
+<h3 id="sürekli-bir-değişkenin-dağılımı">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram">Histogram</h4>
 <div class="fragment">
 <p>Veriye tekrar bakalım</p>
@@ -506,8 +506,8 @@
 <li class="fragment">İlk 10 kişinin gelir değerlerini görüyoruz.</li>
 <li class="fragment">Her satır (gözlem) bir kişidir.</li>
 <li class="fragment">Ama 200 gözlemimiz var ve <code>income</code>’ın nasıl dağıldığını bir şekilde anlamamız gerekiyor.</li>
-<li class="fragment">Bunu yalnızca tablodaki veriye bakarak anlamak imkânsız.</li>
-<li class="fragment">Min, çeyrekler, medyan, ortalama ve maks’ı görmek için özet istatistiklere bakabiliriz. Ama bu yine de bize <em>şekli</em> göstermez.</li>
+<li class="fragment">Bunu yalnızca tablodaki veriye bakarak anlamak imkansız.</li>
+<li class="fragment">Minimum, çeyrekler, medyan, ortalama ve maksimum değerleri görmek için özet istatistiklere bakabiliriz. Ama bu yine de bize <em>görsel</em> olarak göstermez.</li>
 </ul>
 <div class="fragment">
 <div class="cell">
@@ -525,25 +525,25 @@
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-1" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-1">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-1">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-1">Histogram</h4>
 <ul>
 <li class="fragment"><p>Histogram, sürekli veriyi aralıklara (bin) gruplar ve her aralığa kaç gözlemin düştüğünü sayar.</p></li>
-<li class="fragment"><p>Bir bin temel olarak bir aralıktır. Örneğin, aşağıdakilerin her biri 1000 genişliğinde bir bindir:</p>
+<li class="fragment"><p>Bir “bin” temel olarak bir aralıktır. Örneğin, aşağıdakilerin her biri 1000 genişliğinde bir “bin”dir:</p>
 <ul>
 <li class="fragment">“0-1000”</li>
 <li class="fragment">“1000-2000”</li>
 <li class="fragment">“2000-3000”</li>
 </ul></li>
 <li class="fragment"><p>Sürekli veriyi binlere gruplamalı ve her bine kaç gözlemin ait olduğunu saymalıyız.</p></li>
-<li class="fragment"><p>Bin genişliğini seçmek duruma göre değişir; farklı bin genişlikleri deneyin ve farklı şekiller elde edersiniz.</p></li>
+<li class="fragment"><p>Bin genişliğini seçmek duruma göre değişir; farklı bin genişlikleri amaca göre deneyebiliriz. Her farklı bin aralığı farklı şekiller ortaya çıkaracaktır.</p></li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış-2" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-1" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-2">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-2">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-2">Histogram</h4>
 <div class="fragment">
 <div class="cell">
@@ -561,22 +561,22 @@
 </div>
 </div>
 <ul>
-<li class="fragment"><p>Gelirin histogramını 1000 bin genişliğiyle <em>elle</em> çizmeye başlayalım. Binlerimiz gelirin minimum değerinden başlayacak.</p>
+<li class="fragment"><p>Gelirin histogramını 1000TL bin genişliğiyle <em>elle</em> çizmeye başlayalım. Binlerimiz gelirin minimum değerinden başlayacak.</p>
 <ul>
 <li class="fragment">“9000-10.000”, “10.000-11.000”, “11.000-12.000”…</li>
 </ul></li>
-<li class="fragment"><p>Her gözlem için kişinin gelirine bakıp hangi bine ait olduğunu belirleyip saymaya başlıyoruz. Aynı bine düşen daha fazla gözlem gördükçe binin yüksekliği (sayı) artıyor.</p></li>
+<li class="fragment"><p>Her gözlem için kişinin gelirine bakıp hangi bine ait olduğunu belirleyip saymaya başlıyoruz. Aynı bine düşen daha fazla gözlem gördükçe binin yüksekliğini (sayısı) gösteren y eksenindeki değerler artıyor.</p></li>
 <li class="fragment"><p>Bunu yapmadan önce x ve y eksenlerimizi çizmemiz gerekiyor.</p>
 <ul>
-<li class="fragment">Bir x ekseni ve bir y ekseni çizin,</li>
-<li class="fragment">x ekseninde gelir var, 9000’den başlayan 1000’lik binlerle.</li>
+<li class="fragment">x ve y ekseni çizelim,</li>
+<li class="fragment">x ekseninde binler halinde parçalara ayrılmış gelir var, 9000’den başlayan 1000TL’lik binlerle.</li>
 <li class="fragment">y ekseninde her zaman sayı var; her bine ait gözlem sayısını gösteriyor.</li>
 </ul></li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış-3" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-2" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-3">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-3">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-3">Histogram</h4>
 <div class="fragment">
 <p>İlk 10 gözlemi çizelim.</p>
@@ -600,13 +600,13 @@
 </div>
 </div>
 <ul>
-<li class="fragment"><p>200 gözlemin tamamını geçmek çok yorucu.</p></li>
+<li class="fragment"><p>200 gözlemin tamamı için tek tek inceleyip çizmek çok zaman alacak.</p></li>
 <li class="fragment"><p>Bunun yerine R’dan bunu bizim için yapmasını isteyebiliriz!</p></li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış-4" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-3" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-4">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-4">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-4">Histogram</h4>
 <div class="fragment">
 <p><code>earnings</code> adlı veri setimi al,</p>
@@ -620,7 +620,7 @@
 <p>Bir görselleştirme yapmak istiyorum, veri setimi al ve <code>ggplot</code> uygula.</p>
 </div>
 <div class="fragment">
-<p>Elde edeceğimiz şey boş bir kâğıt parçası olacak. Henüz eksenlerimizi belirtmedik.</p>
+<p>Elde edeceğimiz şey boş bir kâğıt parçası olacak. Çünkü henüz eksenlerimizi belirtmedik.</p>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -636,9 +636,9 @@
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-5" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-4" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-5">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-5">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-5">Histogram</h4>
 <div class="fragment">
 <p>Elle çizmeye benzer şekilde önce x ve y eksenini çiziyoruz. Bunu R ile yapmak için <code>aes(x = {değişken adı})</code> fonksiyonunu kullanıyoruz. Ve bunu mevcut boş sayfamıza <code>+</code> sembolü ile <em>ekliyoruz</em>.</p>
@@ -677,12 +677,12 @@
 </div>
 </div>
 <div class="fragment">
-<p>Histogramlar için yalnızca <code>x</code> değişkeninin adını vermemiz gerekiyor; R her gözlemi kendisi sayacak!</p>
+<p>Histogramlar için yalnızca <code>x</code> değişkeninin adını vermemiz yeterli; R her gözlemi kendisi sayacak ve y ekseninde gösterecek!</p>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-6" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-5" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-6">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-6">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-6">Histogram</h4>
 <div class="fragment">
 <p>Şimdi R’a <code>histogram</code> yapmasını söyleme zamanı.</p>
@@ -697,15 +697,15 @@
 <p>Yoğunluk grafiği yapmak için <code>geom_density()</code> kullanıyoruz.</p>
 </div>
 <div class="fragment">
-<p>Çubuk grafik yapmak için <code>geom_bar()</code> kullanıyoruz.</p>
+<p>Bar grafik yapmak için <code>geom_bar()</code> kullanıyoruz.</p>
 </div>
 <div class="fragment">
 <p>Saçılım grafiği yapmak için <code>geom_point()</code> kullanıyoruz.</p>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-7" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-6" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-7">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-7">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-7">Histogram</h4>
 <ul>
 <li class="fragment">Şimdi R’a şunu söyleyelim:
@@ -717,9 +717,9 @@
 </ul></li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış-8" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-7" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-8">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-8">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-8">Histogram</h4>
 <div class="fragment">
 <div class="cell">
@@ -737,15 +737,15 @@
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-9" class="slide level2">
+<section id="gelir-nasıl-dağılmış-8" class="slide level2">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-9">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-9">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-9">Histogram</h4>
 <p><img data-src="./pics/memes/03firstplot.png" style="height: 500px; width: 1072px;"></p>
 </section>
-<section id="gelir-nasıl-dağılmış-10" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-9" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-10">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-10">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-10">Histogram</h4>
 <div class="fragmen">
 <p>Önce görselleştirmemize bir tema ekleyerek bu berbat grafiği düzeltmeye başlayalım. <code>theme_{tema adı}</code> ile bir tema kullanabiliriz. <code>theme</code>’in her zaman son satırda olduğundan emin olun.</p>
@@ -767,12 +767,12 @@
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-11" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-10" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-11">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-11">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-11">Histogram</h4>
 <div class="fragment">
-<p>Varsayılan olarak <code>R</code>, <code>geom_histogram()</code> içinde bir bin genişliği seçer; bunu görmesek de <code>geom_histogram(binwidth = 30)</code> şeklindedir. Bin genişliğini istediğimiz değere değiştirmek istiyoruz: <code>binwidth=1000</code></p>
+<p>Varsayılan olarak <code>R</code>, <code>geom_histogram()</code> içinde bir bin genişliği seçiyor; bunu görmesek de <code>geom_histogram(binwidth = bir sayı)</code> şeklindedir. Bin genişliğini istediğimiz değere değiştirmek istiyoruz: <code>binwidth=1000</code></p>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -791,12 +791,12 @@
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-12" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-11" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-12">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-12">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-12">Histogram</h4>
 <div class="fragment">
-<p>R ayrıca binleri hangi renkle dolduracağını da seçer. Doldurma rengini <code>lightskyblue</code> olarak değiştirmek istiyoruz; bunu <code>geom_histogram(binwidth = 1000, fill={"renk adı"})</code> ile yapıyoruz.</p>
+<p>R ayrıca binleri hangi renkle dolduracağını da otomatik seçiyor. Doldurma (fill) rengini <code>lightskyblue</code> olarak değiştirmek istiyoruz; bunu <code>geom_histogram(binwidth = 1000, fill={"renk adı"})</code> ile yapıyoruz.</p>
 </div>
 <div class="fragment">
 <p>Her argümanı birbirinden ayırmak için <code>,</code> kullandığımıza dikkat edin.</p>
@@ -818,9 +818,9 @@
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-13" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-12" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-13">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-13">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-13">Histogram</h4>
 <div class="fragment">
 <p>Binlerin kenarlarının rengini değiştirmek için <code>geom_histogram()</code> içinde <code>color={renk adı}</code> argümanını kullanıyoruz. <code>black</code> yapalım.</p>
@@ -842,15 +842,15 @@
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-14" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-13" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-14">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-14">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-14">Histogram</h4>
 <ul>
 <li class="fragment">Şimdi sıra sizde:
 <ul>
-<li class="fragment">Şeklin nasıl değiştiğini görmek için farklı bir bin genişliği seçin,</li>
-<li class="fragment">Farklı bir dolgu ve kenar rengi seçin,</li>
+<li class="fragment">Şeklin nasıl değişeceğini görmek için farklı bir bin genişliği seçin,</li>
+<li class="fragment">Farklı bir dolgu (fill) ve kenar rengi seçin,</li>
 <li class="fragment">Farklı bir tema seçin
 <ul>
 <li class="fragment">Tema seçeneklerini görmek için önceki <code>theme_classic()</code> temasını silin ve <code>theme_</code> yazmaya başlayın; R size öneriler gösterecek.</li>
@@ -858,19 +858,19 @@
 </ul></li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış-15" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-14" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-15">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-15">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-15">Histogram</h4>
 <ul>
-<li class="fragment"><p>Grafiği yorumlamaya geçmeden önce <code>x</code> eksenindeki değer sayısını artırmak istiyorum. Şu an dağılımı görmek için yeterli olmayan 5 değerimiz var.</p></li>
+<li class="fragment"><p>Grafiği yorumlamaya geçmeden önce <code>x</code> ekseninde gösterilen değer sayılarını artırmak istiyorum. Şu an dağılımı görmek için yeterli olmayan 5 değerimiz var.</p></li>
 <li class="fragment"><p><code>x</code> eksenindeki değer sayısını 5’ten 10’a çıkarmak için <code>scale_x_continuous(n.breaks=10)</code> katmanını kullanın.</p></li>
 <li class="fragment"><p>Bunu temadan önce eklemeyi unutmayın!</p></li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış-16" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-15" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-16">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-16">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-16">Histogram</h4>
 <div class="fragment">
 <div class="cell">
@@ -890,9 +890,9 @@
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-17" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-16" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-17">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-17">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-17">Histogram</h4>
 <div class="fragment">
 <p>y ekseninde de aynı sorun var.</p>
@@ -922,9 +922,9 @@
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-18" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-17" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-18">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-18">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-18">Histogram</h4>
 <p>Şimdi grafiği yorumlama zamanı.</p>
 <ul>
@@ -932,9 +932,9 @@
 <ul>
 <li class="fragment">Minimum gelir yaklaşık 9000 görünürken maksimum yaklaşık 54.000.</li>
 <li class="fragment">İşçilerin çoğu 15-25.000 TL kazanıyor</li>
-<li class="fragment">Çok kazanan ve sayıca az olan kişiler var. Bunlar kim? Stajyerler mi? Yöneticiler mi?</li>
+<li class="fragment">Çok kazanan ve sayıca az olan kişiler var. Bunlar kim? Stajyerler ? Yöneticiler ?</li>
 </ul></li>
-<li class="fragment">Şekil nedir?
+<li class="fragment">Şekil nasıl?
 <ul>
 <li class="fragment">Sol tarafta uzun binler (çubuklar) var -&gt; Sağa çarpık (biliyorum, bana da mantıklı gelmiyor; ama böyle kabul edilmiş)</li>
 <li class="fragment">Dağılım sağa çarpık olduğundan ortalama muhtemelen medyandan büyük olacak. Sağdaki insanlar dağılımı bozuyor -&gt; aykırı değerler?</li>
@@ -945,9 +945,9 @@
 </ul></li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış-19" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-18" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-19">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-19">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-19">Histogram</h4>
 <ul>
 <li class="fragment"><p>Grafiğimizi anladığımıza göre başkalarının da anlamasını sağlamalıyız; bunun için <code>title</code> (başlık) ve <code>subtitle</code> (alt başlık) ekliyoruz.</p></li>
@@ -959,9 +959,9 @@
 <li class="fragment"><p>Yanlış: <code>labs(x = Gelir, y = Gözlem sayısı)</code></p></li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış-20" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-19" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-20">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-20">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-20">Histogram</h4>
 <div class="fragment">
 <div class="cell">
@@ -981,9 +981,9 @@
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-21" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-20" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-21">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-21">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="histogram-21">Histogram</h4>
 <div class="fragment">
 <div class="cell">
@@ -997,21 +997,21 @@
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-22" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-21" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-22">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-22">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği">Yoğunluk Grafiği</h4>
 <ul>
 <li class="fragment">İstatistik I’i hatırlıyor musunuz?
 <ul>
 <li class="fragment">Rastgele sürekli değişkenlerden ve onların dağılımlarından bahsetmiştik.</li>
-<li class="fragment">Yoğunluk fonksiyonlarından (düzgün dağılım, normal dağılım vb.) bahsetmiştik.</li>
+<li class="fragment">Yoğunluk fonksiyonlarından (tekdüze dağılım, normal dağılım vb.) bahsetmiştik.</li>
 </ul></li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış-23" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-22" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-23">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-23">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-1">Yoğunluk Grafiği</h4>
 <ul>
 <li class="fragment"><span class="math display">\[
@@ -1031,19 +1031,19 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-24" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-23" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-24">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-24">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-2">Yoğunluk Grafiği</h4>
 <ul>
-<li class="fragment">Gelir sürekli bir rastgele değişken olduğundan, histogram yerine kullanılabilecek bir alternatif <code>density</code> (yoğunluk) grafiğidir.</li>
-<li class="fragment">Yoğunluk grafiğinde, veriyi binlere gruplamak yerine, R dağılımı temsil eden sürekli bir eğri tahmin eder (temelde yoğunluk fonksiyonunu hesaplar ve çizer).</li>
+<li class="fragment">Gelir sürekli bir rassal değişken olduğundan, histogram yerine kullanılabilecek bir alternatif <code>density</code> (yoğunluk) grafiğidir.</li>
+<li class="fragment">Yoğunluk grafiğinde, veriyi binlere gruplamak yerine, R dağılımı temsil eden sürekli bir eğri tahmin eder (yoğunluk fonksiyonunu hesaplar ve çizer).</li>
 <li class="fragment">Gelirin yoğunluk grafiğiyle nasıl dağıldığına bakalım.</li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış-25" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-24" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-25">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-25">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-3">Yoğunluk Grafiği</h4>
 <div class="fragment">
 <p><code>earnings</code> adlı verimizi kullanmak ve şunu yapmak istiyoruz ( %&gt;% )</p>
@@ -1055,12 +1055,12 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <p><code>x</code> ekseni değişkeni olarak <code>income</code> ekle</p>
 </div>
 <div class="fragment">
-<p>Yoğunluk geometrisi ekle: <code>geom_density()</code></p>
+<p>Yoğunluk grafiği ekle: <code>geom_density()</code></p>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-26" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-25" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-26">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-26">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-4">Yoğunluk Grafiği</h4>
 <div class="fragment">
 <div class="cell">
@@ -1084,7 +1084,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </dd>
 <dt data-target-cell="annotated-cell-32" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-32" data-code-lines="4" data-code-annotation="4">Yoğunluk geometrisi ekle: <code>geom_density()</code></span>
+<span data-code-cell="annotated-cell-32" data-code-lines="4" data-code-annotation="4">Yoğunluk grafiği ekle: <code>geom_density()</code></span>
 </dd>
 </dl>
 </div>
@@ -1098,24 +1098,24 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-27" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-26" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-27">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-27">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-5">Yoğunluk Grafiği</h4>
 <p><img data-src="./pics/memes/04density.png" style="height: 600; width: 700;"></p>
 </section>
-<section id="gelir-nasıl-dağılmış-28" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-27" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-28">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-28">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-6">Yoğunluk Grafiği</h4>
 <div class="fragment">
 <p>Hemen tercih ettiğiniz bir tema uygulayın.</p>
 </div>
 <div class="fragment">
-<p>Aslında, önce güzel bir tema kullanmak için güzel bir paket yükleyelim</p>
+<p>Bundan önce, güzel bir tema kullanmak için bu temaları içeren yararlı bir paket yükleyelim</p>
 </div>
 <div class="fragment">
-<p><code>ggthemes</code> paketini yüklemek istiyoruz; böylece temalarını kullanabiliriz</p>
+<p><code>ggthemes</code> paketini yüklemek istiyoruz; böylece bu paketin özel temalarını kullanabiliriz.</p>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -1123,12 +1123,12 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-29" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-28" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-29">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-29">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-7">Yoğunluk Grafiği</h4>
 <div class="fragment">
-<p><code>ggthemes</code> paketinin temalarını kullanabilmek için R’a paketi kullanmasını söylememiz gerekiyor</p>
+<p><code>ggthemes</code> paketinin temalarını kullanabilmek için R’a bu paketi kullanmasını söylememiz gerekiyor</p>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -1147,9 +1147,9 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-30" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-29" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-30">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-30">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-8">Yoğunluk Grafiği</h4>
 <div class="fragment">
 <p><code>theme_</code> yazmaya başlayın; sağ taraftaki öneriler arasında <code>ggthemes</code>’i göreceksiniz; oradan bir tane seçin.</p>
@@ -1171,9 +1171,9 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-31" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-30" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-31">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-31">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-9">Yoğunluk Grafiği</h4>
 <p>Yoğunluk çizgisinin siyah rengini beğenmedim. <code>geom_density(color = {"tercih ettiğiniz renk"})</code> içindeki <code>color</code> argümanını kullanarak “azure4” olarak değiştirelim</p>
 <div class="fragment">
@@ -1193,12 +1193,12 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-32" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-31" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-32">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-32">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-10">Yoğunluk Grafiği</h4>
 <div class="fragment">
-<p>Çizginin kalınlığı biraz ince görünüyor; <code>geom_density()</code> içindeki <code>linewidth</code> argümanıyla artırabilir miyiz? Varsayılan olarak <code>geom_density(linewidth = 1)</code> şeklinde ayarlanmış.</p>
+<p>Çizginin kalınlığı biraz ince görünüyor; <code>geom_density()</code> içindeki <code>linewidth</code> argümanıyla artırabilir miyiz? Varsayılan olarak R <code>geom_density(linewidth = 1)</code> şeklinde otomatik olarak ayarlamış.</p>
 </div>
 <div class="fragment">
 <p><code>geom_density(color = {"tercih ettiğiniz renk"}, linewidth = {tercih ettiğiniz genişlik sayısı})</code></p>
@@ -1220,12 +1220,12 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-33" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-32" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-33">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-33">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-11">Yoğunluk Grafiği</h4>
 <div class="fragment">
-<p><code>y</code> ekseni etiketi değişti, çünkü artık sayıları göstermiyoruz. Olasılık yoğunluğunu gösteriyoruz. Yükseklikler artık işçi sayısını değil, olasılık yoğunluğunu temsil ediyor; bunu <code>y</code> etiketinde yansıtmalıyız.</p>
+<p><code>y</code> ekseni etiketi (label, eksen adı) değişti, çünkü artık sayıları göstermiyoruz. Olasılık yoğunluğunu gösteriyoruz. Yükseklikler artık işçi sayısını değil, olasılık yoğunluğunu temsil ediyor; bunu <code>y</code> etiketinde (eksen adı) yansıtmalıyız.</p>
 </div>
 <div class="fragment">
 <p>x ve y değerleri uygun görünüyor. <code>scale_x_continuous()</code> ve <code>scale_y_continuous()</code> kullanmamıza gerek yok.</p>
@@ -1249,9 +1249,9 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-34" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-33" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-dağılımı-34">Bir sürekli değişkenin dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-dağılımı-34">Sürekli bir değişkenin dağılımı</h3>
 <h4 id="yoğunluk-grafiği-12">Yoğunluk Grafiği</h4>
 <div class="fragment">
 <div class="cell">
@@ -1267,7 +1267,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </section>
 <section id="gelir-cinsiyetler-arasında-nasıl-dağılmış" class="slide level2 small-slide">
 <h2>Gelir Cinsiyetler Arasında Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="yoğunluk-grafiği-13">Yoğunluk Grafiği</h4>
 <ul>
 <li class="fragment"><p>Peki ya işçilerin gelirinin cinsiyete göre değişip değişmediğini görmek isteseydik?</p></li>
@@ -1281,7 +1281,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </section>
 <section id="gelir-cinsiyetler-arasında-nasıl-dağılmış-1" class="slide level2 small-slide">
 <h2>Gelir Cinsiyetler Arasında Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı-1">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı-1">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="yoğunluk-grafiği---cinsiyete-göre-çizgi-rengini-değiştir">Yoğunluk Grafiği - cinsiyete göre çizgi rengini değiştir</h4>
 <div class="fragment">
 <p>Bu bizim kodumuz ve grafiğimizdi</p>
@@ -1311,7 +1311,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </section>
 <section id="gelir-cinsiyetler-arasında-nasıl-dağılmış-2" class="slide level2 small-slide">
 <h2>Gelir Cinsiyetler Arasında Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı-2">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı-2">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="yoğunluk-grafiği---cinsiyete-göre-çizgi-rengini-değiştir-1">Yoğunluk Grafiği - cinsiyete göre çizgi rengini değiştir</h4>
 <div class="fragment">
 <div class="cell">
@@ -1346,7 +1346,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </section>
 <section id="gelir-cinsiyetler-arasında-nasıl-dağılmış-3" class="slide level2 small-slide">
 <h2>Gelir Cinsiyetler Arasında Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı-3">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı-3">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="yoğunluk-grafiği---cinsiyete-göre-renk-türünü-değiştir">Yoğunluk Grafiği - cinsiyete göre renk türünü değiştir</h4>
 <div class="fragment">
 <div class="cell" data-code-highlight-lines="4">
@@ -1370,18 +1370,18 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 <p>Bunun nedeni R’ın bize bir renk adı verdiğimizi sanması; kırmızı, mavi veya yeşil gibi. Ama <code>gender</code> bir renk adı değil. Bir <code>değişken</code>.</p>
 </div>
 <div class="fragment">
-<p>Bir şeyi <em>değişkene</em> göre değiştirmek istediğimizde bunu <code>geom_</code> içinde değil, <code>aes()</code> içinde yaparız.</p>
+<p>Bir şeyi (çizgi rengini, kalınlığını, şeklini) <em>değişkene</em> göre değiştirmek istediğimizde bunu <code>geom_</code> içinde değil, <code>aes()</code> içinde yapıyoruz.</p>
 </div>
 <div class="fragment">
-<p>Bu yüzden <code>geom_density(x = income)</code> yerine <code>aes(x = income)</code> yazıyoruz. Çünkü <code>x</code> tek bir değer değil, bir <em>değişken</em> olmalıdır.</p>
+<p>Bu yüzden <code>geom_density(x = income)</code> yerine <code>aes(x = income)</code> yazıyoruz. Çünkü <code>x</code> tek bir değer değil, bir <em>değişken</em> olmalı..</p>
 </div>
 <div class="fragment">
-<p>O hâlde yapmak istediğimiz şey <code>aes(x = income)</code> satırına gidip <code>,</code> ile ayırarak <code>color = gender</code> argümanını eklemek</p>
+<p>O halde yapmak istediğimiz şey <code>aes(x = income)</code> satırına gidip <code>,</code> ile ayırarak <code>color = gender</code> argümanını eklemek</p>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-35" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-34" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı-4">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı-4">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="yoğunluk-grafiği-14">Yoğunluk Grafiği</h4>
 <div class="fragment">
 <div class="cell">
@@ -1406,26 +1406,26 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-36" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-35" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı-5">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı-5">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="yoğunluk-grafiği-15">Yoğunluk Grafiği</h4>
 <ul>
 <li class="fragment"><p>Grafimize cinsiyet bilgisini ekledik.</p></li>
 <li class="fragment"><p>Artık <em>tek bir dağılımı</em> değil,</p></li>
 <li class="fragment"><p><em>İki dağılımı</em> karşılaştırıyoruz.</p></li>
-<li class="fragment"><p>Şimdi gösterdiğimiz şey “Kazançlar cinsiyete göre farklılaşıyor mu?”.</p></li>
+<li class="fragment"><p>Artık gösterdiğimiz şey şu “Kazanç dağılımları cinsiyete göre farklılaşıyor mu?”.</p></li>
 <li class="fragment"><p>Başlık ve alt başlığımız bunu yansıtmalı.</p></li>
 <li class="fragment"><p>Başlığı “Cinsiyete Göre Aylık Kazanç” olarak değiştirin.</p>
 <ul>
 <li class="fragment">Hedef kitlemizin verinin Çilek Mobilya, Mamak’tan geldiğini bildiğini varsayalım (başlığı kısaltmak için).</li>
 </ul></li>
-<li class="fragment"><p>Alt başlığı “Erkek ve kadın işçiler arasında belirgin bir görsel fark yok” olarak değiştirin.</p></li>
+<li class="fragment"><p>Alt başlığı “Erkek ve kadın işçiler arasında belirgin bir fark yok” olarak değiştirin.</p></li>
 </ul>
 </section>
-<section id="gelir-nasıl-dağılmış-37" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-36" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı-6">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı-6">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="yoğunluk-grafiği-16">Yoğunluk Grafiği</h4>
 <div class="fragment">
 <div class="cell">
@@ -1450,12 +1450,12 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-38" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-37" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı-7">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı-7">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="yoğunluk-grafiği---cinsiyete-göre-renk-türünü-değiştir-1">Yoğunluk Grafiği - cinsiyete göre renk türünü değiştir</h4>
 <div class="fragment">
-<p>Şimdi renk yerine <code>linetype</code>’ı cinsiyete göre değiştirebilirdik.</p>
+<p>Renk yerine <code>linetype</code>’ı cinsiyete göre değiştirebilirdik.</p>
 </div>
 <div class="fragment">
 <p>Yapabilir misiniz?</p>
@@ -1476,9 +1476,9 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-39" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-38" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı-8">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı-8">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="yoğunluk-grafiği---cinsiyete-göre-renk-türünü-değiştir-2">Yoğunluk Grafiği - cinsiyete göre renk türünü değiştir</h4>
 <div class="fragment">
 <div class="cell">
@@ -1492,9 +1492,9 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-40" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-39" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı-9">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı-9">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="histogram-22">Histogram</h4>
 <div class="fragment">
 <p>Histogram kodumuzu hatırlıyor musunuz?</p>
@@ -1524,9 +1524,9 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-41" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-40" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı-10">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı-10">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="histogram-23">Histogram</h4>
 <div class="fragment">
 <p>Binleri tek bir renkle doldurmak yerine, cinsiyete göre <code>fill</code> yapalım. Bu arada temayı daha güzel biriyle değiştirin.</p>
@@ -1556,19 +1556,19 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
 </div>
 </div>
 </section>
-<section id="gelir-nasıl-dağılmış-42" class="slide level2 small-slide">
+<section id="gelir-nasıl-dağılmış-41" class="slide level2 small-slide">
 <h2>Gelir Nasıl Dağılmış?</h2>
-<h3 id="bir-sürekli-değişkenin-gruba-göre-dağılımı-11">Bir sürekli değişkenin gruba göre dağılımı</h3>
+<h3 id="sürekli-bir-değişkenin-gruba-göre-dağılımı-11">Sürekli bir değişkenin gruba göre dağılımı</h3>
 <h4 id="histogram-24">Histogram</h4>
 <ul>
 <li class="fragment"><p>Bu grafikte pek çok sorun var</p></li>
-<li class="fragment"><p>Histogramlarda yalnızca bir değişken kullanın; gruba göre dağılım karşılaştırması yapmanız gerekiyorsa <code>density</code> grafiği kullanın.</p></li>
+<li class="fragment"><p>Histogramı yalnızca bir değişkenin dağılımını basitçe gösermek için kullanın; gruba göre dağılım karşılaştırması yapmanız gerekiyorsa <code>density</code> grafiği kullanın.</p></li>
 <li class="fragment"><p>Amacınız “Her gelir aralığına kaç işçi düşüyor?” göstermekse histogram doğru grafiktir (yoğunluk grafiği de kabul edilebilir; yorum biraz farklılaşır).</p>
 <ul>
 <li class="fragment">y ekseni sayıları gösterir</li>
 <li class="fragment">“.. - .. TL arasında yaklaşık 10 işçi kazanıyor” diyebilirsiniz.</li>
 </ul></li>
-<li class="fragment"><p>Amacınız “Gelir dağılımları cinsiyete göre farklılaşıyor mu?” göstermekse yoğunluk grafiği doğrudur</p>
+<li class="fragment"><p>Amacınız “Gelir dağılımları cinsiyete göre farklılaşıyor mu?” göstermekse yoğunluk grafiği daha uygun olacaktır</p>
 <ul>
 <li class="fragment">Şekli grupları karşılaştırmamızı kolaylaştırır.</li>
 <li class="fragment">Üst üste binme sorunu yoktur.</li>
@@ -1581,7 +1581,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}}
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-
+<p><a href="slides.html">Week 3 — English</a> | <strong>Hafta 3</strong></p>
 </div>
 </div></div>
 

@@ -1,0 +1,10 @@
+---
+title: "Statistics II — Data Visualization"
+---
+
+This page contains lecture slides for the **Statistics II — Data Visualization** course (IKT2010).
+
+Use the menu on the left to navigate to the slides.
+
+- **Week 3** — English slides (Introduction to ggplot2)
+- **Hafta 3** — Turkish slides (ggplot2'ye Giriş)

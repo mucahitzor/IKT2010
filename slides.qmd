@@ -1,12 +1,13 @@
 ---
 title: "Introduction to ggplot2"
 format:
-  revealjs: 
+  revealjs:
     slide-number: true
     incremental: true
     css: styles.css
     code-overflow: scroll
     code-annotations: hover
+    footer: "**Week 3 - English** | [Hafta 3 - Türkçe](slides_tr.html)"
 chunk_output_type: console
 editor_options: 
   chunk_output_type: console
