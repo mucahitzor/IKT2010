@@ -7,7 +7,9 @@ website:
   navbar:
     left:
       - href: slides.qmd
-        text: Slides
+        text: Week 3
+      - href: slides_tr.qmd
+        text: Hafta 3
 
 format:
   html:

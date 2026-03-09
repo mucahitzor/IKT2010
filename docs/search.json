@@ -1,5 +1,418 @@
 [
   {
+    "objectID": "slides_tr.html#neden-veri-görselleştiririz",
+    "href": "slides_tr.html#neden-veri-görselleştiririz",
+    "title": "ggplot2’ye Giriş",
+    "section": "Neden Veri Görselleştiririz?",
+    "text": "Neden Veri Görselleştiririz?"
+  },
+  {
+    "objectID": "slides_tr.html#neden-veri-görselleştiririz-1",
+    "href": "slides_tr.html#neden-veri-görselleştiririz-1",
+    "title": "ggplot2’ye Giriş",
+    "section": "Neden Veri Görselleştiririz?",
+    "text": "Neden Veri Görselleştiririz?\n\nVeri görselleştirme bir süsleme değildir; analitik bir araçtır.\nİnsan bilişi, tablo veya sayı okumak için değil, görsel alanda örüntü tanımak için optimize edilmiştir."
+  },
+  {
+    "objectID": "slides_tr.html#neden-veri-görselleştiririz-2",
+    "href": "slides_tr.html#neden-veri-görselleştiririz-2",
+    "title": "ggplot2’ye Giriş",
+    "section": "Neden Veri Görselleştiririz?",
+    "text": "Neden Veri Görselleştiririz?\nNeden temel bilgileri öğrenmeden R kullanıyoruz?\n\nZaman kısıtlaması.\nYine de yapabilirsiniz! Ben bunu başaran 2 kişiyi şahsen tanıyorum (biliyorum, küçük bir örneklem…).\nSizi R öğrenmeye teşvik etmek için."
+  },
+  {
+    "objectID": "slides_tr.html#görselleştirme-adımları",
+    "href": "slides_tr.html#görselleştirme-adımları",
+    "title": "ggplot2’ye Giriş",
+    "section": "Görselleştirme Adımları",
+    "text": "Görselleştirme Adımları\n\nVerinizi tanıyın\nMesajınız ne?\n\nNe göstermek istiyorsunuz?\n\nHangi tür değişkenleriniz var?\n\nSayısal: sürekli (fiyat, ağırlık, mesafe vb.) ya da kesikli (yaş, aile büyüklüğü vb.)?\nSayısal olmayan: nominal (cinsiyet, ırk, tişört rengi vb.), sıralı (tişört bedeni, eğitim düzeyi, memnuniyet derecesi)\n\nHangi tür grafik kullanabilirsiniz?\nGrafiği yapın, anlayın\nGüzel hale getirin"
+  },
+  {
+    "objectID": "slides_tr.html#merhaba-dünya",
+    "href": "slides_tr.html#merhaba-dünya",
+    "title": "ggplot2’ye Giriş",
+    "section": "Merhaba Dünya!",
+    "text": "Merhaba Dünya!\n\n\nprint(\"Hello world!\")\n\n[1] \"Hello world!\"\n\n\n\n\nKendini R’a tanıtabilir misin?\n\n\n\nprint(\"Hello R!, I am Mücahit\")\n\n[1] \"Hello R!, I am Mücahit\""
+  },
+  {
+    "objectID": "slides_tr.html#aferin",
+    "href": "slides_tr.html#aferin",
+    "title": "ggplot2’ye Giriş",
+    "section": "Aferin!",
+    "text": "Aferin!"
+  },
+  {
+    "objectID": "slides_tr.html#gerekli-şeyler",
+    "href": "slides_tr.html#gerekli-şeyler",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gerekli Şeyler",
+    "text": "Gerekli Şeyler\n\nÖnce kullanmak istediğimiz paketleri yüklemeliyiz.\n\n\n\ninstall.packages(\"tidyverse\")\n1install.packages(\"janitor\")\n\n\n1\n\nBunları yalnızca daha önce hiç çalıştırmadıysanız çalıştırın. Bir paketi bir kez yüklemek yeterlidir."
+  },
+  {
+    "objectID": "slides_tr.html#veriyi-oku",
+    "href": "slides_tr.html#veriyi-oku",
+    "title": "ggplot2’ye Giriş",
+    "section": "Veriyi Oku",
+    "text": "Veriyi Oku\n\n1library(tidyverse)\nlibrary(janitor)\n2read.csv(\"https://raw.githubusercontent.com/mucahitzor/IKT2010/refs/heads/main/data/earnings.csv\") %&gt;%\n3  as_tibble() -&gt; earnings\n\n\n1\n\ntidyverse ve janitor kütüphanelerini kullan; böylece bu kütüphanelerin sunduğu fonksiyonları kullanabiliriz\n\n2\n\nVerim bu yolda (yol = verinin nerede olduğu) bulunan bir csv dosyası, onu oku ve şunu yap ( %&gt;% )\n\n3\n\ntibble olarak göster: tibble verimizi görmenin güzel bir yoludur. -&gt; earnings ile “bu veri setini belleğime kaydet, istediğimde kullanayım” diyoruz."
+  },
+  {
+    "objectID": "slides_tr.html#veriye-bak",
+    "href": "slides_tr.html#veriye-bak",
+    "title": "ggplot2’ye Giriş",
+    "section": "Veriye Bak",
+    "text": "Veriye Bak\n\nVerinin nasıl göründüğüne bakalım. İki yol var:\n\n1earnings\n\n\n1\n\nVerinin adını yazmak konsolda nasıl göründüğünü gösterir\n\n\n\n\n# A tibble: 200 × 3\n      id gender income\n   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;\n 1     1 Male   19376.\n 2     2 Male    9540.\n 3     3 Male   10501.\n 4     4 Male   26262.\n 5     5 Male   23313.\n 6     6 Male   15835.\n 7     7 Male   12728.\n 8     8 Female 22247.\n 9     9 Female 41456.\n10    10 Male   16254.\n# ℹ 190 more rows\n\n\n\n\n\n1earnings %&gt;% view()\n\n\n1\n\nVeri setimi al ve bana daha ayrıntılı görsel olarak göster"
+  },
+  {
+    "objectID": "slides_tr.html#verimizi-anlamak",
+    "href": "slides_tr.html#verimizi-anlamak",
+    "title": "ggplot2’ye Giriş",
+    "section": "Verimizi Anlamak",
+    "text": "Verimizi Anlamak\nDeğişkenlerimiz neler?\n\n\n1earnings\n\n\n1\n\nVerinin nasıl göründüğüne tekrar bakalım\n\n\n\n\n\n\nSayısal değişkenler hakkında değişken adlarını ve bilgileri görmek için summary() fonksiyonunu kullanırız.\n\n\nYani R’a şunu söylememiz gerekiyor:\n\n\n\nearnings adlı veri setimi al\n\n\n\n\nve bir sonraki satırda söyleyeceğim şeyi yap (%&gt;%)\n\n\n\n\nveri setinin summary()’sini ver.\n\n\n\n\nearnings %&gt;%\n  summary()\n\n       id            gender              income     \n Min.   :  1.00   Length:200         Min.   : 9448  \n 1st Qu.: 50.75   Class :character   1st Qu.:15920  \n Median :100.50   Mode  :character   Median :21052  \n Mean   :100.50                      Mean   :22892  \n 3rd Qu.:150.25                      3rd Qu.:27321  \n Max.   :200.00                      Max.   :53647"
+  },
+  {
+    "objectID": "slides_tr.html#verimizi-anlamak-1",
+    "href": "slides_tr.html#verimizi-anlamak-1",
+    "title": "ggplot2’ye Giriş",
+    "section": "Verimizi Anlamak",
+    "text": "Verimizi Anlamak\nDeğişkenlerimiz neler?\n\nSayısal olmayan değişkenler (cinsiyet gibi) için R’a şunu söylüyoruz:\n\n\nearnings adlı veri setimi al ve şunu yap ( %&gt;% ).\n\n\nGörmek istediğimiz değişken adı hakkında istatistik göstermek için tabyl({değişken adı}) uygula. tabyl() fonksiyonunu gender adlı sayısal olmayan değişkenimize uygulamak istiyoruz.\n\n\n\n1earnings %&gt;%\n2  tabyl(gender)\n\n\n1\n\nearnings adlı veri setimi al.\n\n2\n\ntabyl() fonksiyonu ile gender değişkeninin istatistiklerini göster.\n\n\n\n\n gender   n percent\n Female  91   0.455\n   Male 109   0.545"
+  },
+  {
+    "objectID": "slides_tr.html#verimizi-anlamak-2",
+    "href": "slides_tr.html#verimizi-anlamak-2",
+    "title": "ggplot2’ye Giriş",
+    "section": "Verimizi Anlamak",
+    "text": "Verimizi Anlamak\nBugünkü Hedefimiz: Gelir nasıl dağılmış?\n\nGelirin nasıl dağıldığını bulmaya çalışıyoruz.\nGelir sürekli bir değişkendir.\nSürekli bir değişkenin nasıl dağıldığını görmek için: histogram veya yoğunluk grafiği kullanın."
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nVeriye tekrar bakalım\n\n\n\n\n# A tibble: 200 × 3\n      id gender income\n   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;\n 1     1 Male   19376.\n 2     2 Male    9540.\n 3     3 Male   10501.\n 4     4 Male   26262.\n 5     5 Male   23313.\n 6     6 Male   15835.\n 7     7 Male   12728.\n 8     8 Female 22247.\n 9     9 Female 41456.\n10    10 Male   16254.\n# ℹ 190 more rows\n\n\n\n\nİlk 10 kişinin gelir değerlerini görüyoruz.\nHer satır (gözlem) bir kişidir.\nAma 200 gözlemimiz var ve income’ın nasıl dağıldığını bir şekilde anlamamız gerekiyor.\nBunu yalnızca tablodaki veriye bakarak anlamak imkânsız.\nMin, çeyrekler, medyan, ortalama ve maks’ı görmek için özet istatistiklere bakabiliriz. Ama bu yine de bize şekli göstermez.\n\n\n\nearnings %&gt;%\n  summary()\n\n       id            gender              income     \n Min.   :  1.00   Length:200         Min.   : 9448  \n 1st Qu.: 50.75   Class :character   1st Qu.:15920  \n Median :100.50   Mode  :character   Median :21052  \n Mean   :100.50                      Mean   :22892  \n 3rd Qu.:150.25                      3rd Qu.:27321  \n Max.   :200.00                      Max.   :53647"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-1",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-1",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nHistogram, sürekli veriyi aralıklara (bin) gruplar ve her aralığa kaç gözlemin düştüğünü sayar.\nBir bin temel olarak bir aralıktır. Örneğin, aşağıdakilerin her biri 1000 genişliğinde bir bindir:\n\n“0-1000”\n“1000-2000”\n“2000-3000”\n\nSürekli veriyi binlere gruplamalı ve her bine kaç gözlemin ait olduğunu saymalıyız.\nBin genişliğini seçmek duruma göre değişir; farklı bin genişlikleri deneyin ve farklı şekiller elde edersiniz."
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-2",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-2",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  summary()\n\n       id            gender              income     \n Min.   :  1.00   Length:200         Min.   : 9448  \n 1st Qu.: 50.75   Class :character   1st Qu.:15920  \n Median :100.50   Mode  :character   Median :21052  \n Mean   :100.50                      Mean   :22892  \n 3rd Qu.:150.25                      3rd Qu.:27321  \n Max.   :200.00                      Max.   :53647  \n\n\n\n\nGelirin histogramını 1000 bin genişliğiyle elle çizmeye başlayalım. Binlerimiz gelirin minimum değerinden başlayacak.\n\n“9000-10.000”, “10.000-11.000”, “11.000-12.000”…\n\nHer gözlem için kişinin gelirine bakıp hangi bine ait olduğunu belirleyip saymaya başlıyoruz. Aynı bine düşen daha fazla gözlem gördükçe binin yüksekliği (sayı) artıyor.\nBunu yapmadan önce x ve y eksenlerimizi çizmemiz gerekiyor.\n\nBir x ekseni ve bir y ekseni çizin,\nx ekseninde gelir var, 9000’den başlayan 1000’lik binlerle.\ny ekseninde her zaman sayı var; her bine ait gözlem sayısını gösteriyor."
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-3",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-3",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nİlk 10 gözlemi çizelim.\n\n\n# A tibble: 200 × 3\n      id gender income\n   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;\n 1     1 Male   19376.\n 2     2 Male    9540.\n 3     3 Male   10501.\n 4     4 Male   26262.\n 5     5 Male   23313.\n 6     6 Male   15835.\n 7     7 Male   12728.\n 8     8 Female 22247.\n 9     9 Female 41456.\n10    10 Male   16254.\n# ℹ 190 more rows\n\n\n\n\n200 gözlemin tamamını geçmek çok yorucu.\nBunun yerine R’dan bunu bizim için yapmasını isteyebiliriz!"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-4",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-4",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nearnings adlı veri setimi al,\n\n\n\nearnings\n\n\n\nBir görselleştirme yapmak istiyorum, veri setimi al ve ggplot uygula.\n\n\nElde edeceğimiz şey boş bir kâğıt parçası olacak. Henüz eksenlerimizi belirtmedik.\n\n\n\nearnings %&gt;%\n  ggplot()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-5",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-5",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nElle çizmeye benzer şekilde önce x ve y eksenini çiziyoruz. Bunu R ile yapmak için aes(x = {değişken adı}) fonksiyonunu kullanıyoruz. Ve bunu mevcut boş sayfamıza + sembolü ile ekliyoruz.\n\n\n+ her zaman satırların sonunda olacak.\n\n\n\n1earnings %&gt;%\n2  ggplot() +\n3  aes(x=income)\n\n\n1\n\nearnings adlı veri setimi al\n\n2\n\nGörselleştirme yapmak istiyorum\n\n3\n\nx eksenindeki değişkenim income\n\n\n\n\n\n\n\n\n\n\n\n\n\nHistogramlar için yalnızca x değişkeninin adını vermemiz gerekiyor; R her gözlemi kendisi sayacak!"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-6",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-6",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nŞimdi R’a histogram yapmasını söyleme zamanı.\n\n\nNe tür grafik istediğimizi söylemek için geom_{grafik türü} kullanıyoruz.\n\n\nÖrneğin, histogram yapmak için geom_histogram() kullanıyoruz.\n\n\nYoğunluk grafiği yapmak için geom_density() kullanıyoruz.\n\n\nÇubuk grafik yapmak için geom_bar() kullanıyoruz.\n\n\nSaçılım grafiği yapmak için geom_point() kullanıyoruz."
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-7",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-7",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nŞimdi R’a şunu söyleyelim:\n\nearnings adlı veri setimi kullan ve sonra ( %&gt;% ),\nGörselleştirme yapmak için ggplot() kullan, +,\nx değişkenim income, bunun üzerine (+) ekliyorum,\nBir histogram."
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-8",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-8",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-9",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-9",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-10",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-10",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nÖnce görselleştirmemize bir tema ekleyerek bu berbat grafiği düzeltmeye başlayalım. theme_{tema adı} ile bir tema kullanabiliriz. theme’in her zaman son satırda olduğundan emin olun.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram() +\n  theme_classic()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-11",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-11",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nVarsayılan olarak R, geom_histogram() içinde bir bin genişliği seçer; bunu görmesek de geom_histogram(binwidth = 30) şeklindedir. Bin genişliğini istediğimiz değere değiştirmek istiyoruz: binwidth=1000\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000) +\n  theme_classic()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-12",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-12",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nR ayrıca binleri hangi renkle dolduracağını da seçer. Doldurma rengini lightskyblue olarak değiştirmek istiyoruz; bunu geom_histogram(binwidth = 1000, fill={\"renk adı\"}) ile yapıyoruz.\n\n\nHer argümanı birbirinden ayırmak için , kullandığımıza dikkat edin.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\") +\n  theme_classic()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-13",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-13",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nBinlerin kenarlarının rengini değiştirmek için geom_histogram() içinde color={renk adı} argümanını kullanıyoruz. black yapalım.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  theme_classic()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-14",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-14",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nŞimdi sıra sizde:\n\nŞeklin nasıl değiştiğini görmek için farklı bir bin genişliği seçin,\nFarklı bir dolgu ve kenar rengi seçin,\nFarklı bir tema seçin\n\nTema seçeneklerini görmek için önceki theme_classic() temasını silin ve theme_ yazmaya başlayın; R size öneriler gösterecek."
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-15",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-15",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nGrafiği yorumlamaya geçmeden önce x eksenindeki değer sayısını artırmak istiyorum. Şu an dağılımı görmek için yeterli olmayan 5 değerimiz var.\nx eksenindeki değer sayısını 5’ten 10’a çıkarmak için scale_x_continuous(n.breaks=10) katmanını kullanın.\nBunu temadan önce eklemeyi unutmayın!"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-16",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-16",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks=10) +\n  theme_classic()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-17",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-17",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\ny ekseninde de aynı sorun var.\n\n\ny eksenindeki değer sayısını nasıl artırabiliriz? x ekseni için fonksiyon scale_x_continuous(n.breaks=10) idi. y ekseninde kırılma sayısını 10 olarak ayarlayabilir misiniz?\n\n\nscale_y_continuous(n.breaks =10)\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks=10) +\n  scale_y_continuous(n.breaks=10) +\n  theme_classic()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-18",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-18",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\nŞimdi grafiği yorumlama zamanı.\n\nNe görüyoruz?\n\nMinimum gelir yaklaşık 9000 görünürken maksimum yaklaşık 54.000.\nİşçilerin çoğu 15-25.000 TL kazanıyor\nÇok kazanan ve sayıca az olan kişiler var. Bunlar kim? Stajyerler mi? Yöneticiler mi?\n\nŞekil nedir?\n\nSol tarafta uzun binler (çubuklar) var -&gt; Sağa çarpık (biliyorum, bana da mantıklı gelmiyor; ama böyle kabul edilmiş)\nDağılım sağa çarpık olduğundan ortalama muhtemelen medyandan büyük olacak. Sağdaki insanlar dağılımı bozuyor -&gt; aykırı değerler?\n\nMerkez nedir?\n\nİşçilerin büyük çoğunluğu 15.000 - 20.000 aralığının ortasında bir yerde kazanıyor gibi görünüyor."
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-19",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-19",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\nGrafiğimizi anladığımıza göre başkalarının da anlamasını sağlamalıyız; bunun için title (başlık) ve subtitle (alt başlık) ekliyoruz.\nlabs(title = \"{başlığınız}\", subtitle = \"{alt başlığınız}\", x = \"{x ekseni etiketi}\", y = \"{y ekseni etiketi}\") katmanını kullanın.\nCümle yazarken tırnak işaretleri arasında yazıyoruz.\nDoğru: labs(title = \"Aylık kazanç...\")\nYanlış: labs(title = Aylık kazanç..)\nDoğru: labs(x = \"Gelir\", y = \"Gözlem sayısı\")\nYanlış: labs(x = Gelir, y = Gözlem sayısı)"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-20",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-20",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_classic()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-21",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-21",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nHistogram"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-22",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-22",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği\n\nİstatistik I’i hatırlıyor musunuz?\n\nRastgele sürekli değişkenlerden ve onların dağılımlarından bahsetmiştik.\nYoğunluk fonksiyonlarından (düzgün dağılım, normal dağılım vb.) bahsetmiştik."
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-23",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-23",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği\n\n\\[\nf(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}}\n\\exp\\left(-\\frac{(x-\\mu)^2}{2\\sigma^2}\\right)\n\\]"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-24",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-24",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği\n\nGelir sürekli bir rastgele değişken olduğundan, histogram yerine kullanılabilecek bir alternatif density (yoğunluk) grafiğidir.\nYoğunluk grafiğinde, veriyi binlere gruplamak yerine, R dağılımı temsil eden sürekli bir eğri tahmin eder (temelde yoğunluk fonksiyonunu hesaplar ve çizer).\nGelirin yoğunluk grafiğiyle nasıl dağıldığına bakalım."
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-25",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-25",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği\n\nearnings adlı verimizi kullanmak ve şunu yapmak istiyoruz ( %&gt;% )\n\n\nggplot() görselleştirmesi uygula\n\n\nx ekseni değişkeni olarak income ekle\n\n\nYoğunluk geometrisi ekle: geom_density()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-26",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-26",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği\n\n\n1earnings %&gt;%\n2  ggplot() +\n3  aes(x = income) +\n4  geom_density()\n\n\n1\n\nearnings adlı verimizi kullanmak ve şunu yapmak istiyoruz ( %&gt;% )\n\n2\n\nggplot() görselleştirmesi uygula\n\n3\n\nx ekseni değişkeni olarak income ekle\n\n4\n\nYoğunluk geometrisi ekle: geom_density()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-27",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-27",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-28",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-28",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği\n\nHemen tercih ettiğiniz bir tema uygulayın.\n\n\nAslında, önce güzel bir tema kullanmak için güzel bir paket yükleyelim\n\n\nggthemes paketini yüklemek istiyoruz; böylece temalarını kullanabiliriz\n\n\n\ninstall.packages(\"ggthemes\")"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-29",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-29",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği\n\nggthemes paketinin temalarını kullanabilmek için R’a paketi kullanmasını söylememiz gerekiyor\n\n\n\nlibrary(ggthemes)\n\n\n\nBurada kalmıştık\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-30",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-30",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği\n\ntheme_ yazmaya başlayın; sağ taraftaki öneriler arasında ggthemes’i göreceksiniz; oradan bir tane seçin.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density() +\n  theme_economist()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-31",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-31",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği\nYoğunluk çizgisinin siyah rengini beğenmedim. geom_density(color = {\"tercih ettiğiniz renk\"}) içindeki color argümanını kullanarak “azure4” olarak değiştirelim\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\") +\n  theme_economist()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-32",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-32",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği\n\nÇizginin kalınlığı biraz ince görünüyor; geom_density() içindeki linewidth argümanıyla artırabilir miyiz? Varsayılan olarak geom_density(linewidth = 1) şeklinde ayarlanmış.\n\n\ngeom_density(color = {\"tercih ettiğiniz renk\"}, linewidth = {tercih ettiğiniz genişlik sayısı})\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n  theme_economist()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-33",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-33",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği\n\ny ekseni etiketi değişti, çünkü artık sayıları göstermiyoruz. Olasılık yoğunluğunu gösteriyoruz. Yükseklikler artık işçi sayısını değil, olasılık yoğunluğunu temsil ediyor; bunu y etiketinde yansıtmalıyız.\n\n\nx ve y değerleri uygun görünüyor. scale_x_continuous() ve scale_y_continuous() kullanmamıza gerek yok.\n\n\nBaşlığımız hâlâ iyi olsa da artık sayıları göstermediğimiz için alt başlık daha iyi olabilir. “Kazançların en yoğun olduğu aralık 15.000–25.000 TL; dağılım sağa çarpık” olarak değiştirelim\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"Kazançların en yoğun olduğu aralık 15.000–25.000 TL; dağılım sağa çarpık\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"Olasılık Yoğunluğu\"\n  ) +\n  theme_economist()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-34",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-34",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin dağılımı\nYoğunluk Grafiği"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış",
+    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
+    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\nPeki ya işçilerin gelirinin cinsiyete göre değişip değişmediğini görmek isteseydik?\nHer gözlem için cinsiyetimiz olduğundan bu bilgiyi de kullanabiliriz.\nBunu yapmanın farklı yolları var.\n\nCinsiyete göre çizgi türünü değiştirebiliriz.\nCinsiyete göre çizgi rengini değiştirebiliriz."
+  },
+  {
+    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-1",
+    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-1",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
+    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre çizgi rengini değiştir\n\nBu bizim kodumuz ve grafiğimizdi\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-2",
+    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-2",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
+    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre çizgi rengini değiştir\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()\n\n\n\n\nŞimdi çizginin rengini bir değişkene göre değiştirmek istiyoruz.\n\n\n\n\ngeom_density(color = \"azure4\") içindeki rengi geom_density(color = gender) olarak değiştirebilir miyiz?\n\n\n\n\nKendiniz deneyin"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-3",
+    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-3",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
+    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre renk türünü değiştir\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = gender, linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()\n\n\n\nError: object 'gender' not found hatasını alıyoruz.\n\n\nBunun nedeni R’ın bize bir renk adı verdiğimizi sanması; kırmızı, mavi veya yeşil gibi. Ama gender bir renk adı değil. Bir değişken.\n\n\nBir şeyi değişkene göre değiştirmek istediğimizde bunu geom_ içinde değil, aes() içinde yaparız.\n\n\nBu yüzden geom_density(x = income) yerine aes(x = income) yazıyoruz. Çünkü x tek bir değer değil, bir değişken olmalıdır.\n\n\nO hâlde yapmak istediğimiz şey aes(x = income) satırına gidip , ile ayırarak color = gender argümanını eklemek"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-35",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-35",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, color  = gender) +\n  geom_density(linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-36",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-36",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\nGrafimize cinsiyet bilgisini ekledik.\nArtık tek bir dağılımı değil,\nİki dağılımı karşılaştırıyoruz.\nŞimdi gösterdiğimiz şey “Kazançlar cinsiyete göre farklılaşıyor mu?”.\nBaşlık ve alt başlığımız bunu yansıtmalı.\nBaşlığı “Cinsiyete Göre Aylık Kazanç” olarak değiştirin.\n\nHedef kitlemizin verinin Çilek Mobilya, Mamak’tan geldiğini bildiğini varsayalım (başlığı kısaltmak için).\n\nAlt başlığı “Erkek ve kadın işçiler arasında belirgin bir görsel fark yok” olarak değiştirin."
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-37",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-37",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, color  = gender) +\n  geom_density(linewidth = 1.5) +\n    labs(\n    title = \"Cinsiyete Göre Aylık Kazanç\",\n    subtitle = \"Erkek ve kadın işçiler arasında belirgin bir görsel fark yok\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-38",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-38",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre renk türünü değiştir\n\nŞimdi renk yerine linetype’ı cinsiyete göre değiştirebilirdik.\n\n\nYapabilir misiniz?\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, linetype  = gender) +\n  geom_density(linewidth = 1.5) +\n    labs(\n    title = \"Cinsiyete Göre Aylık Kazanç\",\n    subtitle = \"Erkek ve kadın işçiler arasında belirgin bir görsel fark yok\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-39",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-39",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre renk türünü değiştir"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-40",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-40",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nHistogram\n\nHistogram kodumuzu hatırlıyor musunuz?\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_classic()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-41",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-41",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nHistogram\n\nBinleri tek bir renkle doldurmak yerine, cinsiyete göre fill yapalım. Bu arada temayı daha güzel biriyle değiştirin.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, fill = gender) +\n  geom_histogram(binwidth = 1000, color = \"black\",) +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_classic()"
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-42",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-42",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nBir sürekli değişkenin gruba göre dağılımı\nHistogram\n\nBu grafikte pek çok sorun var\nHistogramlarda yalnızca bir değişken kullanın; gruba göre dağılım karşılaştırması yapmanız gerekiyorsa density grafiği kullanın.\nAmacınız “Her gelir aralığına kaç işçi düşüyor?” göstermekse histogram doğru grafiktir (yoğunluk grafiği de kabul edilebilir; yorum biraz farklılaşır).\n\ny ekseni sayıları gösterir\n“.. - .. TL arasında yaklaşık 10 işçi kazanıyor” diyebilirsiniz.\n\nAmacınız “Gelir dağılımları cinsiyete göre farklılaşıyor mu?” göstermekse yoğunluk grafiği doğrudur\n\nŞekli grupları karşılaştırmamızı kolaylaştırır.\nÜst üste binme sorunu yoktur.\nDağılımları karşılaştırırken yoğunluk grafiği kullanmak daha iyidir."
+  },
+  {
     "objectID": "slides.html#why-visualize-data",
     "href": "slides.html#why-visualize-data",
     "title": "Introduction to ggplot2",
@@ -411,5 +824,33 @@
     "title": "Introduction to ggplot2",
     "section": "How is income distributed?",
     "text": "How is income distributed?\nDistribution of one continuous variable over a group\nHistogram\n\nSo many things are wrong with this plot\nUse only one variable in histograms, if you need to make a group based distribution comparison use density plot.\nIf your goal is to show “How many workers fall into each income range?”, histogram is the right plot (density plot is also ok btw, the interpretation differs slightly.).\n\ny axis shows counts\nYou can say there are about 10 workers earning between .. - .. TL.\n\nIf your goal is to show “Do the income distributions differ by gender?”, density plot is the right one\n\nits shape makes us compare groups easier.\nwe have no overlap to worry about.\nwhen we compare distributions, it is better to use a density plot."
+  },
+  {
+    "objectID": "CLAUDE.html",
+    "href": "CLAUDE.html",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.\n\n\nThis is a Quarto-based lecture slide deck for a Statistics II / Data Visualization course (IKT2010). It produces a RevealJS presentation teaching ggplot2 to students, published via GitHub Pages.\n\nPrimary source: slides.qmd — the single RevealJS presentation file\nConfig: _quarto.yml — sets project type as website, output dir as docs/, and navbar\nStyles: styles.css — custom CSS for the RevealJS theme (font sizes, .small-slide class, .red-text class, code block sizing)\nData: loaded at runtime from a remote GitHub URL (raw.githubusercontent.com/mucahitzor/IKT2010/refs/heads/main/data/earnings.csv)\nImages: stored under pics/ (not tracked in git output) and pics/memes/\nOutput: rendered to docs/ for GitHub Pages hosting\n\n\n\n\nRender the full site (renders slides and copies output to docs/):\nquarto render\nPreview with live reload (opens browser, re-renders on save):\nquarto preview\nRender a single file:\nquarto render slides.qmd\n\n\n\n_quarto.yml configures this as a website project so that quarto render handles the docs/ output directory and navbar automatically. The single content file slides.qmd uses format: revealjs in its own YAML front matter (overriding the site-level format: html).\nSlide deck conventions in slides.qmd: - Section headers (#) create title slides / section breaks - ## headers create individual slides - .small-slide class on slides reduces font size to 0.55em (defined in styles.css) - .red-text inline class highlights text in red - ::: fragment divs make content appear incrementally (set globally via incremental: true) - Code chunks use #| echo: true/false, #| eval: true/false, #| code-line-numbers options - Code annotations use #| code-annotations: hover with numbered callouts (# &lt;1&gt;, # &lt;2&gt;)\nThe .quarto/ directory contains freeze cache and site_libs; these are auto-generated and should not be edited manually. The docs/ directory is the rendered output committed to git for GitHub Pages."
+  },
+  {
+    "objectID": "CLAUDE.html#project-overview",
+    "href": "CLAUDE.html#project-overview",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "This is a Quarto-based lecture slide deck for a Statistics II / Data Visualization course (IKT2010). It produces a RevealJS presentation teaching ggplot2 to students, published via GitHub Pages.\n\nPrimary source: slides.qmd — the single RevealJS presentation file\nConfig: _quarto.yml — sets project type as website, output dir as docs/, and navbar\nStyles: styles.css — custom CSS for the RevealJS theme (font sizes, .small-slide class, .red-text class, code block sizing)\nData: loaded at runtime from a remote GitHub URL (raw.githubusercontent.com/mucahitzor/IKT2010/refs/heads/main/data/earnings.csv)\nImages: stored under pics/ (not tracked in git output) and pics/memes/\nOutput: rendered to docs/ for GitHub Pages hosting"
+  },
+  {
+    "objectID": "CLAUDE.html#commands",
+    "href": "CLAUDE.html#commands",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "Render the full site (renders slides and copies output to docs/):\nquarto render\nPreview with live reload (opens browser, re-renders on save):\nquarto preview\nRender a single file:\nquarto render slides.qmd"
+  },
+  {
+    "objectID": "CLAUDE.html#architecture",
+    "href": "CLAUDE.html#architecture",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "_quarto.yml configures this as a website project so that quarto render handles the docs/ output directory and navbar automatically. The single content file slides.qmd uses format: revealjs in its own YAML front matter (overriding the site-level format: html).\nSlide deck conventions in slides.qmd: - Section headers (#) create title slides / section breaks - ## headers create individual slides - .small-slide class on slides reduces font size to 0.55em (defined in styles.css) - .red-text inline class highlights text in red - ::: fragment divs make content appear incrementally (set globally via incremental: true) - Code chunks use #| echo: true/false, #| eval: true/false, #| code-line-numbers options - Code annotations use #| code-annotations: hover with numbered callouts (# &lt;1&gt;, # &lt;2&gt;)\nThe .quarto/ directory contains freeze cache and site_libs; these are auto-generated and should not be edited manually. The docs/ directory is the rendered output committed to git for GitHub Pages."
   }
 ]
