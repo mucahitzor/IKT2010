@@ -592,9 +592,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Statistics II — Data Visualization",
+    "title": "IKT 2010",
     "section": "",
-    "text": "This page contains lecture slides for the Statistics II — Data Visualization course (IKT2010).\nUse the menu on the left to navigate to the slides.\n\nWeek 3 — English slides (Introduction to ggplot2)\nHafta 3 — Turkish slides (ggplot2’ye Giriş)",
+    "text": "This page contains R application slides for the Statistics II course.\nBu sayfa İstatistik II dersi R uygulamaları yansılarını içermekte.\nUse the menu on the left to navigate to the slides.\nSoldaki menüyü kullarak yansılara erişebilirsiniz.\n\nWeek 3 - English slides\nHafta 3 - Türkçe yansılar",
     "crumbs": [
       "Home"
     ]

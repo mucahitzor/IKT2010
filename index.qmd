@@ -1,10 +1,14 @@
 ---
-title: "Statistics II — Data Visualization"
+title: "IKT 2010"
 ---
 
-This page contains lecture slides for the **Statistics II — Data Visualization** course (IKT2010).
+This page contains R application slides for the **Statistics II** course.
+
+Bu sayfa **İstatistik II** dersi R uygulamaları yansılarını içermekte.
 
 Use the menu on the left to navigate to the slides.
 
-- **Week 3** — English slides (Introduction to ggplot2)
-- **Hafta 3** — Turkish slides (ggplot2'ye Giriş)
+Soldaki menüyü kullarak yansılara erişebilirsiniz.
+
+- **Week 3** - English slides 
+- **Hafta 3** - Türkçe yansılar 
