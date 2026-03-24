@@ -231,7 +231,7 @@ hate_crimes %>%
   ggplot() +
   aes(x = gini_index, y = hate_crimes_fbi) +
   geom_point() +
-  theme_classic()
+  theme_fivethirtyeight()
 ```
 :::
 
@@ -253,7 +253,7 @@ hate_crimes %>%
   ggplot() +
   aes(x = gini_index, y = hate_crimes_fbi) +
   geom_point(size = 3, color = "steelblue") +
-  theme_classic()
+  theme_fivethirtyeight()
 ```
 :::
 
@@ -272,7 +272,7 @@ hate_crimes %>%
   geom_point(size = 3, color = "steelblue") +
   scale_x_continuous(n.breaks = 10) +
   scale_y_continuous(n.breaks = 10) +
-  theme_classic()
+  theme_fivethirtyeight()
 ```
 :::
 
@@ -320,7 +320,7 @@ hate_crimes %>%
     x = "Gini Index (Income Inequality)",
     y = "Hate Crimes per 100,000 (FBI)"
   ) +
-  theme_classic()
+  theme_fivethirtyeight()
 ```
 :::
 
@@ -341,7 +341,7 @@ hate_crimes %>%
     x = "Gini Index (Income Inequality)",
     y = "Hate Crimes per 100,000 (FBI)"
   ) +
-  theme_classic()
+  theme_fivethirtyeight()
 ```
 :::
 
@@ -380,7 +380,7 @@ hate_crimes %>%
     x = "Gini Index (Income Inequality)",
     y = "Hate Crimes per 100,000 (FBI)"
   ) +
-  theme_classic()
+  theme_fivethirtyeight()
 ```
 :::
 
@@ -429,7 +429,8 @@ hate_crimes %>%
     x = "Gini Index (Income Inequality)",
     y = "Hate Crimes per 100,000 (FBI)"
   ) +
-  theme_classic()
+  theme_fivethirtyeight() +
+  scale_color_fivethirtyeight()
 ```
 :::
 
@@ -468,7 +469,7 @@ hate_crimes %>%
   aes(x = gini_index, y = hate_crimes_fbi) +
   geom_point(size = 3, color = "steelblue") +
   geom_smooth(method = "lm") +
-  theme_classic()
+  theme_fivethirtyeight()
 ```
 :::
 
@@ -492,7 +493,7 @@ hate_crimes %>%
   aes(x = gini_index, y = hate_crimes_fbi) +
   geom_point(size = 3, color = "steelblue") +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
-  theme_classic()
+  theme_fivethirtyeight()
 ```
 :::
 
@@ -516,7 +517,7 @@ hate_crimes %>%
     x = "Gini Index (Income Inequality)",
     y = "Hate Crimes per 100,000 (FBI)"
   ) +
-  theme_classic()
+  theme_fivethirtyeight()
 ```
 :::
 
@@ -539,7 +540,7 @@ hate_crimes %>%
     x = "Gini Index (Income Inequality)",
     y = "Hate Crimes per 100,000 (FBI)"
   ) +
-  theme_classic()
+  theme_fivethirtyeight()
 ```
 :::
 
@@ -564,7 +565,8 @@ hate_crimes %>%
     x = "Gini Index (Income Inequality)",
     y = "Hate Crimes per 100,000 (FBI)"
   ) +
-  theme_classic()
+  theme_fivethirtyeight() +
+  scale_color_fivethirtyeight()
 ```
 :::
 
