@@ -1,0 +1,614 @@
+---
+title: "Scatter Plots & Relationships"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    css: styles.css
+    code-overflow: scroll
+    code-annotations: hover
+    footer: "**Week 4 - English**"
+chunk_output_type: console
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(ggthemes)
+```
+
+# What we learned so far
+
+## Recap {.small-slide}
+
+-   We learned how to visualize the [distribution of one continuous variable]{.red-text}.
+
+-   **Histogram**: groups data into bins, counts how many observations fall in each bin.
+
+-   **Density plot**: estimates a smooth curve representing the distribution.
+
+-   We also learned how to compare distributions across groups (e.g., income by gender).
+
+::: fragment
+But what if we want to ask a different kind of question?
+:::
+
+::: fragment
+> "Is there a **relationship** between two variables?"
+:::
+
+## New Question
+
+-   In Week 3 we asked: *"How is income distributed?"* → one variable.
+
+-   This week we ask: *"Does income inequality relate to hate crime rates?"* → [two variables]{.red-text}.
+
+-   When we want to see the **relationship** between two continuous variables, we use a **scatter plot**.
+
+## When to use a scatter plot?
+
+-   You have **two continuous variables**.
+
+-   You want to see if there is a **pattern**, **trend**, or **correlation** between them.
+
+-   Each observation (row) becomes **one point** on the plot.
+
+-   The `x` axis shows one variable, the `y` axis shows the other.
+
+# Our Data: Hate Crimes in the US
+
+## The Data {.small-slide}
+
+-   Our data comes from a [FiveThirtyEight](https://fivethirtyeight.com/) article:
+
+    -   *"Higher Rates Of Hate Crimes Are Tied To Income Inequality"*
+
+-   It contains data on all 50 US states.
+
+-   For each state we have:
+
+    -   `hate_crimes_fbi`: hate crimes per 100,000 people (reported to FBI)
+    -   `gini_index`: a measure of income inequality (higher = more unequal)
+    -   `median_income`: median household income
+    -   `highschool`: share of population with a high school degree
+    -   `unemployment`: share of unemployed population
+    -   `trump_vote`: share of voters who voted for Trump in 2016
+    -   `region`: US Census region (Northeast, Midwest, South, West)
+
+## Read the data {.small-slide}
+
+```{r warning=FALSE}
+#| echo: true
+#| eval: true
+#| message: false
+#| code-line-numbers: "1-3|4-5"
+library(tidyverse) # <1>
+library(janitor) # <1>
+library(ggthemes) # <1>
+read.csv("data/hate_crimes.csv") %>%  # <2>
+  as_tibble() -> hate_crimes # <3>
+```
+
+1.  Use the tidyverse, janitor, and ggthemes libraries
+2.  Read the CSV file and then do the following ( %>% )
+3.  Show it as a `tibble` and save it as `hate_crimes`
+
+## Have a look at the data
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes
+```
+:::
+
+## Understanding Our Data {.small-slide}
+
+### What are our variables?
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes %>%
+  summary()
+```
+:::
+
+## Understanding Our Data {.small-slide}
+
+### Non-numeric variable: region
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes %>%
+  tabyl(region)
+```
+:::
+
+-   We have 4 regions, each with a different number of states.
+
+## Our Goal Today {.small-slide}
+
+### Is there a relationship between income inequality and hate crimes?
+
+-   `gini_index` measures income inequality. Higher values = more inequality.
+
+-   `hate_crimes_fbi` measures hate crimes per 100,000 people.
+
+-   We want to see: do states with **more inequality** also have **more hate crimes**?
+
+-   Both variables are **continuous** → we need a **scatter plot**.
+
+# Building a Scatter Plot Step by Step
+
+## Step 1: Start with the data {.small-slide}
+
+::: fragment
+Take our data set named `hate_crimes`,
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| eval: false
+hate_crimes
+```
+:::
+
+::: fragment
+I want to make a visualization, take my data set and apply `ggplot`.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes %>%
+  ggplot()
+```
+:::
+
+## Step 2: Set the axes {.small-slide}
+
+::: fragment
+Now we need to tell R what goes on the `x` axis and what goes on the `y` axis.
+:::
+
+::: fragment
+For scatter plots we need **both** `x` and `y` inside `aes()`.
+:::
+
+::: fragment
+-   `x = gini_index` (income inequality)
+-   `y = hate_crimes_fbi` (hate crimes per 100k)
+:::
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi)
+```
+:::
+
+## Step 3: Add the points {.small-slide}
+
+::: fragment
+Remember, for histograms we used `geom_histogram()`, for density we used `geom_density()`.
+:::
+
+::: fragment
+For scatter plots we use `geom_point()`.
+:::
+
+::: fragment
+Each row in our data becomes **one point** on the plot.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi) +
+  geom_point()
+```
+:::
+
+## Step 4: Add a theme {.small-slide}
+
+::: fragment
+Lets immediately clean it up with a theme.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi) +
+  geom_point() +
+  theme_classic()
+```
+:::
+
+## Step 5: Customize the points {.small-slide}
+
+::: fragment
+The default points are small and hard to see. We can change them inside `geom_point()`:
+:::
+
+::: fragment
+-   `size` = how big the points are (default is about 1.5)
+-   `color` = the color of the points
+:::
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi) +
+  geom_point(size = 3, color = "steelblue") +
+  theme_classic()
+```
+:::
+
+## Step 6: Fix the axes {.small-slide}
+
+::: fragment
+Like in Week 3, lets increase the number of values on both axes.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi) +
+  geom_point(size = 3, color = "steelblue") +
+  scale_x_continuous(n.breaks = 10) +
+  scale_y_continuous(n.breaks = 10) +
+  theme_classic()
+```
+:::
+
+## Interpreting the scatter plot {.small-slide}
+
+-   What do we see?
+
+    -   As `gini_index` **increases** (more inequality), hate crimes **tend to increase** too.
+    -   This suggests a [positive relationship]{.red-text} between income inequality and hate crimes.
+
+-   But not all states follow this pattern perfectly.
+
+    -   Some states have high inequality but low hate crimes.
+    -   Some states have low inequality but high hate crimes.
+    -   This is normal — we are looking at a **trend**, not a perfect rule.
+
+-   There is one point very high up — can you guess which state that might be?
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes %>% filter(hate_crimes_fbi > 10)
+```
+:::
+
+## Add labels {.small-slide}
+
+::: fragment
+Now lets add a `title`, `subtitle`, and axis labels using `labs()`.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| eval: false
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi) +
+  geom_point(size = 3, color = "steelblue") +
+  scale_x_continuous(n.breaks = 10) +
+  scale_y_continuous(n.breaks = 10) +
+  labs(
+    title = "Income Inequality and Hate Crimes in US States",
+    subtitle = "States with higher Gini index tend to have more hate crimes per 100k people",
+    x = "Gini Index (Income Inequality)",
+    y = "Hate Crimes per 100,000 (FBI)"
+  ) +
+  theme_classic()
+```
+:::
+
+## Add labels {.small-slide}
+
+::: fragment
+```{r}
+#| echo: false
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi) +
+  geom_point(size = 3, color = "steelblue") +
+  scale_x_continuous(n.breaks = 10) +
+  scale_y_continuous(n.breaks = 10) +
+  labs(
+    title = "Income Inequality and Hate Crimes in US States",
+    subtitle = "States with higher Gini index tend to have more hate crimes per 100k people",
+    x = "Gini Index (Income Inequality)",
+    y = "Hate Crimes per 100,000 (FBI)"
+  ) +
+  theme_classic()
+```
+:::
+
+# Coloring Points by a Group
+
+## Color by region {.small-slide}
+
+-   Remember in Week 3 we changed the `color` of density lines based on `gender`?
+
+-   We can do the same thing here: color the points based on `region`.
+
+-   Since `region` is a **variable**, we put it inside `aes()`, not inside `geom_point()`.
+
+::: fragment
+Can you guess the code?
+:::
+
+## Color by region {.small-slide}
+
+::: fragment
+We move `color` from `geom_point(color = "steelblue")` to `aes(color = region)`:
+:::
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi, color = region) +
+  geom_point(size = 3) +
+  scale_x_continuous(n.breaks = 10) +
+  scale_y_continuous(n.breaks = 10) +
+  labs(
+    title = "Income Inequality and Hate Crimes in US States",
+    subtitle = "Colored by US Census region",
+    x = "Gini Index (Income Inequality)",
+    y = "Hate Crimes per 100,000 (FBI)"
+  ) +
+  theme_classic()
+```
+:::
+
+## What do we see? {.small-slide}
+
+-   The **South** (red/pink) tends to cluster in the lower-right: high inequality, but lower FBI-reported hate crimes.
+
+-   The **Northeast** tends to have higher hate crime rates.
+
+-   Does this mean the South has fewer hate crimes? Not necessarily — it could mean different reporting practices across regions.
+
+-   This is an important lesson: [correlation does not mean causation]{.red-text}, and data quality matters!
+
+## Try it yourself! {.small-slide}
+
+-   Now it is your turn. Using the same `hate_crimes` data:
+
+    1.  Make a scatter plot of `median_income` (x axis) vs `hate_crimes_fbi` (y axis).
+    2.  Color the points by `region`.
+    3.  Add a nice theme.
+    4.  Add a title and axis labels.
+    5.  What pattern do you see? Do richer states have more or fewer hate crimes?
+
+# Making Points Transparent
+
+## The alpha argument {.small-slide}
+
+-   Sometimes points overlap and we cannot see how many points are in the same area.
+
+-   We can make points semi-transparent using `alpha` inside `geom_point()`.
+
+-   `alpha = 1` means fully solid (default), `alpha = 0` means invisible.
+
+::: fragment
+```{r}
+#| echo: true
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi, color = region) +
+  geom_point(size = 3, alpha = 0.7) +
+  scale_x_continuous(n.breaks = 10) +
+  scale_y_continuous(n.breaks = 10) +
+  labs(
+    title = "Income Inequality and Hate Crimes in US States",
+    subtitle = "Colored by US Census region",
+    x = "Gini Index (Income Inequality)",
+    y = "Hate Crimes per 100,000 (FBI)"
+  ) +
+  theme_classic()
+```
+:::
+
+# Adding a Trend Line
+
+## What is a trend line? {.small-slide}
+
+-   A scatter plot shows us the individual data points.
+
+-   But sometimes it is hard to see the **overall pattern** just from the points.
+
+-   A **trend line** (also called a regression line or line of best fit) helps us see the general direction of the relationship.
+
+-   If the line goes **up** → positive relationship (as x increases, y increases).
+
+-   If the line goes **down** → negative relationship (as x increases, y decreases).
+
+-   If the line is **flat** → no clear relationship.
+
+## Adding a trend line with geom_smooth() {.small-slide}
+
+::: fragment
+We use `geom_smooth()` to add a trend line on top of our scatter plot.
+:::
+
+::: fragment
+We add `method = "lm"` inside `geom_smooth()` to get a straight line. `lm` stands for **linear model**.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| message: false
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi) +
+  geom_point(size = 3, color = "steelblue") +
+  geom_smooth(method = "lm") +
+  theme_classic()
+```
+:::
+
+## Understanding the trend line {.small-slide}
+
+-   The blue line shows the **overall trend**: as inequality increases, hate crimes tend to increase.
+
+-   The **gray shaded area** around the line shows the **confidence interval** — it tells us how uncertain the trend is.
+
+    -   A narrow band means we are more confident.
+    -   A wide band means we are less confident.
+
+-   We can remove the confidence interval with `se = FALSE`:
+
+::: fragment
+```{r}
+#| echo: true
+#| message: false
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi) +
+  geom_point(size = 3, color = "steelblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  theme_classic()
+```
+:::
+
+## Putting it all together {.small-slide}
+
+::: fragment
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi) +
+  geom_point(size = 3, color = "steelblue", alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  scale_x_continuous(n.breaks = 10) +
+  scale_y_continuous(n.breaks = 10) +
+  labs(
+    title = "Income Inequality and Hate Crimes in US States",
+    subtitle = "A positive trend: states with higher inequality tend to report more hate crimes",
+    x = "Gini Index (Income Inequality)",
+    y = "Hate Crimes per 100,000 (FBI)"
+  ) +
+  theme_classic()
+```
+:::
+
+## Putting it all together {.small-slide}
+
+::: fragment
+```{r}
+#| echo: false
+#| message: false
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi) +
+  geom_point(size = 3, color = "steelblue", alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  scale_x_continuous(n.breaks = 10) +
+  scale_y_continuous(n.breaks = 10) +
+  labs(
+    title = "Income Inequality and Hate Crimes in US States",
+    subtitle = "A positive trend: states with higher inequality tend to report more hate crimes",
+    x = "Gini Index (Income Inequality)",
+    y = "Hate Crimes per 100,000 (FBI)"
+  ) +
+  theme_classic()
+```
+:::
+
+## Trend line by group {.small-slide}
+
+::: fragment
+What happens if we add `color = region` back into `aes()`?
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| message: false
+hate_crimes %>%
+  ggplot() +
+  aes(x = gini_index, y = hate_crimes_fbi, color = region) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Income Inequality and Hate Crimes by Region",
+    subtitle = "Each region gets its own trend line",
+    x = "Gini Index (Income Inequality)",
+    y = "Hate Crimes per 100,000 (FBI)"
+  ) +
+  theme_classic()
+```
+:::
+
+## Trend line by group {.small-slide}
+
+-   When `color = region` is inside `aes()`, **both** `geom_point()` and `geom_smooth()` split by region.
+
+-   Each region gets its own points and its own trend line.
+
+-   This is useful to see if the relationship is different across groups.
+
+-   The relationship direction varies by region — another reason to be careful about making conclusions!
+
+# Summary
+
+## What we learned today {.small-slide}
+
+-   **Scatter plot**: shows the relationship between two continuous variables using `geom_point()`.
+
+-   **Building a scatter plot**:
+    1.  `ggplot()` → blank canvas
+    2.  `aes(x = ..., y = ...)` → set both axes
+    3.  `geom_point()` → add the points
+    4.  Customize with `size`, `color`, `alpha`
+    5.  `labs()` → add title, subtitle, axis labels
+
+-   **Color by group**: put `color = variable` inside `aes()` to color points by a categorical variable.
+
+-   **Trend line**: `geom_smooth(method = "lm")` adds a line of best fit.
+
+-   **Key takeaway**: [Correlation does not imply causation!]{.red-text} Just because two variables move together does not mean one causes the other.
+
+## Exercise {.small-slide}
+
+Using the `hate_crimes` data, explore one of these questions:
+
+1.  Is there a relationship between `unemployment` and `hate_crimes_fbi`?
+2.  Is there a relationship between `highschool` (education) and `hate_crimes_fbi`?
+3.  Is there a relationship between `median_income` and `gini_index`?
+
+For each:
+
+-   Make a scatter plot with `geom_point()`
+-   Add a trend line with `geom_smooth(method = "lm")`
+-   Color by `region`
+-   Add a title and axis labels
+-   Interpret: what does the plot tell you?
