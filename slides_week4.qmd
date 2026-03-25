@@ -87,7 +87,7 @@ But what if we want to ask a different kind of question?
 library(tidyverse) # <1>
 library(janitor) # <1>
 library(ggthemes) # <1>
-read.csv("data/hate_crimes.csv") %>%  # <2>
+read.csv("https://raw.githubusercontent.com/mucahitzor/IKT2010/refs/heads/main/data/hate_crimes.csv") %>%  # <2>
   as_tibble() -> hate_crimes # <3>
 ```
 
