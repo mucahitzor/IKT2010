@@ -1,602 +1,322 @@
 [
   {
-    "objectID": "slides_tr.html#neden-veriyi-görselleştiriyoruz",
-    "href": "slides_tr.html#neden-veriyi-görselleştiriyoruz",
-    "title": "ggplot2’ye Giriş",
-    "section": "Neden Veriyi Görselleştiriyoruz?",
-    "text": "Neden Veriyi Görselleştiriyoruz?",
+    "objectID": "slides_week4.html#recap",
+    "href": "slides_week4.html#recap",
+    "title": "Scatter Plots & Relationships",
+    "section": "Recap",
+    "text": "Recap\n\nWe learned how to visualize the distribution of one continuous variable.\nHistogram: groups data into bins, counts how many observations fall in each bin.\nDensity plot: estimates a smooth curve representing the distribution.\nWe also learned how to compare distributions across groups (e.g., income by gender).\n\n\nBut what if we want to ask a different kind of question?\n\n\n\n“Is there a relationship between two variables?”",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#neden-veriyi-görselleştiriyoruz-1",
-    "href": "slides_tr.html#neden-veriyi-görselleştiriyoruz-1",
-    "title": "ggplot2’ye Giriş",
-    "section": "Neden Veriyi Görselleştiriyoruz?",
-    "text": "Neden Veriyi Görselleştiriyoruz?\n\nVeri görselleştirme bir süsleme değil; analitik bir araçtır.\nİnsan zihni, tablo veya sayı okumak için değil, görsel alanda (doğada) örüntü tanımak için optimize edilmiştir.",
+    "objectID": "slides_week4.html#new-question",
+    "href": "slides_week4.html#new-question",
+    "title": "Scatter Plots & Relationships",
+    "section": "New Question",
+    "text": "New Question\n\nIn Week 3 we asked: “How is income distributed?” → one variable.\nThis week we ask: “Does income inequality relate to hate crime rates?” → two variables.\nWhen we want to see the relationship between two continuous variables, we use a scatter plot.",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#neden-veriyi-görselleştiriyoruz-2",
-    "href": "slides_tr.html#neden-veriyi-görselleştiriyoruz-2",
-    "title": "ggplot2’ye Giriş",
-    "section": "Neden Veriyi Görselleştiriyoruz?",
-    "text": "Neden Veriyi Görselleştiriyoruz?\nNeden temelleri öğrenmeden R kullanıyoruz?\n\nZaman kısıtlaması.\nYapabilirsiniz! Birçok öğrenci yapabiliyor.\nSizi R öğrenmeye teşvik etmek için.",
+    "objectID": "slides_week4.html#when-to-use-a-scatter-plot",
+    "href": "slides_week4.html#when-to-use-a-scatter-plot",
+    "title": "Scatter Plots & Relationships",
+    "section": "When to use a scatter plot?",
+    "text": "When to use a scatter plot?\n\nYou have two continuous variables.\nYou want to see if there is a pattern, trend, or correlation between them.\nEach observation (row) becomes one point on the plot.\nThe x axis shows one variable, the y axis shows the other.",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#görselleştirme-adımları",
-    "href": "slides_tr.html#görselleştirme-adımları",
-    "title": "ggplot2’ye Giriş",
-    "section": "Görselleştirme Adımları",
-    "text": "Görselleştirme Adımları\n\nVerinizi tanıyın\nMesajınız ne?\n\nNe göstermek istiyorsunuz?\n\nHangi tür değişkenleriniz var?\n\nSayısal: sürekli (fiyat (TL), ağırlık (kg), mesafe (km, m vb.) vb.) ya da kesikli (yaş, aile büyüklüğü vb.)?\nSayısal olmayan: nominal (cinsiyet, ırk, tişört rengi vb.), sıralı (tişört bedeni (S &lt; M &lt; L), eğitim düzeyi (ilkokul &lt; ortaokul &lt; lise &lt; lisans…), memnuniyet derecesi (kötü &lt; orta &lt; iyi))\n\nHangi tür grafik kullanabilirsiniz?\nGrafiği yap, gördüğün örüntüyü anla.\nGüzel hale getir.",
+    "objectID": "slides_week4.html#the-data",
+    "href": "slides_week4.html#the-data",
+    "title": "Scatter Plots & Relationships",
+    "section": "The Data",
+    "text": "The Data\n\nOur data comes from a FiveThirtyEight article:\n\n“Higher Rates Of Hate Crimes Are Tied To Income Inequality”\n\nIt contains data on all 50 US states.\nFor each state we have:\n\nhate_crimes_fbi: hate crimes per 100,000 people (reported to FBI)\ngini_index: a measure of income inequality (higher = more unequal)\nmedian_income: median household income\nhighschool: share of population with a high school degree\nunemployment: share of unemployed population\ntrump_vote: share of voters who voted for Trump in 2016\nregion: US Census region (Northeast, Midwest, South, West)",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#merhaba-dünya",
-    "href": "slides_tr.html#merhaba-dünya",
-    "title": "ggplot2’ye Giriş",
-    "section": "Merhaba Dünya!",
-    "text": "Merhaba Dünya!\n\n\nprint(\"Hello world!\")\n\n[1] \"Hello world!\"\n\n\n\n\nKendini R’a tanıtabilir misin?\n\n\n\nprint(\"Hello R!, I am Mücahit\")\n\n[1] \"Hello R!, I am Mücahit\"",
+    "objectID": "slides_week4.html#read-the-data",
+    "href": "slides_week4.html#read-the-data",
+    "title": "Scatter Plots & Relationships",
+    "section": "Read the data",
+    "text": "Read the data\n\n1library(tidyverse)\nlibrary(janitor)\nlibrary(ggthemes)\n2read.csv(\"https://raw.githubusercontent.com/mucahitzor/IKT2010/refs/heads/main/data/hate_crimes.csv\") %&gt;%\n3  as_tibble() -&gt; hate_crimes\n\n\n1\n\nUse the tidyverse, janitor, and ggthemes libraries\n\n2\n\nRead the CSV file and then do the following ( %&gt;% )\n\n3\n\nShow it as a tibble and save it as hate_crimes",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#aferin",
-    "href": "slides_tr.html#aferin",
-    "title": "ggplot2’ye Giriş",
-    "section": "Aferin!",
-    "text": "Aferin!",
+    "objectID": "slides_week4.html#have-a-look-at-the-data",
+    "href": "slides_week4.html#have-a-look-at-the-data",
+    "title": "Scatter Plots & Relationships",
+    "section": "Have a look at the data",
+    "text": "Have a look at the data\n\n\nhate_crimes\n\n# A tibble: 50 × 13\n   state             median_income unemployment metro_pop highschool non_citizen\n   &lt;chr&gt;                     &lt;int&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;\n 1 Alabama                   42278        0.06       0.64      0.821        0.02\n 2 Alaska                    67629        0.064      0.63      0.914        0.04\n 3 Arizona                   49254        0.063      0.9       0.842        0.1 \n 4 Arkansas                  44922        0.052      0.69      0.824        0.04\n 5 California                60487        0.059      0.97      0.806        0.13\n 6 Colorado                  60940        0.04       0.8       0.893        0.06\n 7 Connecticut               70161        0.052      0.94      0.886        0.06\n 8 Delaware                  57522        0.049      0.9       0.874        0.05\n 9 District of Colu…         68277        0.067      1         0.871        0.11\n10 Florida                   46140        0.052      0.96      0.853        0.09\n# ℹ 40 more rows\n# ℹ 7 more variables: white_poverty &lt;dbl&gt;, gini_index &lt;dbl&gt;, non_white &lt;dbl&gt;,\n#   trump_vote &lt;dbl&gt;, hate_crimes_splc &lt;dbl&gt;, hate_crimes_fbi &lt;dbl&gt;,\n#   region &lt;chr&gt;",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gerekli-şeyler",
-    "href": "slides_tr.html#gerekli-şeyler",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gerekli Şeyler",
-    "text": "Gerekli Şeyler\n\nÖnce kullanmak istediğimiz paketleri yüklemeliyiz.\n\n\n\ninstall.packages(\"tidyverse\")\n1install.packages(\"janitor\")\n\n\n1\n\nBunları yalnızca daha önce hiç çalıştırmadıysanız çalıştırın. Bir paketi bir kez yüklemek yeterlidir.",
+    "objectID": "slides_week4.html#understanding-our-data",
+    "href": "slides_week4.html#understanding-our-data",
+    "title": "Scatter Plots & Relationships",
+    "section": "Understanding Our Data",
+    "text": "Understanding Our Data\nWhat are our variables?\n\n\nhate_crimes %&gt;%\n  summary()\n\n    state           median_income    unemployment       metro_pop     \n Length:50          Min.   :35521   Min.   :0.02800   Min.   :0.3100  \n Class :character   1st Qu.:48358   1st Qu.:0.04225   1st Qu.:0.6300  \n Mode  :character   Median :54613   Median :0.05100   Median :0.7900  \n                    Mean   :54904   Mean   :0.04988   Mean   :0.7500  \n                    3rd Qu.:60653   3rd Qu.:0.05775   3rd Qu.:0.8975  \n                    Max.   :76165   Max.   :0.07300   Max.   :1.0000  \n                                                                      \n   highschool      non_citizen      white_poverty      gini_index    \n Min.   :0.7990   Min.   :0.01000   Min.   :0.0400   Min.   :0.4190  \n 1st Qu.:0.8397   1st Qu.:0.03000   1st Qu.:0.0800   1st Qu.:0.4400  \n Median :0.8740   Median :0.04000   Median :0.0900   Median :0.4545  \n Mean   :0.8684   Mean   :0.05404   Mean   :0.0922   Mean   :0.4542  \n 3rd Qu.:0.8978   3rd Qu.:0.08000   3rd Qu.:0.1000   3rd Qu.:0.4667  \n Max.   :0.9180   Max.   :0.13000   Max.   :0.1700   Max.   :0.5320  \n                  NA's   :3                                          \n   non_white        trump_vote     hate_crimes_splc  hate_crimes_fbi  \n Min.   :0.0600   Min.   :0.0400   Min.   :0.06745   Min.   : 0.2669  \n 1st Qu.:0.1925   1st Qu.:0.4200   1st Qu.:0.14271   1st Qu.: 1.2931  \n Median :0.2750   Median :0.4950   Median :0.22620   Median : 1.9871  \n Mean   :0.3058   Mean   :0.4938   Mean   :0.30409   Mean   : 2.3676  \n 3rd Qu.:0.4200   3rd Qu.:0.5775   3rd Qu.:0.35693   3rd Qu.: 3.1843  \n Max.   :0.6300   Max.   :0.7000   Max.   :1.52230   Max.   :10.9535  \n                                   NA's   :3                          \n    region         \n Length:50         \n Class :character  \n Mode  :character",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#veriyi-oku",
-    "href": "slides_tr.html#veriyi-oku",
-    "title": "ggplot2’ye Giriş",
-    "section": "Veriyi Oku",
-    "text": "Veriyi Oku\n\n1library(tidyverse)\nlibrary(janitor)\n2read.csv(\"https://raw.githubusercontent.com/mucahitzor/IKT2010/refs/heads/main/data/earnings.csv\") %&gt;%\n3  as_tibble() -&gt; earnings\n\n\n1\n\ntidyverse ve janitor kütüphanelerini kullan; böylece bu kütüphanelerin veri görselleştirme için sunduğu fonksiyonlarını kullanabiliriz\n\n2\n\nVerim bu yolda (yol = verinin hangi adreste olduğu) bulunan bir csv dosyası, onu oku ve şunu yap ( %&gt;% )\n\n3\n\ntibble olarak göster: tibble verimizi görmenin güzel bir yolu. -&gt; earnings ile “bu veri setini belleğe (RAM) kaydet, istediğimde earnings yazarak kullanayım” diyoruz.",
+    "objectID": "slides_week4.html#understanding-our-data-1",
+    "href": "slides_week4.html#understanding-our-data-1",
+    "title": "Scatter Plots & Relationships",
+    "section": "Understanding Our Data",
+    "text": "Understanding Our Data\nNon-numeric variable: region\n\n\nhate_crimes %&gt;%\n  tabyl(region)\n\n    region  n percent\n   Midwest 12    0.24\n Northeast  9    0.18\n     South 17    0.34\n      West 12    0.24\n\n\n\n\nWe have 4 regions, each with a different number of states.",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#veriyi-inceleme",
-    "href": "slides_tr.html#veriyi-inceleme",
-    "title": "ggplot2’ye Giriş",
-    "section": "Veriyi İnceleme",
-    "text": "Veriyi İnceleme\n\nVerinin nasıl göründüğüne bakalım. İki yol var:\n\n1earnings\n\n\n1\n\nVerinin adını yazmak konsolda nasıl göründüğünü gösterir\n\n\n\n\n# A tibble: 200 × 3\n      id gender income\n   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;\n 1     1 Male   19376.\n 2     2 Male    9540.\n 3     3 Male   10501.\n 4     4 Male   26262.\n 5     5 Male   23313.\n 6     6 Male   15835.\n 7     7 Male   12728.\n 8     8 Female 22247.\n 9     9 Female 41456.\n10    10 Male   16254.\n# ℹ 190 more rows\n\n\n\n\n\n1earnings %&gt;% view()\n\n\n1\n\nVeri setimi al ve bana daha ayrıntılı görsel olarak göster",
+    "objectID": "slides_week4.html#our-goal-today",
+    "href": "slides_week4.html#our-goal-today",
+    "title": "Scatter Plots & Relationships",
+    "section": "Our Goal Today",
+    "text": "Our Goal Today\nIs there a relationship between income inequality and hate crimes?\n\ngini_index measures income inequality. Higher values = more inequality.\nhate_crimes_fbi measures hate crimes per 100,000 people.\nWe want to see: do states with more inequality also have more hate crimes?\nBoth variables are continuous → we need a scatter plot.",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#verimizi-anlamak",
-    "href": "slides_tr.html#verimizi-anlamak",
-    "title": "ggplot2’ye Giriş",
-    "section": "Verimizi Anlamak",
-    "text": "Verimizi Anlamak\nDeğişkenlerimiz neler?\n\n\n1earnings\n\n\n1\n\nVerinin nasıl göründüğüne tekrar bakalım\n\n\n\n\n\n\nSayısal değişkenler hakkında değişken adlarını ve bilgileri görmek için summary() fonksiyonunu kullanıyoruz.\n\n\nYani R’a şunu söylememiz gerekiyor:\n\n\n\nearnings adlı veri setimi al\n\n\n\n\nve bir sonraki satırda söyleyeceğim şeyi yap (%&gt;%)\n\n\n\n\nveri setinin özet istatistiklerini summary() fonksiyonunu kullarak ver.\n\n\n\n\nearnings %&gt;%\n  summary()\n\n       id            gender              income     \n Min.   :  1.00   Length:200         Min.   : 9448  \n 1st Qu.: 50.75   Class :character   1st Qu.:15920  \n Median :100.50   Mode  :character   Median :21052  \n Mean   :100.50                      Mean   :22892  \n 3rd Qu.:150.25                      3rd Qu.:27321  \n Max.   :200.00                      Max.   :53647",
+    "objectID": "slides_week4.html#step-1-start-with-the-data",
+    "href": "slides_week4.html#step-1-start-with-the-data",
+    "title": "Scatter Plots & Relationships",
+    "section": "Step 1: Start with the data",
+    "text": "Step 1: Start with the data\n\nTake our data set named hate_crimes,\n\n\n\nhate_crimes\n\n\n\nI want to make a visualization, take my data set and apply ggplot.\n\n\n\nhate_crimes %&gt;%\n  ggplot()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#verimizi-anlamak-1",
-    "href": "slides_tr.html#verimizi-anlamak-1",
-    "title": "ggplot2’ye Giriş",
-    "section": "Verimizi Anlamak",
-    "text": "Verimizi Anlamak\nDeğişkenlerimiz neler?\n\nSayısal olmayan değişkenler (cinsiyet gibi) için R’a şunu söylüyoruz:\n\n\nearnings adlı veri setimi al ve şunu yap ( %&gt;% ).\n\n\nGörmek istediğimiz değişken adı hakkında istatistik göstermek için tabyl({değişken adı}) uygula. tabyl() fonksiyonunu gender adlı sayısal olmayan değişkenimize uygulamak istiyoruz.\n\n\n\n1earnings %&gt;%\n2  tabyl(gender)\n\n\n1\n\nearnings adlı veri setimi al.\n\n2\n\ntabyl() fonksiyonu ile gender değişkeninin istatistiklerini göster.\n\n\n\n\n gender   n percent\n Female  91   0.455\n   Male 109   0.545",
+    "objectID": "slides_week4.html#step-2-set-the-axes",
+    "href": "slides_week4.html#step-2-set-the-axes",
+    "title": "Scatter Plots & Relationships",
+    "section": "Step 2: Set the axes",
+    "text": "Step 2: Set the axes\n\nNow we need to tell R what goes on the x axis and what goes on the y axis.\n\n\nFor scatter plots we need both x and y inside aes().\n\n\n\nx = gini_index (income inequality)\ny = hate_crimes_fbi (hate crimes per 100k)\n\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi)",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#verimizi-anlamak-2",
-    "href": "slides_tr.html#verimizi-anlamak-2",
-    "title": "ggplot2’ye Giriş",
-    "section": "Verimizi Anlamak",
-    "text": "Verimizi Anlamak\nBugünkü Hedefimiz: Gelir nasıl dağılıyor?\n\nGelirin nasıl dağıldığını bulmaya çalışıyoruz.\nGelir sürekli (continious) bir değişken.\nSürekli bir değişkenin nasıl dağıldığını görmek için: histogram veya yoğunluk grafiği kullabiliriz.",
+    "objectID": "slides_week4.html#step-3-add-the-points",
+    "href": "slides_week4.html#step-3-add-the-points",
+    "title": "Scatter Plots & Relationships",
+    "section": "Step 3: Add the points",
+    "text": "Step 3: Add the points\n\nRemember, for histograms we used geom_histogram(), for density we used geom_density().\n\n\nFor scatter plots we use geom_point().\n\n\nEach row in our data becomes one point on the plot.\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılıyor",
-    "href": "slides_tr.html#gelir-nasıl-dağılıyor",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılıyor?",
-    "text": "Gelir Nasıl Dağılıyor?\nSürekli bir değişkenin dağılımı\nHistogram\n\nVeriye tekrar bakalım\n\n\n\n\n# A tibble: 200 × 3\n      id gender income\n   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;\n 1     1 Male   19376.\n 2     2 Male    9540.\n 3     3 Male   10501.\n 4     4 Male   26262.\n 5     5 Male   23313.\n 6     6 Male   15835.\n 7     7 Male   12728.\n 8     8 Female 22247.\n 9     9 Female 41456.\n10    10 Male   16254.\n# ℹ 190 more rows\n\n\n\n\nİlk 10 kişinin gelir değerlerini görüyoruz.\nHer satır (gözlem) bir kişidir.\nAma 200 gözlemimiz var ve income’ın nasıl dağıldığını bir şekilde anlamamız gerekiyor.\nBunu yalnızca tablodaki veriye bakarak anlamak imkansız.\nMinimum, çeyrekler, medyan, ortalama ve maksimum değerleri görmek için özet istatistiklere bakabiliriz. Ama bu yine de bize görsel olarak göstermez.\n\n\n\nearnings %&gt;%\n  summary()\n\n       id            gender              income     \n Min.   :  1.00   Length:200         Min.   : 9448  \n 1st Qu.: 50.75   Class :character   1st Qu.:15920  \n Median :100.50   Mode  :character   Median :21052  \n Mean   :100.50                      Mean   :22892  \n 3rd Qu.:150.25                      3rd Qu.:27321  \n Max.   :200.00                      Max.   :53647",
+    "objectID": "slides_week4.html#step-4-add-a-theme",
+    "href": "slides_week4.html#step-4-add-a-theme",
+    "title": "Scatter Plots & Relationships",
+    "section": "Step 4: Add a theme",
+    "text": "Step 4: Add a theme\n\nLets immediately clean it up with a theme.\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point() +\n  theme_fivethirtyeight()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nHistogram, sürekli veriyi aralıklara (bin) gruplar ve her aralığa kaç gözlemin düştüğünü sayar.\nBir “bin” temel olarak bir aralıktır. Örneğin, aşağıdakilerin her biri 1000 genişliğinde bir “bin”dir:\n\n“0-1000”\n“1000-2000”\n“2000-3000”\n\nSürekli veriyi binlere gruplamalı ve her bine kaç gözlemin ait olduğunu saymalıyız.\nBin genişliğini seçmek duruma göre değişir; farklı bin genişlikleri amaca göre deneyebiliriz. Her farklı bin aralığı farklı şekiller ortaya çıkaracaktır.",
+    "objectID": "slides_week4.html#step-5-customize-the-points",
+    "href": "slides_week4.html#step-5-customize-the-points",
+    "title": "Scatter Plots & Relationships",
+    "section": "Step 5: Customize the points",
+    "text": "Step 5: Customize the points\n\nThe default points are small and hard to see. We can change them inside geom_point():\n\n\n\nsize = how big the points are (default is about 1.5)\ncolor = the color of the points\n\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\") +\n  theme_fivethirtyeight()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-1",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-1",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  summary()\n\n       id            gender              income     \n Min.   :  1.00   Length:200         Min.   : 9448  \n 1st Qu.: 50.75   Class :character   1st Qu.:15920  \n Median :100.50   Mode  :character   Median :21052  \n Mean   :100.50                      Mean   :22892  \n 3rd Qu.:150.25                      3rd Qu.:27321  \n Max.   :200.00                      Max.   :53647  \n\n\n\n\nGelirin histogramını 1000TL bin genişliğiyle elle çizmeye başlayalım. Binlerimiz gelirin minimum değerinden başlayacak.\n\n“9000-10.000”, “10.000-11.000”, “11.000-12.000”…\n\nHer gözlem için kişinin gelirine bakıp hangi bine ait olduğunu belirleyip saymaya başlıyoruz. Aynı bine düşen daha fazla gözlem gördükçe binin yüksekliğini (sayısı) gösteren y eksenindeki değerler artıyor.\nBunu yapmadan önce x ve y eksenlerimizi çizmemiz gerekiyor.\n\nx ve y ekseni çizelim,\nx ekseninde binler halinde parçalara ayrılmış gelir var, 9000’den başlayan 1000TL’lik binlerle.\ny ekseninde her zaman sayı var; her bine ait gözlem sayısını gösteriyor.",
+    "objectID": "slides_week4.html#step-6-fix-the-axes",
+    "href": "slides_week4.html#step-6-fix-the-axes",
+    "title": "Scatter Plots & Relationships",
+    "section": "Step 6: Fix the axes",
+    "text": "Step 6: Fix the axes\n\nLike in Week 3, lets increase the number of values on both axes.\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n  theme_fivethirtyeight()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-2",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-2",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nİlk 10 gözlemi çizelim.\n\n\n# A tibble: 200 × 3\n      id gender income\n   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;\n 1     1 Male   19376.\n 2     2 Male    9540.\n 3     3 Male   10501.\n 4     4 Male   26262.\n 5     5 Male   23313.\n 6     6 Male   15835.\n 7     7 Male   12728.\n 8     8 Female 22247.\n 9     9 Female 41456.\n10    10 Male   16254.\n# ℹ 190 more rows\n\n\n\n\n200 gözlemin tamamı için tek tek inceleyip çizmek çok zaman alacak.\nBunun yerine R’dan bunu bizim için yapmasını isteyebiliriz!",
+    "objectID": "slides_week4.html#interpreting-the-scatter-plot",
+    "href": "slides_week4.html#interpreting-the-scatter-plot",
+    "title": "Scatter Plots & Relationships",
+    "section": "Interpreting the scatter plot",
+    "text": "Interpreting the scatter plot\n\nWhat do we see?\n\nAs gini_index increases (more inequality), hate crimes tend to increase too.\nThis suggests a positive relationship between income inequality and hate crimes.\n\nBut not all states follow this pattern perfectly.\n\nSome states have high inequality but low hate crimes.\nSome states have low inequality but high hate crimes.\nThis is normal — we are looking at a trend, not a perfect rule.\n\nThere is one point very high up — can you guess which state that might be?\n\n\n\nhate_crimes %&gt;% filter(hate_crimes_fbi &gt; 10)\n\n# A tibble: 1 × 13\n  state              median_income unemployment metro_pop highschool non_citizen\n  &lt;chr&gt;                      &lt;int&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;\n1 District of Colum…         68277        0.067         1      0.871        0.11\n# ℹ 7 more variables: white_poverty &lt;dbl&gt;, gini_index &lt;dbl&gt;, non_white &lt;dbl&gt;,\n#   trump_vote &lt;dbl&gt;, hate_crimes_splc &lt;dbl&gt;, hate_crimes_fbi &lt;dbl&gt;,\n#   region &lt;chr&gt;",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-3",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-3",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nearnings adlı veri setimi al,\n\n\n\nearnings\n\n\n\nBir görselleştirme yapmak istiyorum, veri setimi al ve ggplot uygula.\n\n\nElde edeceğimiz şey boş bir kâğıt parçası olacak. Çünkü henüz eksenlerimizi belirtmedik.\n\n\n\nearnings %&gt;%\n  ggplot()",
+    "objectID": "slides_week4.html#add-labels",
+    "href": "slides_week4.html#add-labels",
+    "title": "Scatter Plots & Relationships",
+    "section": "Add labels",
+    "text": "Add labels\n\nNow lets add a title, subtitle, and axis labels using labs().\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n  labs(\n    title = \"Income Inequality and Hate Crimes in US States\",\n    subtitle = \"States with higher Gini index tend to have more hate crimes per 100k people\",\n    x = \"Gini Index (Income Inequality)\",\n    y = \"Hate Crimes per 100,000 (FBI)\"\n  ) +\n  theme_fivethirtyeight()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-4",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-4",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nElle çizmeye benzer şekilde önce x ve y eksenini çiziyoruz. Bunu R ile yapmak için aes(x = {değişken adı}) fonksiyonunu kullanıyoruz. Ve bunu mevcut boş sayfamıza + sembolü ile ekliyoruz.\n\n\n+ her zaman satırların sonunda olacak.\n\n\n\n1earnings %&gt;%\n2  ggplot() +\n3  aes(x=income)\n\n\n1\n\nearnings adlı veri setimi al\n\n2\n\nGörselleştirme yapmak istiyorum\n\n3\n\nx eksenindeki değişkenim income\n\n\n\n\n\n\n\n\n\n\n\n\n\nHistogramlar için yalnızca x değişkeninin adını vermemiz yeterli; R her gözlemi kendisi sayacak ve y ekseninde gösterecek!",
+    "objectID": "slides_week4.html#add-labels-1",
+    "href": "slides_week4.html#add-labels-1",
+    "title": "Scatter Plots & Relationships",
+    "section": "Add labels",
+    "text": "Add labels",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-5",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-5",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nŞimdi R’a histogram yapmasını söyleme zamanı.\n\n\nNe tür grafik istediğimizi söylemek için geom_{grafik türü} kullanıyoruz.\n\n\nÖrneğin, histogram yapmak için geom_histogram() kullanıyoruz.\n\n\nYoğunluk grafiği yapmak için geom_density() kullanıyoruz.\n\n\nBar grafik yapmak için geom_bar() kullanıyoruz.\n\n\nSaçılım grafiği yapmak için geom_point() kullanıyoruz.",
+    "objectID": "slides_week4.html#color-by-region",
+    "href": "slides_week4.html#color-by-region",
+    "title": "Scatter Plots & Relationships",
+    "section": "Color by region",
+    "text": "Color by region\n\nRemember in Week 3 we changed the color of density lines based on gender?\nWe can do the same thing here: color the points based on region.\nSince region is a variable, we put it inside aes(), not inside geom_point().\n\n\nCan you guess the code?",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-6",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-6",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nŞimdi R’a şunu söyleyelim:\n\nearnings adlı veri setimi kullan ve sonra ( %&gt;% ),\nGörselleştirme yapmak için ggplot() kullan, +,\nx değişkenim income, bunun üzerine (+) ekliyorum,\nBir histogram.",
+    "objectID": "slides_week4.html#color-by-region-1",
+    "href": "slides_week4.html#color-by-region-1",
+    "title": "Scatter Plots & Relationships",
+    "section": "Color by region",
+    "text": "Color by region\n\nWe move color from geom_point(color = \"steelblue\") to aes(color = region):\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi, color = region) +\n  geom_point(size = 3) +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n  labs(\n    title = \"Income Inequality and Hate Crimes in US States\",\n    subtitle = \"Colored by US Census region\",\n    x = \"Gini Index (Income Inequality)\",\n    y = \"Hate Crimes per 100,000 (FBI)\"\n  ) +\n  theme_fivethirtyeight()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-7",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-7",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram()",
+    "objectID": "slides_week4.html#what-do-we-see",
+    "href": "slides_week4.html#what-do-we-see",
+    "title": "Scatter Plots & Relationships",
+    "section": "What do we see?",
+    "text": "What do we see?\n\nThe South (red/pink) tends to cluster in the lower-right: high inequality, but lower FBI-reported hate crimes.\nThe Northeast tends to have higher hate crime rates.\nDoes this mean the South has fewer hate crimes? Not necessarily — it could mean different reporting practices across regions.\nThis is an important lesson: correlation does not mean causation, and data quality matters!",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-8",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-8",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram",
+    "objectID": "slides_week4.html#try-it-yourself",
+    "href": "slides_week4.html#try-it-yourself",
+    "title": "Scatter Plots & Relationships",
+    "section": "Try it yourself!",
+    "text": "Try it yourself!\n\nNow it is your turn. Using the same hate_crimes data:\n\nMake a scatter plot of median_income (x axis) vs hate_crimes_fbi (y axis).\nColor the points by region.\nAdd a nice theme.\nAdd a title and axis labels.\nWhat pattern do you see? Do richer states have more or fewer hate crimes?",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-9",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-9",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nÖnce görselleştirmemize bir tema ekleyerek bu berbat grafiği düzeltmeye başlayalım. theme_{tema adı} ile bir tema kullanabiliriz. theme’in her zaman son satırda olduğundan emin olun.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram() +\n  theme_classic()",
+    "objectID": "slides_week4.html#the-alpha-argument",
+    "href": "slides_week4.html#the-alpha-argument",
+    "title": "Scatter Plots & Relationships",
+    "section": "The alpha argument",
+    "text": "The alpha argument\n\nSometimes points overlap and we cannot see how many points are in the same area.\nWe can make points semi-transparent using alpha inside geom_point().\nalpha = 1 means fully solid (default), alpha = 0 means invisible.\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi, color = region) +\n  geom_point(size = 3, alpha = 0.7) +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n  labs(\n    title = \"Income Inequality and Hate Crimes in US States\",\n    subtitle = \"Colored by US Census region\",\n    x = \"Gini Index (Income Inequality)\",\n    y = \"Hate Crimes per 100,000 (FBI)\"\n  ) +\n  theme_fivethirtyeight() +\n  scale_color_fivethirtyeight()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-10",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-10",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nVarsayılan olarak R, geom_histogram() içinde bir bin genişliği seçiyor; bunu görmesek de geom_histogram(binwidth = bir sayı) şeklindedir. Bin genişliğini istediğimiz değere değiştirmek istiyoruz: binwidth=1000\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000) +\n  theme_classic()",
+    "objectID": "slides_week4.html#what-is-a-trend-line",
+    "href": "slides_week4.html#what-is-a-trend-line",
+    "title": "Scatter Plots & Relationships",
+    "section": "What is a trend line?",
+    "text": "What is a trend line?\n\nA scatter plot shows us the individual data points.\nBut sometimes it is hard to see the overall pattern just from the points.\nA trend line (also called a regression line or line of best fit) helps us see the general direction of the relationship.\nIf the line goes up → positive relationship (as x increases, y increases).\nIf the line goes down → negative relationship (as x increases, y decreases).\nIf the line is flat → no clear relationship.",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-11",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-11",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nR ayrıca binleri hangi renkle dolduracağını da otomatik seçiyor. Doldurma (fill) rengini lightskyblue olarak değiştirmek istiyoruz; bunu geom_histogram(binwidth = 1000, fill={\"renk adı\"}) ile yapıyoruz.\n\n\nHer argümanı birbirinden ayırmak için , kullandığımıza dikkat edin.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\") +\n  theme_classic()",
+    "objectID": "slides_week4.html#adding-a-trend-line-with-geom_smooth",
+    "href": "slides_week4.html#adding-a-trend-line-with-geom_smooth",
+    "title": "Scatter Plots & Relationships",
+    "section": "Adding a trend line with geom_smooth()",
+    "text": "Adding a trend line with geom_smooth()\n\nWe use geom_smooth() to add a trend line on top of our scatter plot.\n\n\nWe add method = \"lm\" inside geom_smooth() to get a straight line. lm stands for linear model.\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\") +\n  geom_smooth(method = \"lm\") +\n  theme_fivethirtyeight()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-12",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-12",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nBinlerin kenarlarının rengini değiştirmek için geom_histogram() içinde color={renk adı} argümanını kullanıyoruz. black yapalım.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  theme_classic()",
+    "objectID": "slides_week4.html#understanding-the-trend-line",
+    "href": "slides_week4.html#understanding-the-trend-line",
+    "title": "Scatter Plots & Relationships",
+    "section": "Understanding the trend line",
+    "text": "Understanding the trend line\n\nThe blue line shows the overall trend: as inequality increases, hate crimes tend to increase.\nThe gray shaded area around the line shows the confidence interval — it tells us how uncertain the trend is.\n\nA narrow band means we are more confident.\nA wide band means we are less confident.\n\nWe can remove the confidence interval with se = FALSE:\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\") +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"red\") +\n  theme_fivethirtyeight()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-13",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-13",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nŞimdi sıra sizde:\n\nŞeklin nasıl değişeceğini görmek için farklı bir bin genişliği seçin,\nFarklı bir dolgu (fill) ve kenar rengi seçin,\nFarklı bir tema seçin\n\nTema seçeneklerini görmek için önceki theme_classic() temasını silin ve theme_ yazmaya başlayın; R size öneriler gösterecek.",
+    "objectID": "slides_week4.html#putting-it-all-together",
+    "href": "slides_week4.html#putting-it-all-together",
+    "title": "Scatter Plots & Relationships",
+    "section": "Putting it all together",
+    "text": "Putting it all together\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\", alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = TRUE, color = \"red\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n  labs(\n    title = \"Income Inequality and Hate Crimes in US States\",\n    subtitle = \"A positive trend: states with higher inequality tend to report more hate crimes\",\n    x = \"Gini Index (Income Inequality)\",\n    y = \"Hate Crimes per 100,000 (FBI)\"\n  ) +\n  theme_fivethirtyeight()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-14",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-14",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nGrafiği yorumlamaya geçmeden önce x ekseninde gösterilen değer sayılarını artırmak istiyorum. Şu an dağılımı görmek için yeterli olmayan 5 değerimiz var.\nx eksenindeki değer sayısını 5’ten 10’a çıkarmak için scale_x_continuous(n.breaks=10) katmanını kullanın.\nBunu temadan önce eklemeyi unutmayın!",
+    "objectID": "slides_week4.html#putting-it-all-together-1",
+    "href": "slides_week4.html#putting-it-all-together-1",
+    "title": "Scatter Plots & Relationships",
+    "section": "Putting it all together",
+    "text": "Putting it all together",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-15",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-15",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks=10) +\n  theme_classic()",
+    "objectID": "slides_week4.html#trend-line-by-group",
+    "href": "slides_week4.html#trend-line-by-group",
+    "title": "Scatter Plots & Relationships",
+    "section": "Trend line by group",
+    "text": "Trend line by group\n\nWhat happens if we add color = region back into aes()?\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi, color = region) +\n  geom_point(size = 3, alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Income Inequality and Hate Crimes by Region\",\n    subtitle = \"Each region gets its own trend line\",\n    x = \"Gini Index (Income Inequality)\",\n    y = \"Hate Crimes per 100,000 (FBI)\"\n  ) +\n  theme_fivethirtyeight() +\n  scale_color_fivethirtyeight()",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-16",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-16",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\ny ekseninde de aynı sorun var.\n\n\ny eksenindeki değer sayısını nasıl artırabiliriz? x ekseni için fonksiyon scale_x_continuous(n.breaks=10) idi. y ekseninde kırılma sayısını 10 olarak ayarlayabilir misiniz?\n\n\nscale_y_continuous(n.breaks =10)\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks=10) +\n  scale_y_continuous(n.breaks=10) +\n  theme_classic()",
+    "objectID": "slides_week4.html#trend-line-by-group-1",
+    "href": "slides_week4.html#trend-line-by-group-1",
+    "title": "Scatter Plots & Relationships",
+    "section": "Trend line by group",
+    "text": "Trend line by group\n\nWhen color = region is inside aes(), both geom_point() and geom_smooth() split by region.\nEach region gets its own points and its own trend line.\nThis is useful to see if the relationship is different across groups.\nThe relationship direction varies by region — another reason to be careful about making conclusions!",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-17",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-17",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\nŞimdi grafiği yorumlama zamanı.\n\nNe görüyoruz?\n\nMinimum gelir yaklaşık 9000 görünürken maksimum yaklaşık 54.000.\nİşçilerin çoğu 15-25.000 TL kazanıyor\nÇok kazanan ve sayıca az olan kişiler var. Bunlar kim? Stajyerler ? Yöneticiler ?\n\nŞekil nasıl?\n\nSol tarafta uzun binler (çubuklar) var -&gt; Sağa çarpık (biliyorum, bana da mantıklı gelmiyor; ama böyle kabul edilmiş)\nDağılım sağa çarpık olduğundan ortalama muhtemelen medyandan büyük olacak. Sağdaki insanlar dağılımı bozuyor -&gt; aykırı değerler?\n\nMerkez nedir?\n\nİşçilerin büyük çoğunluğu 15.000 - 20.000 aralığının ortasında bir yerde kazanıyor gibi görünüyor.",
+    "objectID": "slides_week4.html#what-we-learned-today",
+    "href": "slides_week4.html#what-we-learned-today",
+    "title": "Scatter Plots & Relationships",
+    "section": "What we learned today",
+    "text": "What we learned today\n\nScatter plot: shows the relationship between two continuous variables using geom_point().\nBuilding a scatter plot:\n\nggplot() → blank canvas\naes(x = ..., y = ...) → set both axes\ngeom_point() → add the points\nCustomize with size, color, alpha\nlabs() → add title, subtitle, axis labels\n\nColor by group: put color = variable inside aes() to color points by a categorical variable.\nTrend line: geom_smooth(method = \"lm\") adds a line of best fit.\nKey takeaway: Correlation does not imply causation! Just because two variables move together does not mean one causes the other.",
     "crumbs": [
-      "Hafta 3"
+      "Week 4"
     ]
   },
   {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-18",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-18",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nGrafiğimizi anladığımıza göre başkalarının da anlamasını sağlamalıyız; bunun için title (başlık) ve subtitle (alt başlık) ekliyoruz.\nlabs(title = \"{başlığınız}\", subtitle = \"{alt başlığınız}\", x = \"{x ekseni etiketi}\", y = \"{y ekseni etiketi}\") katmanını kullanın.\nCümle yazarken tırnak işaretleri arasında yazıyoruz.\nDoğru: labs(title = \"Aylık kazanç...\")\nYanlış: labs(title = Aylık kazanç..)\nDoğru: labs(x = \"Gelir\", y = \"Gözlem sayısı\")\nYanlış: labs(x = Gelir, y = Gözlem sayısı)",
+    "objectID": "slides_week4.html#exercise",
+    "href": "slides_week4.html#exercise",
+    "title": "Scatter Plots & Relationships",
+    "section": "Exercise",
+    "text": "Exercise\nUsing the hate_crimes data, explore one of these questions:\n\nIs there a relationship between unemployment and hate_crimes_fbi?\nIs there a relationship between highschool (education) and hate_crimes_fbi?\nIs there a relationship between median_income and gini_index?\n\nFor each:\n\nMake a scatter plot with geom_point()\nAdd a trend line with geom_smooth(method = \"lm\")\nColor by region\nAdd a title and axis labels\nInterpret: what does the plot tell you?",
     "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-19",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-19",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_classic()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-20",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-20",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-21",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-21",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nİstatistik I’i hatırlıyor musunuz?\n\nRastgele sürekli değişkenlerden ve onların dağılımlarından bahsetmiştik.\nYoğunluk fonksiyonlarından (tekdüze dağılım, normal dağılım vb.) bahsetmiştik.",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-22",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-22",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\n\\[\nf(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}}\n\\exp\\left(-\\frac{(x-\\mu)^2}{2\\sigma^2}\\right)\n\\]",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-23",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-23",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nGelir sürekli bir rassal değişken olduğundan, histogram yerine kullanılabilecek bir alternatif density (yoğunluk) grafiğidir.\nYoğunluk grafiğinde, veriyi binlere gruplamak yerine, R dağılımı temsil eden sürekli bir eğri tahmin eder (yoğunluk fonksiyonunu hesaplar ve çizer).\nGelirin yoğunluk grafiğiyle nasıl dağıldığına bakalım.",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-24",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-24",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nearnings adlı verimizi kullanmak ve şunu yapmak istiyoruz ( %&gt;% )\n\n\nggplot() görselleştirmesi uygula\n\n\nx ekseni değişkeni olarak income ekle\n\n\nYoğunluk grafiği ekle: geom_density()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-25",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-25",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\n\n1earnings %&gt;%\n2  ggplot() +\n3  aes(x = income) +\n4  geom_density()\n\n\n1\n\nearnings adlı verimizi kullanmak ve şunu yapmak istiyoruz ( %&gt;% )\n\n2\n\nggplot() görselleştirmesi uygula\n\n3\n\nx ekseni değişkeni olarak income ekle\n\n4\n\nYoğunluk grafiği ekle: geom_density()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-26",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-26",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-27",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-27",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nHemen tercih ettiğiniz bir tema uygulayın.\n\n\nBundan önce, güzel bir tema kullanmak için bu temaları içeren yararlı bir paket yükleyelim\n\n\nggthemes paketini yüklemek istiyoruz; böylece bu paketin özel temalarını kullanabiliriz.\n\n\n\ninstall.packages(\"ggthemes\")",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-28",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-28",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nggthemes paketinin temalarını kullanabilmek için R’a bu paketi kullanmasını söylememiz gerekiyor\n\n\n\nlibrary(ggthemes)\n\n\n\nBurada kalmıştık\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-29",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-29",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\ntheme_ yazmaya başlayın; sağ taraftaki öneriler arasında ggthemes’i göreceksiniz; oradan bir tane seçin.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density() +\n  theme_economist()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-30",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-30",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\nYoğunluk çizgisinin siyah rengini beğenmedim. geom_density(color = {\"tercih ettiğiniz renk\"}) içindeki color argümanını kullanarak “azure4” olarak değiştirelim\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\") +\n  theme_economist()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-31",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-31",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nÇizginin kalınlığı biraz ince görünüyor; geom_density() içindeki linewidth argümanıyla artırabilir miyiz? Varsayılan olarak R geom_density(linewidth = 1) şeklinde otomatik olarak ayarlamış.\n\n\ngeom_density(color = {\"tercih ettiğiniz renk\"}, linewidth = {tercih ettiğiniz genişlik sayısı})\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n  theme_economist()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-32",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-32",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\ny ekseni etiketi (label, eksen adı) değişti, çünkü artık sayıları göstermiyoruz. Olasılık yoğunluğunu gösteriyoruz. Yükseklikler artık işçi sayısını değil, olasılık yoğunluğunu temsil ediyor; bunu y etiketinde (eksen adı) yansıtmalıyız.\n\n\nx ve y değerleri uygun görünüyor. scale_x_continuous() ve scale_y_continuous() kullanmamıza gerek yok.\n\n\nBaşlığımız hâlâ iyi olsa da artık sayıları göstermediğimiz için alt başlık daha iyi olabilir. “Kazançların en yoğun olduğu aralık 15.000–25.000 TL; dağılım sağa çarpık” olarak değiştirelim\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"Kazançların en yoğun olduğu aralık 15.000–25.000 TL; dağılım sağa çarpık\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"Olasılık Yoğunluğu\"\n  ) +\n  theme_economist()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-33",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-33",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış",
-    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
-    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\nPeki ya işçilerin gelirinin cinsiyete göre değişip değişmediğini görmek isteseydik?\nHer gözlem için cinsiyetimiz olduğundan bu bilgiyi de kullanabiliriz.\nBunu yapmanın farklı yolları var.\n\nCinsiyete göre çizgi türünü değiştirebiliriz.\nCinsiyete göre çizgi rengini değiştirebiliriz.",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-1",
-    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-1",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
-    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre çizgi rengini değiştir\n\nBu bizim kodumuz ve grafiğimizdi\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-2",
-    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-2",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
-    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre çizgi rengini değiştir\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()\n\n\n\n\nŞimdi çizginin rengini bir değişkene göre değiştirmek istiyoruz.\n\n\n\n\ngeom_density(color = \"azure4\") içindeki rengi geom_density(color = gender) olarak değiştirebilir miyiz?\n\n\n\n\nKendiniz deneyin",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-3",
-    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-3",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
-    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre renk türünü değiştir\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = gender, linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()\n\n\n\nError: object 'gender' not found hatasını alıyoruz.\n\n\nBunun nedeni R’ın bize bir renk adı verdiğimizi sanması; kırmızı, mavi veya yeşil gibi. Ama gender bir renk adı değil. Bir değişken.\n\n\nBir şeyi (çizgi rengini, kalınlığını, şeklini) değişkene göre değiştirmek istediğimizde bunu geom_ içinde değil, aes() içinde yapıyoruz.\n\n\nBu yüzden geom_density(x = income) yerine aes(x = income) yazıyoruz. Çünkü x tek bir değer değil, bir değişken olmalı..\n\n\nO halde yapmak istediğimiz şey aes(x = income) satırına gidip , ile ayırarak color = gender argümanını eklemek",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-34",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-34",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, color  = gender) +\n  geom_density(linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-35",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-35",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\nGrafimize cinsiyet bilgisini ekledik.\nArtık tek bir dağılımı değil,\nİki dağılımı karşılaştırıyoruz.\nArtık gösterdiğimiz şey şu “Kazanç dağılımları cinsiyete göre farklılaşıyor mu?”.\nBaşlık ve alt başlığımız bunu yansıtmalı.\nBaşlığı “Cinsiyete Göre Aylık Kazanç” olarak değiştirin.\n\nHedef kitlemizin verinin Çilek Mobilya, Mamak’tan geldiğini bildiğini varsayalım (başlığı kısaltmak için).\n\nAlt başlığı “Erkek ve kadın işçiler arasında belirgin bir fark yok” olarak değiştirin.",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-36",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-36",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, color  = gender) +\n  geom_density(linewidth = 1.5) +\n    labs(\n    title = \"Cinsiyete Göre Aylık Kazanç\",\n    subtitle = \"Erkek ve kadın işçiler arasında belirgin bir görsel fark yok\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-37",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-37",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre renk türünü değiştir\n\nRenk yerine linetype’ı cinsiyete göre değiştirebilirdik.\n\n\nYapabilir misiniz?\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, linetype  = gender) +\n  geom_density(linewidth = 1.5) +\n    labs(\n    title = \"Cinsiyete Göre Aylık Kazanç\",\n    subtitle = \"Erkek ve kadın işçiler arasında belirgin bir görsel fark yok\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-38",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-38",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre renk türünü değiştir",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-39",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-39",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nHistogram\n\nHistogram kodumuzu hatırlıyor musunuz?\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_classic()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-40",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-40",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nHistogram\n\nBinleri tek bir renkle doldurmak yerine, cinsiyete göre fill yapalım. Bu arada temayı daha güzel biriyle değiştirin.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, fill = gender) +\n  geom_histogram(binwidth = 1000, color = \"black\",) +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_classic()",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-41",
-    "href": "slides_tr.html#gelir-nasıl-dağılmış-41",
-    "title": "ggplot2’ye Giriş",
-    "section": "Gelir Nasıl Dağılmış?",
-    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nHistogram\n\nBu grafikte pek çok sorun var\nHistogramı yalnızca bir değişkenin dağılımını basitçe gösermek için kullanın; gruba göre dağılım karşılaştırması yapmanız gerekiyorsa density grafiği kullanın.\nAmacınız “Her gelir aralığına kaç işçi düşüyor?” göstermekse histogram doğru grafiktir (yoğunluk grafiği de kabul edilebilir; yorum biraz farklılaşır).\n\ny ekseni sayıları gösterir\n“.. - .. TL arasında yaklaşık 10 işçi kazanıyor” diyebilirsiniz.\n\nAmacınız “Gelir dağılımları cinsiyete göre farklılaşıyor mu?” göstermekse yoğunluk grafiği daha uygun olacaktır\n\nŞekli grupları karşılaştırmamızı kolaylaştırır.\nÜst üste binme sorunu yoktur.\nDağılımları karşılaştırırken yoğunluk grafiği kullanmak daha iyidir.",
-    "crumbs": [
-      "Hafta 3"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "IKT 2010",
-    "section": "",
-    "text": "This page contains R application slides for the Statistics II course.\nBu sayfa İstatistik II dersi R uygulamaları yansılarını içermekte.\nUse the menu on the left to navigate to the slides.\nSoldaki menüyü kullarak yansılara erişebilirsiniz.\n\nWeek 3 - English slides\nHafta 3 - Türkçe yansılar",
-    "crumbs": [
-      "Home"
+      "Week 4"
     ]
   },
   {
@@ -1190,323 +910,603 @@
     ]
   },
   {
-    "objectID": "slides_week4.html#recap",
-    "href": "slides_week4.html#recap",
-    "title": "Scatter Plots & Relationships",
-    "section": "Recap",
-    "text": "Recap\n\nWe learned how to visualize the distribution of one continuous variable.\nHistogram: groups data into bins, counts how many observations fall in each bin.\nDensity plot: estimates a smooth curve representing the distribution.\nWe also learned how to compare distributions across groups (e.g., income by gender).\n\n\nBut what if we want to ask a different kind of question?\n\n\n\n“Is there a relationship between two variables?”",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "IKT 2010",
+    "section": "",
+    "text": "This page contains R application slides for the Statistics II course.\nBu sayfa İstatistik II dersi R uygulamaları yansılarını içermekte.\nUse the menu on the left to navigate to the slides.\nSoldaki menüyü kullarak yansılara erişebilirsiniz.\n\nWeek 3 - English slides\nHafta 3 - Türkçe yansılar",
     "crumbs": [
-      "Week 4"
+      "Home"
     ]
   },
   {
-    "objectID": "slides_week4.html#new-question",
-    "href": "slides_week4.html#new-question",
-    "title": "Scatter Plots & Relationships",
-    "section": "New Question",
-    "text": "New Question\n\nIn Week 3 we asked: “How is income distributed?” → one variable.\nThis week we ask: “Does income inequality relate to hate crime rates?” → two variables.\nWhen we want to see the relationship between two continuous variables, we use a scatter plot.",
+    "objectID": "slides_tr.html#neden-veriyi-görselleştiriyoruz",
+    "href": "slides_tr.html#neden-veriyi-görselleştiriyoruz",
+    "title": "ggplot2’ye Giriş",
+    "section": "Neden Veriyi Görselleştiriyoruz?",
+    "text": "Neden Veriyi Görselleştiriyoruz?",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#when-to-use-a-scatter-plot",
-    "href": "slides_week4.html#when-to-use-a-scatter-plot",
-    "title": "Scatter Plots & Relationships",
-    "section": "When to use a scatter plot?",
-    "text": "When to use a scatter plot?\n\nYou have two continuous variables.\nYou want to see if there is a pattern, trend, or correlation between them.\nEach observation (row) becomes one point on the plot.\nThe x axis shows one variable, the y axis shows the other.",
+    "objectID": "slides_tr.html#neden-veriyi-görselleştiriyoruz-1",
+    "href": "slides_tr.html#neden-veriyi-görselleştiriyoruz-1",
+    "title": "ggplot2’ye Giriş",
+    "section": "Neden Veriyi Görselleştiriyoruz?",
+    "text": "Neden Veriyi Görselleştiriyoruz?\n\nVeri görselleştirme bir süsleme değil; analitik bir araçtır.\nİnsan zihni, tablo veya sayı okumak için değil, görsel alanda (doğada) örüntü tanımak için optimize edilmiştir.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#the-data",
-    "href": "slides_week4.html#the-data",
-    "title": "Scatter Plots & Relationships",
-    "section": "The Data",
-    "text": "The Data\n\nOur data comes from a FiveThirtyEight article:\n\n“Higher Rates Of Hate Crimes Are Tied To Income Inequality”\n\nIt contains data on all 50 US states.\nFor each state we have:\n\nhate_crimes_fbi: hate crimes per 100,000 people (reported to FBI)\ngini_index: a measure of income inequality (higher = more unequal)\nmedian_income: median household income\nhighschool: share of population with a high school degree\nunemployment: share of unemployed population\ntrump_vote: share of voters who voted for Trump in 2016\nregion: US Census region (Northeast, Midwest, South, West)",
+    "objectID": "slides_tr.html#neden-veriyi-görselleştiriyoruz-2",
+    "href": "slides_tr.html#neden-veriyi-görselleştiriyoruz-2",
+    "title": "ggplot2’ye Giriş",
+    "section": "Neden Veriyi Görselleştiriyoruz?",
+    "text": "Neden Veriyi Görselleştiriyoruz?\nNeden temelleri öğrenmeden R kullanıyoruz?\n\nZaman kısıtlaması.\nYapabilirsiniz! Birçok öğrenci yapabiliyor.\nSizi R öğrenmeye teşvik etmek için.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#read-the-data",
-    "href": "slides_week4.html#read-the-data",
-    "title": "Scatter Plots & Relationships",
-    "section": "Read the data",
-    "text": "Read the data\n\n1library(tidyverse)\nlibrary(janitor)\nlibrary(ggthemes)\n2read.csv(\"data/hate_crimes.csv\") %&gt;%\n3  as_tibble() -&gt; hate_crimes\n\n\n1\n\nUse the tidyverse, janitor, and ggthemes libraries\n\n2\n\nRead the CSV file and then do the following ( %&gt;% )\n\n3\n\nShow it as a tibble and save it as hate_crimes",
+    "objectID": "slides_tr.html#görselleştirme-adımları",
+    "href": "slides_tr.html#görselleştirme-adımları",
+    "title": "ggplot2’ye Giriş",
+    "section": "Görselleştirme Adımları",
+    "text": "Görselleştirme Adımları\n\nVerinizi tanıyın\nMesajınız ne?\n\nNe göstermek istiyorsunuz?\n\nHangi tür değişkenleriniz var?\n\nSayısal: sürekli (fiyat (TL), ağırlık (kg), mesafe (km, m vb.) vb.) ya da kesikli (yaş, aile büyüklüğü vb.)?\nSayısal olmayan: nominal (cinsiyet, ırk, tişört rengi vb.), sıralı (tişört bedeni (S &lt; M &lt; L), eğitim düzeyi (ilkokul &lt; ortaokul &lt; lise &lt; lisans…), memnuniyet derecesi (kötü &lt; orta &lt; iyi))\n\nHangi tür grafik kullanabilirsiniz?\nGrafiği yap, gördüğün örüntüyü anla.\nGüzel hale getir.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#have-a-look-at-the-data",
-    "href": "slides_week4.html#have-a-look-at-the-data",
-    "title": "Scatter Plots & Relationships",
-    "section": "Have a look at the data",
-    "text": "Have a look at the data\n\n\nhate_crimes\n\n# A tibble: 50 × 13\n   state             median_income unemployment metro_pop highschool non_citizen\n   &lt;chr&gt;                     &lt;int&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;\n 1 Alabama                   42278        0.06       0.64      0.821        0.02\n 2 Alaska                    67629        0.064      0.63      0.914        0.04\n 3 Arizona                   49254        0.063      0.9       0.842        0.1 \n 4 Arkansas                  44922        0.052      0.69      0.824        0.04\n 5 California                60487        0.059      0.97      0.806        0.13\n 6 Colorado                  60940        0.04       0.8       0.893        0.06\n 7 Connecticut               70161        0.052      0.94      0.886        0.06\n 8 Delaware                  57522        0.049      0.9       0.874        0.05\n 9 District of Colu…         68277        0.067      1         0.871        0.11\n10 Florida                   46140        0.052      0.96      0.853        0.09\n# ℹ 40 more rows\n# ℹ 7 more variables: white_poverty &lt;dbl&gt;, gini_index &lt;dbl&gt;, non_white &lt;dbl&gt;,\n#   trump_vote &lt;dbl&gt;, hate_crimes_splc &lt;dbl&gt;, hate_crimes_fbi &lt;dbl&gt;,\n#   region &lt;chr&gt;",
+    "objectID": "slides_tr.html#merhaba-dünya",
+    "href": "slides_tr.html#merhaba-dünya",
+    "title": "ggplot2’ye Giriş",
+    "section": "Merhaba Dünya!",
+    "text": "Merhaba Dünya!\n\n\nprint(\"Hello world!\")\n\n[1] \"Hello world!\"\n\n\n\n\nKendini R’a tanıtabilir misin?\n\n\n\nprint(\"Hello R!, I am Mücahit\")\n\n[1] \"Hello R!, I am Mücahit\"",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#understanding-our-data",
-    "href": "slides_week4.html#understanding-our-data",
-    "title": "Scatter Plots & Relationships",
-    "section": "Understanding Our Data",
-    "text": "Understanding Our Data\nWhat are our variables?\n\n\nhate_crimes %&gt;%\n  summary()\n\n    state           median_income    unemployment       metro_pop     \n Length:50          Min.   :35521   Min.   :0.02800   Min.   :0.3100  \n Class :character   1st Qu.:48358   1st Qu.:0.04225   1st Qu.:0.6300  \n Mode  :character   Median :54613   Median :0.05100   Median :0.7900  \n                    Mean   :54904   Mean   :0.04988   Mean   :0.7500  \n                    3rd Qu.:60653   3rd Qu.:0.05775   3rd Qu.:0.8975  \n                    Max.   :76165   Max.   :0.07300   Max.   :1.0000  \n                                                                      \n   highschool      non_citizen      white_poverty      gini_index    \n Min.   :0.7990   Min.   :0.01000   Min.   :0.0400   Min.   :0.4190  \n 1st Qu.:0.8397   1st Qu.:0.03000   1st Qu.:0.0800   1st Qu.:0.4400  \n Median :0.8740   Median :0.04000   Median :0.0900   Median :0.4545  \n Mean   :0.8684   Mean   :0.05404   Mean   :0.0922   Mean   :0.4542  \n 3rd Qu.:0.8978   3rd Qu.:0.08000   3rd Qu.:0.1000   3rd Qu.:0.4667  \n Max.   :0.9180   Max.   :0.13000   Max.   :0.1700   Max.   :0.5320  \n                  NA's   :3                                          \n   non_white        trump_vote     hate_crimes_splc  hate_crimes_fbi  \n Min.   :0.0600   Min.   :0.0400   Min.   :0.06745   Min.   : 0.2669  \n 1st Qu.:0.1925   1st Qu.:0.4200   1st Qu.:0.14271   1st Qu.: 1.2931  \n Median :0.2750   Median :0.4950   Median :0.22620   Median : 1.9871  \n Mean   :0.3058   Mean   :0.4938   Mean   :0.30409   Mean   : 2.3676  \n 3rd Qu.:0.4200   3rd Qu.:0.5775   3rd Qu.:0.35693   3rd Qu.: 3.1843  \n Max.   :0.6300   Max.   :0.7000   Max.   :1.52230   Max.   :10.9535  \n                                   NA's   :3                          \n    region         \n Length:50         \n Class :character  \n Mode  :character",
+    "objectID": "slides_tr.html#aferin",
+    "href": "slides_tr.html#aferin",
+    "title": "ggplot2’ye Giriş",
+    "section": "Aferin!",
+    "text": "Aferin!",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#understanding-our-data-1",
-    "href": "slides_week4.html#understanding-our-data-1",
-    "title": "Scatter Plots & Relationships",
-    "section": "Understanding Our Data",
-    "text": "Understanding Our Data\nNon-numeric variable: region\n\n\nhate_crimes %&gt;%\n  tabyl(region)\n\n    region  n percent\n   Midwest 12    0.24\n Northeast  9    0.18\n     South 17    0.34\n      West 12    0.24\n\n\n\n\nWe have 4 regions, each with a different number of states.",
+    "objectID": "slides_tr.html#gerekli-şeyler",
+    "href": "slides_tr.html#gerekli-şeyler",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gerekli Şeyler",
+    "text": "Gerekli Şeyler\n\nÖnce kullanmak istediğimiz paketleri yüklemeliyiz.\n\n\n\ninstall.packages(\"tidyverse\")\n1install.packages(\"janitor\")\n\n\n1\n\nBunları yalnızca daha önce hiç çalıştırmadıysanız çalıştırın. Bir paketi bir kez yüklemek yeterlidir.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#our-goal-today",
-    "href": "slides_week4.html#our-goal-today",
-    "title": "Scatter Plots & Relationships",
-    "section": "Our Goal Today",
-    "text": "Our Goal Today\nIs there a relationship between income inequality and hate crimes?\n\ngini_index measures income inequality. Higher values = more inequality.\nhate_crimes_fbi measures hate crimes per 100,000 people.\nWe want to see: do states with more inequality also have more hate crimes?\nBoth variables are continuous → we need a scatter plot.",
+    "objectID": "slides_tr.html#veriyi-oku",
+    "href": "slides_tr.html#veriyi-oku",
+    "title": "ggplot2’ye Giriş",
+    "section": "Veriyi Oku",
+    "text": "Veriyi Oku\n\n1library(tidyverse)\nlibrary(janitor)\n2read.csv(\"https://raw.githubusercontent.com/mucahitzor/IKT2010/refs/heads/main/data/earnings.csv\") %&gt;%\n3  as_tibble() -&gt; earnings\n\n\n1\n\ntidyverse ve janitor kütüphanelerini kullan; böylece bu kütüphanelerin veri görselleştirme için sunduğu fonksiyonlarını kullanabiliriz\n\n2\n\nVerim bu yolda (yol = verinin hangi adreste olduğu) bulunan bir csv dosyası, onu oku ve şunu yap ( %&gt;% )\n\n3\n\ntibble olarak göster: tibble verimizi görmenin güzel bir yolu. -&gt; earnings ile “bu veri setini belleğe (RAM) kaydet, istediğimde earnings yazarak kullanayım” diyoruz.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#step-1-start-with-the-data",
-    "href": "slides_week4.html#step-1-start-with-the-data",
-    "title": "Scatter Plots & Relationships",
-    "section": "Step 1: Start with the data",
-    "text": "Step 1: Start with the data\n\nTake our data set named hate_crimes,\n\n\n\nhate_crimes\n\n\n\nI want to make a visualization, take my data set and apply ggplot.\n\n\n\nhate_crimes %&gt;%\n  ggplot()",
+    "objectID": "slides_tr.html#veriyi-inceleme",
+    "href": "slides_tr.html#veriyi-inceleme",
+    "title": "ggplot2’ye Giriş",
+    "section": "Veriyi İnceleme",
+    "text": "Veriyi İnceleme\n\nVerinin nasıl göründüğüne bakalım. İki yol var:\n\n1earnings\n\n\n1\n\nVerinin adını yazmak konsolda nasıl göründüğünü gösterir\n\n\n\n\n# A tibble: 200 × 3\n      id gender income\n   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;\n 1     1 Male   19376.\n 2     2 Male    9540.\n 3     3 Male   10501.\n 4     4 Male   26262.\n 5     5 Male   23313.\n 6     6 Male   15835.\n 7     7 Male   12728.\n 8     8 Female 22247.\n 9     9 Female 41456.\n10    10 Male   16254.\n# ℹ 190 more rows\n\n\n\n\n\n1earnings %&gt;% view()\n\n\n1\n\nVeri setimi al ve bana daha ayrıntılı görsel olarak göster",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#step-2-set-the-axes",
-    "href": "slides_week4.html#step-2-set-the-axes",
-    "title": "Scatter Plots & Relationships",
-    "section": "Step 2: Set the axes",
-    "text": "Step 2: Set the axes\n\nNow we need to tell R what goes on the x axis and what goes on the y axis.\n\n\nFor scatter plots we need both x and y inside aes().\n\n\n\nx = gini_index (income inequality)\ny = hate_crimes_fbi (hate crimes per 100k)\n\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi)",
+    "objectID": "slides_tr.html#verimizi-anlamak",
+    "href": "slides_tr.html#verimizi-anlamak",
+    "title": "ggplot2’ye Giriş",
+    "section": "Verimizi Anlamak",
+    "text": "Verimizi Anlamak\nDeğişkenlerimiz neler?\n\n\n1earnings\n\n\n1\n\nVerinin nasıl göründüğüne tekrar bakalım\n\n\n\n\n\n\nSayısal değişkenler hakkında değişken adlarını ve bilgileri görmek için summary() fonksiyonunu kullanıyoruz.\n\n\nYani R’a şunu söylememiz gerekiyor:\n\n\n\nearnings adlı veri setimi al\n\n\n\n\nve bir sonraki satırda söyleyeceğim şeyi yap (%&gt;%)\n\n\n\n\nveri setinin özet istatistiklerini summary() fonksiyonunu kullarak ver.\n\n\n\n\nearnings %&gt;%\n  summary()\n\n       id            gender              income     \n Min.   :  1.00   Length:200         Min.   : 9448  \n 1st Qu.: 50.75   Class :character   1st Qu.:15920  \n Median :100.50   Mode  :character   Median :21052  \n Mean   :100.50                      Mean   :22892  \n 3rd Qu.:150.25                      3rd Qu.:27321  \n Max.   :200.00                      Max.   :53647",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#step-3-add-the-points",
-    "href": "slides_week4.html#step-3-add-the-points",
-    "title": "Scatter Plots & Relationships",
-    "section": "Step 3: Add the points",
-    "text": "Step 3: Add the points\n\nRemember, for histograms we used geom_histogram(), for density we used geom_density().\n\n\nFor scatter plots we use geom_point().\n\n\nEach row in our data becomes one point on the plot.\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point()",
+    "objectID": "slides_tr.html#verimizi-anlamak-1",
+    "href": "slides_tr.html#verimizi-anlamak-1",
+    "title": "ggplot2’ye Giriş",
+    "section": "Verimizi Anlamak",
+    "text": "Verimizi Anlamak\nDeğişkenlerimiz neler?\n\nSayısal olmayan değişkenler (cinsiyet gibi) için R’a şunu söylüyoruz:\n\n\nearnings adlı veri setimi al ve şunu yap ( %&gt;% ).\n\n\nGörmek istediğimiz değişken adı hakkında istatistik göstermek için tabyl({değişken adı}) uygula. tabyl() fonksiyonunu gender adlı sayısal olmayan değişkenimize uygulamak istiyoruz.\n\n\n\n1earnings %&gt;%\n2  tabyl(gender)\n\n\n1\n\nearnings adlı veri setimi al.\n\n2\n\ntabyl() fonksiyonu ile gender değişkeninin istatistiklerini göster.\n\n\n\n\n gender   n percent\n Female  91   0.455\n   Male 109   0.545",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#step-4-add-a-theme",
-    "href": "slides_week4.html#step-4-add-a-theme",
-    "title": "Scatter Plots & Relationships",
-    "section": "Step 4: Add a theme",
-    "text": "Step 4: Add a theme\n\nLets immediately clean it up with a theme.\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point() +\n  theme_classic()",
+    "objectID": "slides_tr.html#verimizi-anlamak-2",
+    "href": "slides_tr.html#verimizi-anlamak-2",
+    "title": "ggplot2’ye Giriş",
+    "section": "Verimizi Anlamak",
+    "text": "Verimizi Anlamak\nBugünkü Hedefimiz: Gelir nasıl dağılıyor?\n\nGelirin nasıl dağıldığını bulmaya çalışıyoruz.\nGelir sürekli (continious) bir değişken.\nSürekli bir değişkenin nasıl dağıldığını görmek için: histogram veya yoğunluk grafiği kullabiliriz.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#step-5-customize-the-points",
-    "href": "slides_week4.html#step-5-customize-the-points",
-    "title": "Scatter Plots & Relationships",
-    "section": "Step 5: Customize the points",
-    "text": "Step 5: Customize the points\n\nThe default points are small and hard to see. We can change them inside geom_point():\n\n\n\nsize = how big the points are (default is about 1.5)\ncolor = the color of the points\n\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\") +\n  theme_classic()",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılıyor",
+    "href": "slides_tr.html#gelir-nasıl-dağılıyor",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılıyor?",
+    "text": "Gelir Nasıl Dağılıyor?\nSürekli bir değişkenin dağılımı\nHistogram\n\nVeriye tekrar bakalım\n\n\n\n\n# A tibble: 200 × 3\n      id gender income\n   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;\n 1     1 Male   19376.\n 2     2 Male    9540.\n 3     3 Male   10501.\n 4     4 Male   26262.\n 5     5 Male   23313.\n 6     6 Male   15835.\n 7     7 Male   12728.\n 8     8 Female 22247.\n 9     9 Female 41456.\n10    10 Male   16254.\n# ℹ 190 more rows\n\n\n\n\nİlk 10 kişinin gelir değerlerini görüyoruz.\nHer satır (gözlem) bir kişidir.\nAma 200 gözlemimiz var ve income’ın nasıl dağıldığını bir şekilde anlamamız gerekiyor.\nBunu yalnızca tablodaki veriye bakarak anlamak imkansız.\nMinimum, çeyrekler, medyan, ortalama ve maksimum değerleri görmek için özet istatistiklere bakabiliriz. Ama bu yine de bize görsel olarak göstermez.\n\n\n\nearnings %&gt;%\n  summary()\n\n       id            gender              income     \n Min.   :  1.00   Length:200         Min.   : 9448  \n 1st Qu.: 50.75   Class :character   1st Qu.:15920  \n Median :100.50   Mode  :character   Median :21052  \n Mean   :100.50                      Mean   :22892  \n 3rd Qu.:150.25                      3rd Qu.:27321  \n Max.   :200.00                      Max.   :53647",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#step-6-fix-the-axes",
-    "href": "slides_week4.html#step-6-fix-the-axes",
-    "title": "Scatter Plots & Relationships",
-    "section": "Step 6: Fix the axes",
-    "text": "Step 6: Fix the axes\n\nLike in Week 3, lets increase the number of values on both axes.\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n  theme_classic()",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nHistogram, sürekli veriyi aralıklara (bin) gruplar ve her aralığa kaç gözlemin düştüğünü sayar.\nBir “bin” temel olarak bir aralıktır. Örneğin, aşağıdakilerin her biri 1000 genişliğinde bir “bin”dir:\n\n“0-1000”\n“1000-2000”\n“2000-3000”\n\nSürekli veriyi binlere gruplamalı ve her bine kaç gözlemin ait olduğunu saymalıyız.\nBin genişliğini seçmek duruma göre değişir; farklı bin genişlikleri amaca göre deneyebiliriz. Her farklı bin aralığı farklı şekiller ortaya çıkaracaktır.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#interpreting-the-scatter-plot",
-    "href": "slides_week4.html#interpreting-the-scatter-plot",
-    "title": "Scatter Plots & Relationships",
-    "section": "Interpreting the scatter plot",
-    "text": "Interpreting the scatter plot\n\nWhat do we see?\n\nAs gini_index increases (more inequality), hate crimes tend to increase too.\nThis suggests a positive relationship between income inequality and hate crimes.\n\nBut not all states follow this pattern perfectly.\n\nSome states have high inequality but low hate crimes.\nSome states have low inequality but high hate crimes.\nThis is normal — we are looking at a trend, not a perfect rule.\n\nThere is one point very high up — can you guess which state that might be?\n\n\n\nhate_crimes %&gt;% filter(hate_crimes_fbi &gt; 10)\n\n# A tibble: 1 × 13\n  state              median_income unemployment metro_pop highschool non_citizen\n  &lt;chr&gt;                      &lt;int&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;\n1 District of Colum…         68277        0.067         1      0.871        0.11\n# ℹ 7 more variables: white_poverty &lt;dbl&gt;, gini_index &lt;dbl&gt;, non_white &lt;dbl&gt;,\n#   trump_vote &lt;dbl&gt;, hate_crimes_splc &lt;dbl&gt;, hate_crimes_fbi &lt;dbl&gt;,\n#   region &lt;chr&gt;",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-1",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-1",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  summary()\n\n       id            gender              income     \n Min.   :  1.00   Length:200         Min.   : 9448  \n 1st Qu.: 50.75   Class :character   1st Qu.:15920  \n Median :100.50   Mode  :character   Median :21052  \n Mean   :100.50                      Mean   :22892  \n 3rd Qu.:150.25                      3rd Qu.:27321  \n Max.   :200.00                      Max.   :53647  \n\n\n\n\nGelirin histogramını 1000TL bin genişliğiyle elle çizmeye başlayalım. Binlerimiz gelirin minimum değerinden başlayacak.\n\n“9000-10.000”, “10.000-11.000”, “11.000-12.000”…\n\nHer gözlem için kişinin gelirine bakıp hangi bine ait olduğunu belirleyip saymaya başlıyoruz. Aynı bine düşen daha fazla gözlem gördükçe binin yüksekliğini (sayısı) gösteren y eksenindeki değerler artıyor.\nBunu yapmadan önce x ve y eksenlerimizi çizmemiz gerekiyor.\n\nx ve y ekseni çizelim,\nx ekseninde binler halinde parçalara ayrılmış gelir var, 9000’den başlayan 1000TL’lik binlerle.\ny ekseninde her zaman sayı var; her bine ait gözlem sayısını gösteriyor.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#add-labels",
-    "href": "slides_week4.html#add-labels",
-    "title": "Scatter Plots & Relationships",
-    "section": "Add labels",
-    "text": "Add labels\n\nNow lets add a title, subtitle, and axis labels using labs().\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n  labs(\n    title = \"Income Inequality and Hate Crimes in US States\",\n    subtitle = \"States with higher Gini index tend to have more hate crimes per 100k people\",\n    x = \"Gini Index (Income Inequality)\",\n    y = \"Hate Crimes per 100,000 (FBI)\"\n  ) +\n  theme_classic()",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-2",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-2",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nİlk 10 gözlemi çizelim.\n\n\n# A tibble: 200 × 3\n      id gender income\n   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;\n 1     1 Male   19376.\n 2     2 Male    9540.\n 3     3 Male   10501.\n 4     4 Male   26262.\n 5     5 Male   23313.\n 6     6 Male   15835.\n 7     7 Male   12728.\n 8     8 Female 22247.\n 9     9 Female 41456.\n10    10 Male   16254.\n# ℹ 190 more rows\n\n\n\n\n200 gözlemin tamamı için tek tek inceleyip çizmek çok zaman alacak.\nBunun yerine R’dan bunu bizim için yapmasını isteyebiliriz!",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#add-labels-1",
-    "href": "slides_week4.html#add-labels-1",
-    "title": "Scatter Plots & Relationships",
-    "section": "Add labels",
-    "text": "Add labels",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-3",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-3",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nearnings adlı veri setimi al,\n\n\n\nearnings\n\n\n\nBir görselleştirme yapmak istiyorum, veri setimi al ve ggplot uygula.\n\n\nElde edeceğimiz şey boş bir kâğıt parçası olacak. Çünkü henüz eksenlerimizi belirtmedik.\n\n\n\nearnings %&gt;%\n  ggplot()",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#color-by-region",
-    "href": "slides_week4.html#color-by-region",
-    "title": "Scatter Plots & Relationships",
-    "section": "Color by region",
-    "text": "Color by region\n\nRemember in Week 3 we changed the color of density lines based on gender?\nWe can do the same thing here: color the points based on region.\nSince region is a variable, we put it inside aes(), not inside geom_point().\n\n\nCan you guess the code?",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-4",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-4",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nElle çizmeye benzer şekilde önce x ve y eksenini çiziyoruz. Bunu R ile yapmak için aes(x = {değişken adı}) fonksiyonunu kullanıyoruz. Ve bunu mevcut boş sayfamıza + sembolü ile ekliyoruz.\n\n\n+ her zaman satırların sonunda olacak.\n\n\n\n1earnings %&gt;%\n2  ggplot() +\n3  aes(x=income)\n\n\n1\n\nearnings adlı veri setimi al\n\n2\n\nGörselleştirme yapmak istiyorum\n\n3\n\nx eksenindeki değişkenim income\n\n\n\n\n\n\n\n\n\n\n\n\n\nHistogramlar için yalnızca x değişkeninin adını vermemiz yeterli; R her gözlemi kendisi sayacak ve y ekseninde gösterecek!",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#color-by-region-1",
-    "href": "slides_week4.html#color-by-region-1",
-    "title": "Scatter Plots & Relationships",
-    "section": "Color by region",
-    "text": "Color by region\n\nWe move color from geom_point(color = \"steelblue\") to aes(color = region):\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi, color = region) +\n  geom_point(size = 3) +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n  labs(\n    title = \"Income Inequality and Hate Crimes in US States\",\n    subtitle = \"Colored by US Census region\",\n    x = \"Gini Index (Income Inequality)\",\n    y = \"Hate Crimes per 100,000 (FBI)\"\n  ) +\n  theme_classic()",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-5",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-5",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nŞimdi R’a histogram yapmasını söyleme zamanı.\n\n\nNe tür grafik istediğimizi söylemek için geom_{grafik türü} kullanıyoruz.\n\n\nÖrneğin, histogram yapmak için geom_histogram() kullanıyoruz.\n\n\nYoğunluk grafiği yapmak için geom_density() kullanıyoruz.\n\n\nBar grafik yapmak için geom_bar() kullanıyoruz.\n\n\nSaçılım grafiği yapmak için geom_point() kullanıyoruz.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#what-do-we-see",
-    "href": "slides_week4.html#what-do-we-see",
-    "title": "Scatter Plots & Relationships",
-    "section": "What do we see?",
-    "text": "What do we see?\n\nThe South (red/pink) tends to cluster in the lower-right: high inequality, but lower FBI-reported hate crimes.\nThe Northeast tends to have higher hate crime rates.\nDoes this mean the South has fewer hate crimes? Not necessarily — it could mean different reporting practices across regions.\nThis is an important lesson: correlation does not mean causation, and data quality matters!",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-6",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-6",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nŞimdi R’a şunu söyleyelim:\n\nearnings adlı veri setimi kullan ve sonra ( %&gt;% ),\nGörselleştirme yapmak için ggplot() kullan, +,\nx değişkenim income, bunun üzerine (+) ekliyorum,\nBir histogram.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#try-it-yourself",
-    "href": "slides_week4.html#try-it-yourself",
-    "title": "Scatter Plots & Relationships",
-    "section": "Try it yourself!",
-    "text": "Try it yourself!\n\nNow it is your turn. Using the same hate_crimes data:\n\nMake a scatter plot of median_income (x axis) vs hate_crimes_fbi (y axis).\nColor the points by region.\nAdd a nice theme.\nAdd a title and axis labels.\nWhat pattern do you see? Do richer states have more or fewer hate crimes?",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-7",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-7",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram()",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#the-alpha-argument",
-    "href": "slides_week4.html#the-alpha-argument",
-    "title": "Scatter Plots & Relationships",
-    "section": "The alpha argument",
-    "text": "The alpha argument\n\nSometimes points overlap and we cannot see how many points are in the same area.\nWe can make points semi-transparent using alpha inside geom_point().\nalpha = 1 means fully solid (default), alpha = 0 means invisible.\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi, color = region) +\n  geom_point(size = 3, alpha = 0.7) +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n  labs(\n    title = \"Income Inequality and Hate Crimes in US States\",\n    subtitle = \"Colored by US Census region\",\n    x = \"Gini Index (Income Inequality)\",\n    y = \"Hate Crimes per 100,000 (FBI)\"\n  ) +\n  theme_classic()",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-8",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-8",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#what-is-a-trend-line",
-    "href": "slides_week4.html#what-is-a-trend-line",
-    "title": "Scatter Plots & Relationships",
-    "section": "What is a trend line?",
-    "text": "What is a trend line?\n\nA scatter plot shows us the individual data points.\nBut sometimes it is hard to see the overall pattern just from the points.\nA trend line (also called a regression line or line of best fit) helps us see the general direction of the relationship.\nIf the line goes up → positive relationship (as x increases, y increases).\nIf the line goes down → negative relationship (as x increases, y decreases).\nIf the line is flat → no clear relationship.",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-9",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-9",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nÖnce görselleştirmemize bir tema ekleyerek bu berbat grafiği düzeltmeye başlayalım. theme_{tema adı} ile bir tema kullanabiliriz. theme’in her zaman son satırda olduğundan emin olun.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram() +\n  theme_classic()",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#adding-a-trend-line-with-geom_smooth",
-    "href": "slides_week4.html#adding-a-trend-line-with-geom_smooth",
-    "title": "Scatter Plots & Relationships",
-    "section": "Adding a trend line with geom_smooth()",
-    "text": "Adding a trend line with geom_smooth()\n\nWe use geom_smooth() to add a trend line on top of our scatter plot.\n\n\nWe add method = \"lm\" inside geom_smooth() to get a straight line. lm stands for linear model.\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\") +\n  geom_smooth(method = \"lm\") +\n  theme_classic()",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-10",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-10",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nVarsayılan olarak R, geom_histogram() içinde bir bin genişliği seçiyor; bunu görmesek de geom_histogram(binwidth = bir sayı) şeklindedir. Bin genişliğini istediğimiz değere değiştirmek istiyoruz: binwidth=1000\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000) +\n  theme_classic()",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#understanding-the-trend-line",
-    "href": "slides_week4.html#understanding-the-trend-line",
-    "title": "Scatter Plots & Relationships",
-    "section": "Understanding the trend line",
-    "text": "Understanding the trend line\n\nThe blue line shows the overall trend: as inequality increases, hate crimes tend to increase.\nThe gray shaded area around the line shows the confidence interval — it tells us how uncertain the trend is.\n\nA narrow band means we are more confident.\nA wide band means we are less confident.\n\nWe can remove the confidence interval with se = FALSE:\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\") +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"red\") +\n  theme_classic()",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-11",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-11",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nR ayrıca binleri hangi renkle dolduracağını da otomatik seçiyor. Doldurma (fill) rengini lightskyblue olarak değiştirmek istiyoruz; bunu geom_histogram(binwidth = 1000, fill={\"renk adı\"}) ile yapıyoruz.\n\n\nHer argümanı birbirinden ayırmak için , kullandığımıza dikkat edin.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\") +\n  theme_classic()",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#putting-it-all-together",
-    "href": "slides_week4.html#putting-it-all-together",
-    "title": "Scatter Plots & Relationships",
-    "section": "Putting it all together",
-    "text": "Putting it all together\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi) +\n  geom_point(size = 3, color = \"steelblue\", alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = TRUE, color = \"red\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n  labs(\n    title = \"Income Inequality and Hate Crimes in US States\",\n    subtitle = \"A positive trend: states with higher inequality tend to report more hate crimes\",\n    x = \"Gini Index (Income Inequality)\",\n    y = \"Hate Crimes per 100,000 (FBI)\"\n  ) +\n  theme_classic()",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-12",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-12",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nBinlerin kenarlarının rengini değiştirmek için geom_histogram() içinde color={renk adı} argümanını kullanıyoruz. black yapalım.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  theme_classic()",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#putting-it-all-together-1",
-    "href": "slides_week4.html#putting-it-all-together-1",
-    "title": "Scatter Plots & Relationships",
-    "section": "Putting it all together",
-    "text": "Putting it all together",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-13",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-13",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nŞimdi sıra sizde:\n\nŞeklin nasıl değişeceğini görmek için farklı bir bin genişliği seçin,\nFarklı bir dolgu (fill) ve kenar rengi seçin,\nFarklı bir tema seçin\n\nTema seçeneklerini görmek için önceki theme_classic() temasını silin ve theme_ yazmaya başlayın; R size öneriler gösterecek.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#trend-line-by-group",
-    "href": "slides_week4.html#trend-line-by-group",
-    "title": "Scatter Plots & Relationships",
-    "section": "Trend line by group",
-    "text": "Trend line by group\n\nWhat happens if we add color = region back into aes()?\n\n\n\nhate_crimes %&gt;%\n  ggplot() +\n  aes(x = gini_index, y = hate_crimes_fbi, color = region) +\n  geom_point(size = 3, alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Income Inequality and Hate Crimes by Region\",\n    subtitle = \"Each region gets its own trend line\",\n    x = \"Gini Index (Income Inequality)\",\n    y = \"Hate Crimes per 100,000 (FBI)\"\n  ) +\n  theme_classic()",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-14",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-14",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nGrafiği yorumlamaya geçmeden önce x ekseninde gösterilen değer sayılarını artırmak istiyorum. Şu an dağılımı görmek için yeterli olmayan 5 değerimiz var.\nx eksenindeki değer sayısını 5’ten 10’a çıkarmak için scale_x_continuous(n.breaks=10) katmanını kullanın.\nBunu temadan önce eklemeyi unutmayın!",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#trend-line-by-group-1",
-    "href": "slides_week4.html#trend-line-by-group-1",
-    "title": "Scatter Plots & Relationships",
-    "section": "Trend line by group",
-    "text": "Trend line by group\n\nWhen color = region is inside aes(), both geom_point() and geom_smooth() split by region.\nEach region gets its own points and its own trend line.\nThis is useful to see if the relationship is different across groups.\nThe relationship direction varies by region — another reason to be careful about making conclusions!",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-15",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-15",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks=10) +\n  theme_classic()",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#what-we-learned-today",
-    "href": "slides_week4.html#what-we-learned-today",
-    "title": "Scatter Plots & Relationships",
-    "section": "What we learned today",
-    "text": "What we learned today\n\nScatter plot: shows the relationship between two continuous variables using geom_point().\nBuilding a scatter plot:\n\nggplot() → blank canvas\naes(x = ..., y = ...) → set both axes\ngeom_point() → add the points\nCustomize with size, color, alpha\nlabs() → add title, subtitle, axis labels\n\nColor by group: put color = variable inside aes() to color points by a categorical variable.\nTrend line: geom_smooth(method = \"lm\") adds a line of best fit.\nKey takeaway: Correlation does not imply causation! Just because two variables move together does not mean one causes the other.",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-16",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-16",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\ny ekseninde de aynı sorun var.\n\n\ny eksenindeki değer sayısını nasıl artırabiliriz? x ekseni için fonksiyon scale_x_continuous(n.breaks=10) idi. y ekseninde kırılma sayısını 10 olarak ayarlayabilir misiniz?\n\n\nscale_y_continuous(n.breaks =10)\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks=10) +\n  scale_y_continuous(n.breaks=10) +\n  theme_classic()",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
     ]
   },
   {
-    "objectID": "slides_week4.html#exercise",
-    "href": "slides_week4.html#exercise",
-    "title": "Scatter Plots & Relationships",
-    "section": "Exercise",
-    "text": "Exercise\nUsing the hate_crimes data, explore one of these questions:\n\nIs there a relationship between unemployment and hate_crimes_fbi?\nIs there a relationship between highschool (education) and hate_crimes_fbi?\nIs there a relationship between median_income and gini_index?\n\nFor each:\n\nMake a scatter plot with geom_point()\nAdd a trend line with geom_smooth(method = \"lm\")\nColor by region\nAdd a title and axis labels\nInterpret: what does the plot tell you?",
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-17",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-17",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\nŞimdi grafiği yorumlama zamanı.\n\nNe görüyoruz?\n\nMinimum gelir yaklaşık 9000 görünürken maksimum yaklaşık 54.000.\nİşçilerin çoğu 15-25.000 TL kazanıyor\nÇok kazanan ve sayıca az olan kişiler var. Bunlar kim? Stajyerler ? Yöneticiler ?\n\nŞekil nasıl?\n\nSol tarafta uzun binler (çubuklar) var -&gt; Sağa çarpık (biliyorum, bana da mantıklı gelmiyor; ama böyle kabul edilmiş)\nDağılım sağa çarpık olduğundan ortalama muhtemelen medyandan büyük olacak. Sağdaki insanlar dağılımı bozuyor -&gt; aykırı değerler?\n\nMerkez nedir?\n\nİşçilerin büyük çoğunluğu 15.000 - 20.000 aralığının ortasında bir yerde kazanıyor gibi görünüyor.",
     "crumbs": [
-      "Week 4"
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-18",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-18",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\nGrafiğimizi anladığımıza göre başkalarının da anlamasını sağlamalıyız; bunun için title (başlık) ve subtitle (alt başlık) ekliyoruz.\nlabs(title = \"{başlığınız}\", subtitle = \"{alt başlığınız}\", x = \"{x ekseni etiketi}\", y = \"{y ekseni etiketi}\") katmanını kullanın.\nCümle yazarken tırnak işaretleri arasında yazıyoruz.\nDoğru: labs(title = \"Aylık kazanç...\")\nYanlış: labs(title = Aylık kazanç..)\nDoğru: labs(x = \"Gelir\", y = \"Gözlem sayısı\")\nYanlış: labs(x = Gelir, y = Gözlem sayısı)",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-19",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-19",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_classic()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-20",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-20",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nHistogram",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-21",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-21",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nİstatistik I’i hatırlıyor musunuz?\n\nRastgele sürekli değişkenlerden ve onların dağılımlarından bahsetmiştik.\nYoğunluk fonksiyonlarından (tekdüze dağılım, normal dağılım vb.) bahsetmiştik.",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-22",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-22",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\n\\[\nf(x) = \\frac{1}{\\sigma \\sqrt{2\\pi}}\n\\exp\\left(-\\frac{(x-\\mu)^2}{2\\sigma^2}\\right)\n\\]",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-23",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-23",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nGelir sürekli bir rassal değişken olduğundan, histogram yerine kullanılabilecek bir alternatif density (yoğunluk) grafiğidir.\nYoğunluk grafiğinde, veriyi binlere gruplamak yerine, R dağılımı temsil eden sürekli bir eğri tahmin eder (yoğunluk fonksiyonunu hesaplar ve çizer).\nGelirin yoğunluk grafiğiyle nasıl dağıldığına bakalım.",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-24",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-24",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nearnings adlı verimizi kullanmak ve şunu yapmak istiyoruz ( %&gt;% )\n\n\nggplot() görselleştirmesi uygula\n\n\nx ekseni değişkeni olarak income ekle\n\n\nYoğunluk grafiği ekle: geom_density()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-25",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-25",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\n\n1earnings %&gt;%\n2  ggplot() +\n3  aes(x = income) +\n4  geom_density()\n\n\n1\n\nearnings adlı verimizi kullanmak ve şunu yapmak istiyoruz ( %&gt;% )\n\n2\n\nggplot() görselleştirmesi uygula\n\n3\n\nx ekseni değişkeni olarak income ekle\n\n4\n\nYoğunluk grafiği ekle: geom_density()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-26",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-26",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-27",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-27",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nHemen tercih ettiğiniz bir tema uygulayın.\n\n\nBundan önce, güzel bir tema kullanmak için bu temaları içeren yararlı bir paket yükleyelim\n\n\nggthemes paketini yüklemek istiyoruz; böylece bu paketin özel temalarını kullanabiliriz.\n\n\n\ninstall.packages(\"ggthemes\")",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-28",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-28",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nggthemes paketinin temalarını kullanabilmek için R’a bu paketi kullanmasını söylememiz gerekiyor\n\n\n\nlibrary(ggthemes)\n\n\n\nBurada kalmıştık\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-29",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-29",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\ntheme_ yazmaya başlayın; sağ taraftaki öneriler arasında ggthemes’i göreceksiniz; oradan bir tane seçin.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density() +\n  theme_economist()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-30",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-30",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\nYoğunluk çizgisinin siyah rengini beğenmedim. geom_density(color = {\"tercih ettiğiniz renk\"}) içindeki color argümanını kullanarak “azure4” olarak değiştirelim\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\") +\n  theme_economist()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-31",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-31",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\nÇizginin kalınlığı biraz ince görünüyor; geom_density() içindeki linewidth argümanıyla artırabilir miyiz? Varsayılan olarak R geom_density(linewidth = 1) şeklinde otomatik olarak ayarlamış.\n\n\ngeom_density(color = {\"tercih ettiğiniz renk\"}, linewidth = {tercih ettiğiniz genişlik sayısı})\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n  theme_economist()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-32",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-32",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği\n\ny ekseni etiketi (label, eksen adı) değişti, çünkü artık sayıları göstermiyoruz. Olasılık yoğunluğunu gösteriyoruz. Yükseklikler artık işçi sayısını değil, olasılık yoğunluğunu temsil ediyor; bunu y etiketinde (eksen adı) yansıtmalıyız.\n\n\nx ve y değerleri uygun görünüyor. scale_x_continuous() ve scale_y_continuous() kullanmamıza gerek yok.\n\n\nBaşlığımız hâlâ iyi olsa da artık sayıları göstermediğimiz için alt başlık daha iyi olabilir. “Kazançların en yoğun olduğu aralık 15.000–25.000 TL; dağılım sağa çarpık” olarak değiştirelim\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"Kazançların en yoğun olduğu aralık 15.000–25.000 TL; dağılım sağa çarpık\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"Olasılık Yoğunluğu\"\n  ) +\n  theme_economist()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-33",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-33",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin dağılımı\nYoğunluk Grafiği",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış",
+    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
+    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\nPeki ya işçilerin gelirinin cinsiyete göre değişip değişmediğini görmek isteseydik?\nHer gözlem için cinsiyetimiz olduğundan bu bilgiyi de kullanabiliriz.\nBunu yapmanın farklı yolları var.\n\nCinsiyete göre çizgi türünü değiştirebiliriz.\nCinsiyete göre çizgi rengini değiştirebiliriz.",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-1",
+    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-1",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
+    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre çizgi rengini değiştir\n\nBu bizim kodumuz ve grafiğimizdi\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-2",
+    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-2",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
+    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre çizgi rengini değiştir\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = \"azure4\", linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()\n\n\n\n\nŞimdi çizginin rengini bir değişkene göre değiştirmek istiyoruz.\n\n\n\n\ngeom_density(color = \"azure4\") içindeki rengi geom_density(color = gender) olarak değiştirebilir miyiz?\n\n\n\n\nKendiniz deneyin",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-3",
+    "href": "slides_tr.html#gelir-cinsiyetler-arasında-nasıl-dağılmış-3",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?",
+    "text": "Gelir Cinsiyetler Arasında Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre renk türünü değiştir\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_density(color = gender, linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()\n\n\n\nError: object 'gender' not found hatasını alıyoruz.\n\n\nBunun nedeni R’ın bize bir renk adı verdiğimizi sanması; kırmızı, mavi veya yeşil gibi. Ama gender bir renk adı değil. Bir değişken.\n\n\nBir şeyi (çizgi rengini, kalınlığını, şeklini) değişkene göre değiştirmek istediğimizde bunu geom_ içinde değil, aes() içinde yapıyoruz.\n\n\nBu yüzden geom_density(x = income) yerine aes(x = income) yazıyoruz. Çünkü x tek bir değer değil, bir değişken olmalı..\n\n\nO halde yapmak istediğimiz şey aes(x = income) satırına gidip , ile ayırarak color = gender argümanını eklemek",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-34",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-34",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, color  = gender) +\n  geom_density(linewidth = 1.5) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-35",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-35",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\nGrafimize cinsiyet bilgisini ekledik.\nArtık tek bir dağılımı değil,\nİki dağılımı karşılaştırıyoruz.\nArtık gösterdiğimiz şey şu “Kazanç dağılımları cinsiyete göre farklılaşıyor mu?”.\nBaşlık ve alt başlığımız bunu yansıtmalı.\nBaşlığı “Cinsiyete Göre Aylık Kazanç” olarak değiştirin.\n\nHedef kitlemizin verinin Çilek Mobilya, Mamak’tan geldiğini bildiğini varsayalım (başlığı kısaltmak için).\n\nAlt başlığı “Erkek ve kadın işçiler arasında belirgin bir fark yok” olarak değiştirin.",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-36",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-36",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, color  = gender) +\n  geom_density(linewidth = 1.5) +\n    labs(\n    title = \"Cinsiyete Göre Aylık Kazanç\",\n    subtitle = \"Erkek ve kadın işçiler arasında belirgin bir görsel fark yok\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-37",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-37",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre renk türünü değiştir\n\nRenk yerine linetype’ı cinsiyete göre değiştirebilirdik.\n\n\nYapabilir misiniz?\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, linetype  = gender) +\n  geom_density(linewidth = 1.5) +\n    labs(\n    title = \"Cinsiyete Göre Aylık Kazanç\",\n    subtitle = \"Erkek ve kadın işçiler arasında belirgin bir görsel fark yok\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_economist()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-38",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-38",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nYoğunluk Grafiği - cinsiyete göre renk türünü değiştir",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-39",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-39",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nHistogram\n\nHistogram kodumuzu hatırlıyor musunuz?\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income) +\n  geom_histogram(binwidth = 1000, fill = \"lightskyblue\", color = \"black\") +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_classic()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-40",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-40",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nHistogram\n\nBinleri tek bir renkle doldurmak yerine, cinsiyete göre fill yapalım. Bu arada temayı daha güzel biriyle değiştirin.\n\n\n\nearnings %&gt;%\n  ggplot() +\n  aes(x = income, fill = gender) +\n  geom_histogram(binwidth = 1000, color = \"black\",) +\n  scale_x_continuous(n.breaks = 10) +\n  scale_y_continuous(n.breaks = 10) +\n    labs(\n    title = \"Çilek Mobilya, Mamak'taki Üretim İşçilerinin Aylık Kazanç Dağılımı\",\n    subtitle = \"İşçilerin çoğu 15.000–25.000 TL arasında kazanıyor; dağılım sağa çarpık, az sayıda yüksek gelirli uç değer var\",\n    x = \"Aylık Kazanç (Türk Lirası, TL)\",\n    y = \"İşçi Sayısı\"\n  ) +\n  theme_classic()",
+    "crumbs": [
+      "Hafta 3"
+    ]
+  },
+  {
+    "objectID": "slides_tr.html#gelir-nasıl-dağılmış-41",
+    "href": "slides_tr.html#gelir-nasıl-dağılmış-41",
+    "title": "ggplot2’ye Giriş",
+    "section": "Gelir Nasıl Dağılmış?",
+    "text": "Gelir Nasıl Dağılmış?\nSürekli bir değişkenin gruba göre dağılımı\nHistogram\n\nBu grafikte pek çok sorun var\nHistogramı yalnızca bir değişkenin dağılımını basitçe gösermek için kullanın; gruba göre dağılım karşılaştırması yapmanız gerekiyorsa density grafiği kullanın.\nAmacınız “Her gelir aralığına kaç işçi düşüyor?” göstermekse histogram doğru grafiktir (yoğunluk grafiği de kabul edilebilir; yorum biraz farklılaşır).\n\ny ekseni sayıları gösterir\n“.. - .. TL arasında yaklaşık 10 işçi kazanıyor” diyebilirsiniz.\n\nAmacınız “Gelir dağılımları cinsiyete göre farklılaşıyor mu?” göstermekse yoğunluk grafiği daha uygun olacaktır\n\nŞekli grupları karşılaştırmamızı kolaylaştırır.\nÜst üste binme sorunu yoktur.\nDağılımları karşılaştırırken yoğunluk grafiği kullanmak daha iyidir.",
+    "crumbs": [
+      "Hafta 3"
     ]
   }
 ]
