@@ -3,6 +3,9 @@ project:
   output-dir: docs
   render:
     - "*.qmd"
+    - "!slides_week7.qmd"
+    - "!slides_week7_tr.qmd"
+    - "!week7_t/instructor_notes.qmd"
 
 website:
   title: "Statistics II - Data Visualization"
@@ -17,6 +20,8 @@ website:
         text: Hafta 3
       - href: slides_week4.qmd
         text: Week 4
+      - href: slides_week8.qmd
+        text: Anova
 
 format:
   html:

@@ -2,3 +2,13 @@
 **/*.quarto_ipynb
 .Rproj.user
 CLAUDE.md
+midterm/
+week4_t/
+week7_t/
+docs/week7_t/
+slides_week7.qmd
+slides_week7_tr.qmd
+docs/slides_week7.html
+docs/slides_week7_tr.html
+docs/slides_week7_files/
+docs/slides_week7_tr_files/

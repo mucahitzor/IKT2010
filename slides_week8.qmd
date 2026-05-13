@@ -1,0 +1,817 @@
+---
+title: "One-Way ANOVA in R"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    css: styles.css
+    code-overflow: scroll
+    code-annotations: hover
+    footer: "**Anova**"
+chunk_output_type: console
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(mosaic)
+```
+
+# One-way ANOVA
+
+## From t-tests to ANOVA {.small-slide}
+
+-   In **Week 7** we used a [two-sample t-test]{.red-text} to compare the means of **two groups**.
+
+-   But many real questions have more than two groups.
+
+::: fragment
+> "Are sales different across Monday, Tuesday, Wednesday, Thursday, and Friday?"
+:::
+
+::: fragment
+> "Are sales different across front, back, left-aisle, and right-aisle locations?"
+:::
+
+::: fragment
+> "Do students using different study methods have different exam scores?"
+:::
+
+::: fragment
+> "Do patients receiving different treatments recover at different speeds?"
+:::
+
+::: fragment
+For questions like these we use [one-way ANOVA]{.red-text}.
+:::
+
+## Why not many t-tests? {.small-slide}
+
+-   If we have 4 locations, we could compare:
+
+    -   front vs back
+    -   front vs left-aisle
+    -   front vs right-aisle
+    -   back vs left-aisle
+    -   back vs right-aisle
+    -   left-aisle vs right-aisle
+
+-   That is already **6 tests**.
+
+::: fragment
+The more tests we run, the more likely we are to find a "significant" result just by chance.
+:::
+
+::: fragment
+ANOVA first asks one bigger question:
+
+> "Is there evidence that at least one group mean is different?"
+:::
+
+# Our data
+
+## Screen protector sales {.small-slide}
+
+-   Imagine we work for an electronics store.
+
+-   The store sells [screen protectors]{.red-text} for phones.
+
+-   The manager wants to know what affects daily sales.
+
+-   We have five variables:
+
+    -   `weekday`: which day of the week
+    -   `location`: where the screen protectors were placed
+    -   `store_visitors`: number of customers who visited the store
+    -   `discount_percent`: discount applied to screen protectors
+    -   `units_sold`: how many screen protectors were sold
+
+::: fragment
+Today we will ask two different ANOVA questions using the same data.
+:::
+
+## Install the package {.small-slide}
+
+::: fragment
+Today we will use the `mosaic` package for easy summary statistics.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+#| eval: false
+install.packages("mosaic") # <1>
+```
+
+1.  Run this only if you have not installed `mosaic` before. Installing a package once is enough.
+:::
+
+## Read the data {.small-slide}
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| code-line-numbers: "1-2|3-4|5"
+library(tidyverse) # <1>
+library(mosaic) # <1>
+read.csv("https://raw.githubusercontent.com/mucahitzor/IKT2010/refs/heads/main/data/screen_protector_sales.csv") %>% # <2>
+  as_tibble() -> screen_sales # <3>
+```
+
+1.  Use `tidyverse` for data and plotting, and `mosaic` for easy summary statistics.
+2.  Read the CSV file from GitHub.
+3.  Save it in R's memory with the name `screen_sales`.
+
+```{r}
+#| echo: false
+#| message: false
+read.csv("data/screen_protector_sales.csv") %>%
+  as_tibble() -> screen_sales
+```
+
+::: fragment
+```{r}
+#| echo: true
+screen_sales
+```
+:::
+
+::: fragment
+Each row is one sales observation.
+:::
+
+::: fragment
+-   `weekday`: which day of the week
+-   `location`: where the screen protectors were placed
+-   `store_visitors`: number of customers who visited the store
+-   `discount_percent`: discount applied to screen protectors
+-   `units_sold`: how many screen protectors were sold
+:::
+
+## Two questions today {.small-slide}
+
+### Question 1
+
+Do average screen protector sales differ by **weekday**?
+
+::: fragment
+$$
+H_0:\ \mu_{Mon} = \mu_{Tue} = \mu_{Wed} = \mu_{Thu} = \mu_{Fri}
+$$
+:::
+
+::: fragment
+$$
+H_a:\ \text{At least one weekday mean is different.}
+$$
+:::
+
+### Question 2
+
+Do average screen protector sales differ by **location**?
+
+::: fragment
+$$
+H_0:\ \mu_{front} = \mu_{back} = \mu_{left} = \mu_{right}
+$$
+:::
+
+::: fragment
+$$
+H_a:\ \text{At least one location mean is different.}
+$$
+:::
+
+# Sales by weekday
+
+## Mean sales by weekday {.small-slide}
+
+::: fragment
+Before doing any test, we first look at the group means.
+:::
+
+::: fragment
+We use `favstats()` from the `mosaic` package.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+favstats(units_sold ~ weekday, data = screen_sales) # <1>
+```
+
+1.  Take `units_sold`, split it by `weekday`, and use the data set named `screen_sales`.
+
+-   The `mean` column shows average sales for each weekday.
+
+-   The weekday means are all around **24 to 26** units.
+
+-   The `sd` column shows that sales vary quite a lot inside each weekday.
+:::
+
+::: fragment
+So visually we expect a lot of overlap.
+
+But we should not decide only from the means. Next we draw a boxplot.
+:::
+
+## Boxplot by weekday {.small-slide}
+
+::: fragment
+For a boxplot we need:
+
+-   a group variable on the `x` axis
+-   a numeric variable on the `y` axis
+:::
+
+::: fragment
+```{r}
+#| echo: true
+screen_sales %>%
+  ggplot() +
+  aes(x = weekday, y = units_sold) +
+  geom_boxplot()
+```
+:::
+
+## Add fill color {.small-slide}
+
+::: fragment
+Now we can color the boxes by `weekday`.
+:::
+
+::: fragment
+Because `weekday` is a variable, we put `fill = weekday` inside `aes()`.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+screen_sales %>%
+  ggplot() +
+  aes(x = weekday, y = units_sold, fill = weekday) +
+  geom_boxplot()
+```
+:::
+
+## Add a theme {.small-slide}
+
+::: fragment
+Finally we clean up the plot with a theme.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+screen_sales %>%
+  ggplot() +
+  aes(x = weekday, y = units_sold, fill = weekday) +
+  geom_boxplot() +
+  theme_minimal()
+```
+:::
+
+## Interpreting the boxplot {.small-slide}
+
+-   The boxes are at similar heights.
+
+-   The medians are close to each other.
+
+-   The boxes overlap a lot.
+
+::: fragment
+This suggests that weekday probably does **not** create a large difference in sales.
+:::
+
+::: fragment
+But the boxplot hides the individual observations. Let's add the points.
+:::
+
+## Add the observations with geom_point() {.small-slide}
+
+::: fragment
+```{r}
+#| echo: true
+screen_sales %>%
+  ggplot() +
+  aes(x = weekday, y = units_sold, fill = weekday) +
+  geom_boxplot() +
+  geom_point() +
+  theme_minimal()
+```
+:::
+
+## Why geom_point() is not ideal {.small-slide}
+
+-   The points are placed exactly on top of the weekday name.
+
+-   If two observations have the same or similar sales value, they overlap.
+
+-   This makes it hard to see how many observations we have.
+
+::: fragment
+We need to move the points slightly left and right.
+:::
+
+::: fragment
+That is what `geom_jitter()` does.
+:::
+
+## Add the observations with geom_jitter() {.small-slide}
+
+::: fragment
+```{r}
+#| echo: true
+screen_sales %>%
+  ggplot() +
+  aes(x = weekday, y = units_sold, fill = weekday) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.15, alpha = 0.6) +
+  theme_minimal()
+```
+:::
+
+::: fragment
+Now the points are easier to see, but each point still belongs to its weekday.
+:::
+
+## One-way ANOVA for weekday {.small-slide}
+
+::: fragment
+Now we ask the formal question:
+
+> Are the weekday means different enough to reject $H_0$?
+:::
+
+::: fragment
+```{r}
+#| echo: true
+aov(units_sold ~ weekday, data = screen_sales) # <1>
+```
+
+1.  Run ANOVA. The formula means: explain `units_sold` using `weekday`, with the data set named `screen_sales`.
+:::
+
+## Show the ANOVA table {.small-slide}
+
+::: fragment
+The previous code created the ANOVA model.
+:::
+
+::: fragment
+Now we add `summary()` to see the ANOVA table.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+aov(units_sold ~ weekday, data = screen_sales) %>% # <1>
+  summary() # <2>
+```
+
+1.  Run the same ANOVA model.
+2.  Show the ANOVA table.
+:::
+
+## Reading the ANOVA table {.small-slide}
+
+```{r}
+#| echo: true
+#| eval: false
+aov(units_sold ~ weekday, data = screen_sales) %>%
+  summary()
+```
+
+```{.text}
+             Df Sum Sq Mean Sq F value Pr(>F)
+weekday       4     63   15.86   0.272  0.895
+Residuals   115   6699   58.25
+```
+
+The important line is the `weekday` line.
+
+::: fragment
+-   Let $k$ = number of groups, $N$ = total observations.
+-   `Df`: $df_A = k - 1$ for `weekday`; $df_W = N - k$ for `Residuals`.
+-   `Sum Sq`: `weekday` row is $SSA = \sum_j n_j(\bar{x}_j - \bar{x})^2$.
+-   `Residuals` row is $SSW = \sum_j\sum_i (x_{ij} - \bar{x}_j)^2$.
+-   Total variation is $SST = \sum_j\sum_i (x_{ij} - \bar{x})^2 = SSA + SSW$.
+-   `Mean Sq`: $MSA = SSA / df_A$ and $MSW = SSW / df_W$.
+-   `F value`: $F = MSA / MSW$.
+-   `Pr(>F)`: the [p-value]{.red-text}, $P(F_{df_A,df_W} \geq F_{\text{observed}})$ if $H_0$ is true.
+:::
+
+::: fragment
+For weekday, the p-value is about **0.895**.
+:::
+
+## Weekday decision {.small-slide}
+
+-   Our decision rule:
+
+    -   if $p \leq 0.05$, reject $H_0$
+    -   if $p > 0.05$, fail to reject $H_0$
+
+::: fragment
+Here:
+
+$$
+p = 0.895 > 0.05
+$$
+:::
+
+::: fragment
+So we [fail to reject $H_0$]{.red-text}.
+:::
+
+::: fragment
+Conclusion:
+
+> In this dataset, we do not have evidence that average screen protector sales differ by weekday.
+:::
+
+# Sales by location
+
+## Mean sales by location {.small-slide}
+
+::: fragment
+Now we ask a different question with the same outcome.
+:::
+
+::: fragment
+Instead of grouping sales by `weekday`, we group sales by `location`.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+favstats(units_sold ~ location, data = screen_sales) # <1>
+```
+
+1.  Take `units_sold`, split it by `location`, and use the data set named `screen_sales`.
+
+-   The `front` location has the highest mean sales.
+
+-   The `back` location has the lowest mean sales.
+
+-   `left-aisle` and `right-aisle` are in the middle.
+:::
+
+::: fragment
+This looks much more different than the weekday table.
+:::
+
+::: fragment
+Now we check the distribution with a boxplot.
+:::
+
+## Boxplot by location {.small-slide}
+
+::: fragment
+```{r}
+#| echo: true
+screen_sales %>%
+  ggplot() +
+  aes(x = location, y = units_sold, fill = location) +
+  geom_boxplot() +
+  theme_minimal()
+```
+:::
+
+## Interpreting the boxplot {.small-slide}
+
+-   The `front` box is clearly higher.
+
+-   The `back` box is clearly lower.
+
+-   The aisle locations are between them.
+
+::: fragment
+The boxes overlap much less than the weekday boxes.
+:::
+
+::: fragment
+This suggests that location may matter for screen protector sales.
+:::
+
+## Add the observations with geom_point() {.small-slide}
+
+::: fragment
+```{r}
+#| echo: true
+screen_sales %>%
+  ggplot() +
+  aes(x = location, y = units_sold, fill = location) +
+  geom_boxplot() +
+  geom_point() +
+  theme_minimal()
+```
+:::
+
+## Again, points overlap {.small-slide}
+
+-   `geom_point()` puts all observations for the same location on one vertical line.
+
+-   Some points hide other points.
+
+-   We can see the general pattern, but the raw data are still crowded.
+
+::: fragment
+So again we use `geom_jitter()`.
+:::
+
+## Add the observations with geom_jitter() {.small-slide}
+
+::: fragment
+```{r}
+#| echo: true
+screen_sales %>%
+  ggplot() +
+  aes(x = location, y = units_sold, fill = location) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.15, alpha = 0.6) +
+  theme_minimal()
+```
+:::
+
+::: fragment
+Now we see both the summary shape and the individual observations.
+:::
+
+## One-way ANOVA for location {.small-slide}
+
+::: fragment
+Now the formal question:
+
+> Are the location means different enough to reject $H_0$?
+:::
+
+::: fragment
+```{r}
+#| echo: true
+aov(units_sold ~ location, data = screen_sales) # <1>
+```
+
+1.  Run ANOVA. The formula means: explain `units_sold` using `location`, with the data set named `screen_sales`.
+:::
+
+## Show the ANOVA table {.small-slide}
+
+::: fragment
+Again, the first ANOVA code creates the model.
+:::
+
+::: fragment
+Now we add `summary()` to see the ANOVA table.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+aov(units_sold ~ location, data = screen_sales) %>% # <1>
+  summary() # <2>
+```
+
+1.  Run the same ANOVA model.
+2.  Show the ANOVA table.
+:::
+
+## Reading the ANOVA table {.small-slide}
+
+```{r}
+#| echo: true
+#| eval: false
+aov(units_sold ~ location, data = screen_sales) %>%
+  summary()
+```
+
+```{.text}
+             Df Sum Sq Mean Sq F value Pr(>F)    
+location      3   4845  1614.9   97.71 <2e-16 ***
+Residuals   116   1917    16.5
+```
+
+The important line is the `location` line.
+
+::: fragment
+-   Let $k$ = number of groups, $N$ = total observations.
+-   `Df`: $df_A = k - 1$ for `location`; $df_W = N - k$ for `Residuals`.
+-   `Sum Sq`: `location` row is $SSA = \sum_j n_j(\bar{x}_j - \bar{x})^2$.
+-   `Residuals` row is $SSW = \sum_j\sum_i (x_{ij} - \bar{x}_j)^2$.
+-   Total variation is $SST = \sum_j\sum_i (x_{ij} - \bar{x})^2 = SSA + SSW$.
+-   `Mean Sq`: $MSA = SSA / df_A$ and $MSW = SSW / df_W$.
+-   `F value`: $F = MSA / MSW$.
+-   `Pr(>F)`: the [p-value]{.red-text}, $P(F_{df_A,df_W} \geq F_{\text{observed}})$ if $H_0$ is true.
+:::
+
+::: fragment
+For location, the p-value is very small: R reports **p < 2e-16**.
+:::
+
+## Location decision {.small-slide}
+
+-   For `location`, the p-value is very small: R reports `p < 2e-16`.
+
+::: fragment
+That means:
+
+$$
+p < 0.05
+$$
+:::
+
+::: fragment
+So we [reject $H_0$]{.red-text}.
+:::
+
+::: fragment
+Conclusion:
+
+> In this dataset, average screen protector sales differ by location.
+:::
+
+# Which locations differ?
+
+## ANOVA does not tell us where {.small-slide}
+
+-   ANOVA answers one big question:
+
+::: fragment
+> "Is at least one group mean different?"
+:::
+
+-   But after a significant ANOVA, we usually want to know:
+
+::: fragment
+> "Which groups are different from which?"
+:::
+
+::: fragment
+For that we use a [Tukey test]{.red-text}.
+:::
+
+## Tukey test for location {.small-slide}
+
+::: fragment
+```{r}
+#| echo: true
+aov(units_sold ~ location, data = screen_sales) %>% # <1>
+  TukeyHSD() # <2>
+```
+
+1.  Run the same ANOVA model again.
+2.  Compare all pairs of locations, while correcting for the fact that we are doing many comparisons.
+:::
+
+## Reading Tukey output {.small-slide}
+
+```{.text}
+$location
+                             diff         lwr       upr     p adj
+front-back              17.866667  15.1305127 20.602821 0.0000000
+left-aisle-back          7.700000   4.9638461 10.436154 0.0000000
+right-aisle-back         9.600000   6.8638461 12.336154 0.0000000
+left-aisle-front       -10.166667 -12.9028206 -7.430513 0.0000000
+right-aisle-front       -8.266667 -11.0028206 -5.530513 0.0000000
+right-aisle-left-aisle   1.900000  -0.8361539  4.636154 0.2738489
+```
+
+-   `diff`: difference between two group means.
+
+-   `lwr` and `upr`: lower and upper ends of the confidence interval.
+
+-   `p adj`: adjusted p-value.
+
+::: fragment
+If `p adj < 0.05`, that pair is significantly different.
+:::
+
+::: fragment
+If the confidence interval contains 0, that pair is not clearly different.
+:::
+
+## Visualize Tukey results {.small-slide}
+
+::: fragment
+The Tukey output is useful, but it has many numbers.
+:::
+
+::: fragment
+We can also ask R to draw the Tukey confidence intervals.
+:::
+
+::: fragment
+```{r}
+#| echo: true
+aov(units_sold ~ location, data = screen_sales) %>%
+  TukeyHSD() %>%
+  plot()
+```
+:::
+
+::: fragment
+If an interval crosses 0, that pair is not clearly different. If it does not cross 0, that pair is significantly different.
+:::
+
+## Tukey plot
+
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6.2
+#| out-width: "100%"
+old_par <- par(mar = c(5, 13, 4, 2))
+aov(units_sold ~ location, data = screen_sales) %>%
+  TukeyHSD() %>%
+  plot(las = 1, cex.axis = 0.75)
+par(old_par)
+```
+
+## Tukey result {.small-slide}
+
+-   `front` is significantly higher than `back`.
+
+-   `front` is significantly higher than `left-aisle`.
+
+-   `front` is significantly higher than `right-aisle`.
+
+-   `back` is significantly lower than the aisle locations.
+
+::: fragment
+But `left-aisle` and `right-aisle` are **not** significantly different from each other.
+:::
+
+::: fragment
+Business interpretation:
+
+> Put screen protectors in the front if you want higher sales. Left vs right aisle does not seem to matter much.
+:::
+
+# Summary
+
+## What to remember {.small-slide}
+
+-   A [one-way ANOVA]{.red-text} compares the means of **more than two groups**.
+
+-   The outcome must be numeric: here, `units_sold`.
+
+-   The group variable must be categorical: here, `weekday` or `location`.
+
+-   Start with summary statistics: `favstats(units_sold ~ group, data = ...)`.
+
+-   Then visualize: `geom_boxplot()` and `geom_jitter()`.
+
+-   Then test: `aov(y ~ group, data = data) %>% summary()`.
+
+-   If ANOVA is significant, use `TukeyHSD()` and `plot()` to see which groups differ.
+
+## What we found {.small-slide}
+
+| Question | p-value | Decision | Interpretation |
+|---|---:|---|---|
+| Sales by weekday | 0.895 | Fail to reject $H_0$ | Weekday does not clearly change sales |
+| Sales by location | $< 2e^{-16}$ | Reject $H_0$ | Location clearly changes sales |
+
+::: fragment
+Same dataset. Same outcome. Different grouping variable. Different conclusion.
+:::
+
+## Your turn {.small-slide}
+
+Using `screen_sales`:
+
+1.  Use a different numeric variable: `store_visitors`.
+2.  Make a boxplot of `store_visitors` by `location`.
+3.  Add jittered points.
+4.  Run the ANOVA: `store_visitors ~ location`.
+5.  Explain the p-value in one sentence.
+
+::: fragment
+Then try the same outcome by weekday:
+
+```{r}
+#| echo: true
+#| eval: false
+aov(store_visitors ~ weekday, data = screen_sales) %>%
+  summary()
+```
+:::
+
+::: fragment
+Ask yourself: does `weekday` explain store visitors as clearly as `location`?
+:::
+
+::: fragment
+The most important sentence:
+
+> "We reject / fail to reject $H_0$ because the p-value is smaller / larger than 0.05."
+:::
+
+# Questions?
+
+## See you next week
