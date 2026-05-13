@@ -324,14 +324,14 @@
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>hate_crimes <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a></a>  <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    state           median_income    unemployment       metro_pop     
- Length:50          Min.   :35521   Min.   :0.02800   Min.   :0.3100  
- Class :character   1st Qu.:48358   1st Qu.:0.04225   1st Qu.:0.6300  
- Mode  :character   Median :54613   Median :0.05100   Median :0.7900  
-                    Mean   :54904   Mean   :0.04988   Mean   :0.7500  
-                    3rd Qu.:60653   3rd Qu.:0.05775   3rd Qu.:0.8975  
-                    Max.   :76165   Max.   :0.07300   Max.   :1.0000  
-                                                                      
+<pre><code>       state    median_income    unemployment       metro_pop     
+ Length   :50   Min.   :35521   Min.   :0.02800   Min.   :0.3100  
+ N.unique :50   1st Qu.:48358   1st Qu.:0.04225   1st Qu.:0.6300  
+ N.blank  : 0   Median :54613   Median :0.05100   Median :0.7900  
+ Min.nchar: 4   Mean   :54904   Mean   :0.04988   Mean   :0.7500  
+ Max.nchar:20   3rd Qu.:60653   3rd Qu.:0.05775   3rd Qu.:0.8975  
+                Max.   :76165   Max.   :0.07300   Max.   :1.0000  
+                                                                  
    highschool      non_citizen      white_poverty      gini_index    
  Min.   :0.7990   Min.   :0.01000   Min.   :0.0400   Min.   :0.4190  
  1st Qu.:0.8397   1st Qu.:0.03000   1st Qu.:0.0800   1st Qu.:0.4400  
@@ -339,7 +339,7 @@
  Mean   :0.8684   Mean   :0.05404   Mean   :0.0922   Mean   :0.4542  
  3rd Qu.:0.8978   3rd Qu.:0.08000   3rd Qu.:0.1000   3rd Qu.:0.4667  
  Max.   :0.9180   Max.   :0.13000   Max.   :0.1700   Max.   :0.5320  
-                  NA's   :3                                          
+                  NAs    :3                                          
    non_white        trump_vote     hate_crimes_splc  hate_crimes_fbi  
  Min.   :0.0600   Min.   :0.0400   Min.   :0.06745   Min.   : 0.2669  
  1st Qu.:0.1925   1st Qu.:0.4200   1st Qu.:0.14271   1st Qu.: 1.2931  
@@ -347,15 +347,15 @@
  Mean   :0.3058   Mean   :0.4938   Mean   :0.30409   Mean   : 2.3676  
  3rd Qu.:0.4200   3rd Qu.:0.5775   3rd Qu.:0.35693   3rd Qu.: 3.1843  
  Max.   :0.6300   Max.   :0.7000   Max.   :1.52230   Max.   :10.9535  
-                                   NA's   :3                          
-    region         
- Length:50         
- Class :character  
- Mode  :character  
-                   
-                   
-                   
-                   </code></pre>
+                                   NAs    :3                          
+       region  
+ Length   :50  
+ N.unique : 4  
+ N.blank  : 0  
+ Min.nchar: 4  
+ Max.nchar: 9  
+               
+               </code></pre>
 </div>
 </div>
 </div>

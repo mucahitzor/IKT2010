@@ -6,7 +6,7 @@
     "section": "From t-tests to ANOVA",
     "text": "From t-tests to ANOVA\n\nIn Week 7 we used a two-sample t-test to compare the means of two groups.\nBut many real questions have more than two groups.\n\n\n\n“Are sales different across Monday, Tuesday, Wednesday, Thursday, and Friday?”\n\n\n\n\n“Are sales different across front, back, left-aisle, and right-aisle locations?”\n\n\n\n\n“Do students using different study methods have different exam scores?”\n\n\n\n\n“Do patients receiving different treatments recover at different speeds?”\n\n\n\nFor questions like these we use one-way ANOVA.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -16,7 +16,7 @@
     "section": "Why not many t-tests?",
     "text": "Why not many t-tests?\n\nIf we have 4 locations, we could compare:\n\nfront vs back\nfront vs left-aisle\nfront vs right-aisle\nback vs left-aisle\nback vs right-aisle\nleft-aisle vs right-aisle\n\nThat is already 6 tests.\n\n\nThe more tests we run, the more likely we are to find a “significant” result just by chance.\n\n\nANOVA first asks one bigger question:\n\n“Is there evidence that at least one group mean is different?”",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -26,7 +26,7 @@
     "section": "Screen protector sales",
     "text": "Screen protector sales\n\nImagine we work for an electronics store.\nThe store sells screen protectors for phones.\nThe manager wants to know what affects daily sales.\nWe have five variables:\n\nweekday: which day of the week\nlocation: where the screen protectors were placed\nstore_visitors: number of customers who visited the store\ndiscount_percent: discount applied to screen protectors\nunits_sold: how many screen protectors were sold\n\n\n\nToday we will ask two different ANOVA questions using the same data.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -36,7 +36,7 @@
     "section": "Install the package",
     "text": "Install the package\n\nToday we will use the mosaic package for easy summary statistics.\n\n\n\n1install.packages(\"mosaic\")\n\n\n1\n\nRun this only if you have not installed mosaic before. Installing a package once is enough.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -46,7 +46,7 @@
     "section": "Read the data",
     "text": "Read the data\n\n1library(tidyverse)\nlibrary(mosaic)\n2read.csv(\"https://raw.githubusercontent.com/mucahitzor/IKT2010/refs/heads/main/data/screen_protector_sales.csv\") %&gt;%\n3  as_tibble() -&gt; screen_sales\n\n\n1\n\nUse tidyverse for data and plotting, and mosaic for easy summary statistics.\n\n2\n\nRead the CSV file from GitHub.\n\n3\n\nSave it in R’s memory with the name screen_sales.\n\n\n\n\n\n\nscreen_sales\n\n# A tibble: 120 × 5\n   weekday   location    store_visitors discount_percent units_sold\n   &lt;chr&gt;     &lt;chr&gt;                &lt;int&gt;            &lt;int&gt;      &lt;int&gt;\n 1 Monday    front                  235               10         31\n 2 Monday    left-aisle             188                0         22\n 3 Monday    right-aisle            230                5         32\n 4 Monday    back                   237                0         16\n 5 Tuesday   front                  219               10         36\n 6 Tuesday   left-aisle             221               10         32\n 7 Tuesday   right-aisle            223               10         28\n 8 Tuesday   back                   165                0         11\n 9 Wednesday front                  290                0         30\n10 Wednesday left-aisle             280                0         20\n# ℹ 110 more rows\n\n\n\n\nEach row is one sales observation.\n\n\n\nweekday: which day of the week\nlocation: where the screen protectors were placed\nstore_visitors: number of customers who visited the store\ndiscount_percent: discount applied to screen protectors\nunits_sold: how many screen protectors were sold",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -56,7 +56,7 @@
     "section": "Two questions today",
     "text": "Two questions today\nQuestion 1\nDo average screen protector sales differ by weekday?\n\n\\[\nH_0:\\ \\mu_{Mon} = \\mu_{Tue} = \\mu_{Wed} = \\mu_{Thu} = \\mu_{Fri}\n\\]\n\n\n\\[\nH_a:\\ \\text{At least one weekday mean is different.}\n\\]\n\nQuestion 2\nDo average screen protector sales differ by location?\n\n\\[\nH_0:\\ \\mu_{front} = \\mu_{back} = \\mu_{left} = \\mu_{right}\n\\]\n\n\n\\[\nH_a:\\ \\text{At least one location mean is different.}\n\\]",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -66,7 +66,7 @@
     "section": "Mean sales by weekday",
     "text": "Mean sales by weekday\n\nBefore doing any test, we first look at the group means.\n\n\nWe use favstats() from the mosaic package.\n\n\n\n1favstats(units_sold ~ weekday, data = screen_sales)\n\n\n1\n\nTake units_sold, split it by weekday, and use the data set named screen_sales.\n\n\n\n\n    weekday min    Q1 median   Q3 max     mean       sd  n missing\n1    Friday  12 17.50   25.0 29.5  45 24.83333 8.775790 24       0\n2    Monday  11 19.75   23.5 29.5  36 23.70833 6.675583 24       0\n3  Thursday  13 21.75   24.0 29.5  39 25.95833 6.810983 24       0\n4   Tuesday   9 18.75   25.0 31.0  40 24.83333 8.057762 24       0\n5 Wednesday   5 19.50   26.0 30.0  37 24.45833 7.638456 24       0\n\n\n\nThe mean column shows average sales for each weekday.\nThe weekday means are all around 24 to 26 units.\nThe sd column shows that sales vary quite a lot inside each weekday.\n\n\n\nSo visually we expect a lot of overlap.\nBut we should not decide only from the means. Next we draw a boxplot.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -76,7 +76,7 @@
     "section": "Boxplot by weekday",
     "text": "Boxplot by weekday\n\nFor a boxplot we need:\n\na group variable on the x axis\na numeric variable on the y axis\n\n\n\n\nscreen_sales %&gt;%\n  ggplot() +\n  aes(x = weekday, y = units_sold) +\n  geom_boxplot()",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -86,7 +86,7 @@
     "section": "Add fill color",
     "text": "Add fill color\n\nNow we can color the boxes by weekday.\n\n\nBecause weekday is a variable, we put fill = weekday inside aes().\n\n\n\nscreen_sales %&gt;%\n  ggplot() +\n  aes(x = weekday, y = units_sold, fill = weekday) +\n  geom_boxplot()",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -96,7 +96,7 @@
     "section": "Add a theme",
     "text": "Add a theme\n\nFinally we clean up the plot with a theme.\n\n\n\nscreen_sales %&gt;%\n  ggplot() +\n  aes(x = weekday, y = units_sold, fill = weekday) +\n  geom_boxplot() +\n  theme_minimal()",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -106,7 +106,7 @@
     "section": "Interpreting the boxplot",
     "text": "Interpreting the boxplot\n\nThe boxes are at similar heights.\nThe medians are close to each other.\nThe boxes overlap a lot.\n\n\nThis suggests that weekday probably does not create a large difference in sales.\n\n\nBut the boxplot hides the individual observations. Let’s add the points.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -116,7 +116,7 @@
     "section": "Add the observations with geom_point()",
     "text": "Add the observations with geom_point()\n\n\nscreen_sales %&gt;%\n  ggplot() +\n  aes(x = weekday, y = units_sold, fill = weekday) +\n  geom_boxplot() +\n  geom_point() +\n  theme_minimal()",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -126,7 +126,7 @@
     "section": "Why geom_point() is not ideal",
     "text": "Why geom_point() is not ideal\n\nThe points are placed exactly on top of the weekday name.\nIf two observations have the same or similar sales value, they overlap.\nThis makes it hard to see how many observations we have.\n\n\nWe need to move the points slightly left and right.\n\n\nThat is what geom_jitter() does.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -136,7 +136,7 @@
     "section": "Add the observations with geom_jitter()",
     "text": "Add the observations with geom_jitter()\n\n\nscreen_sales %&gt;%\n  ggplot() +\n  aes(x = weekday, y = units_sold, fill = weekday) +\n  geom_boxplot(alpha = 0.7) +\n  geom_jitter(width = 0.15, alpha = 0.6) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nNow the points are easier to see, but each point still belongs to its weekday.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -146,7 +146,7 @@
     "section": "One-way ANOVA for weekday",
     "text": "One-way ANOVA for weekday\n\nNow we ask the formal question:\n\nAre the weekday means different enough to reject \\(H_0\\)?\n\n\n\n\n1aov(units_sold ~ weekday, data = screen_sales)\n\n\n1\n\nRun ANOVA. The formula means: explain units_sold using weekday, with the data set named screen_sales.\n\n\n\n\nCall:\n   aov(formula = units_sold ~ weekday, data = screen_sales)\n\nTerms:\n                 weekday Residuals\nSum of Squares    63.450  6698.542\nDeg. of Freedom        4       115\n\nResidual standard error: 7.63205\nEstimated effects may be unbalanced",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -156,7 +156,7 @@
     "section": "Show the ANOVA table",
     "text": "Show the ANOVA table\n\nThe previous code created the ANOVA model.\n\n\nNow we add summary() to see the ANOVA table.\n\n\n\n1aov(units_sold ~ weekday, data = screen_sales) %&gt;%\n2  summary()\n\n\n1\n\nRun the same ANOVA model.\n\n2\n\nShow the ANOVA table.\n\n\n\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)\nweekday       4     63   15.86   0.272  0.895\nResiduals   115   6699   58.25",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -166,7 +166,7 @@
     "section": "Reading the ANOVA table",
     "text": "Reading the ANOVA table\n\naov(units_sold ~ weekday, data = screen_sales) %&gt;%\n  summary()\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)\nweekday       4     63   15.86   0.272  0.895\nResiduals   115   6699   58.25\nThe important line is the weekday line.\n\n\nLet \\(k\\) = number of groups, \\(N\\) = total observations.\nDf: \\(df_A = k - 1\\) for weekday; \\(df_W = N - k\\) for Residuals.\nSum Sq: weekday row is \\(SSA = \\sum_j n_j(\\bar{x}_j - \\bar{x})^2\\).\nResiduals row is \\(SSW = \\sum_j\\sum_i (x_{ij} - \\bar{x}_j)^2\\).\nTotal variation is \\(SST = \\sum_j\\sum_i (x_{ij} - \\bar{x})^2 = SSA + SSW\\).\nMean Sq: \\(MSA = SSA / df_A\\) and \\(MSW = SSW / df_W\\).\nF value: \\(F = MSA / MSW\\).\nPr(&gt;F): the p-value, \\(P(F_{df_A,df_W} \\geq F_{\\text{observed}})\\) if \\(H_0\\) is true.\n\n\n\nFor weekday, the p-value is about 0.895.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -174,9 +174,9 @@
     "href": "slides_week8.html#weekday-decision",
     "title": "One-Way ANOVA in R",
     "section": "Weekday decision",
-    "text": "Weekday decision\n\nOur decision rule:\n\nif \\(p \\leq 0.05\\), reject \\(H_0\\)\nif \\(p &gt; 0.05\\), fail to reject \\(H_0\\)\n\n\n\nHere:\n\\[\np = 0.895 &gt; 0.05\n\\]\n\n\nSo we fail to reject \\(H_0\\).\n\n\nConclusion:\n\nIn this dataset, we do not have evidence that average screen protector sales differ by weekday.",
+    "text": "Weekday decision\n\nOur decision rule:\n\nif \\(p &lt; \\alpha = 0.05\\), reject \\(H_0\\)\nif \\(p \\geq \\alpha = 0.05\\), fail to reject \\(H_0\\)\n\n\n\nHere:\n\\[\np = 0.895 \\geq \\alpha = 0.05\n\\]\n\n\nSo we fail to reject \\(H_0\\).\n\n\nConclusion:\n\nIn this dataset, we do not have evidence that average screen protector sales differ by weekday.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -186,7 +186,7 @@
     "section": "Mean sales by location",
     "text": "Mean sales by location\n\nNow we ask a different question with the same outcome.\n\n\nInstead of grouping sales by weekday, we group sales by location.\n\n\n\n1favstats(units_sold ~ location, data = screen_sales)\n\n\n1\n\nTake units_sold, split it by location, and use the data set named screen_sales.\n\n\n\n\n     location min    Q1 median    Q3 max     mean       sd  n missing\n1        back   5 13.25   16.0 18.00  26 15.96667 4.405978 30       0\n2       front  27 31.00   34.0 36.75  45 33.83333 4.060604 30       0\n3  left-aisle  15 21.00   23.5 26.75  32 23.66667 4.204541 30       0\n4 right-aisle  19 22.25   25.0 28.00  32 25.56667 3.539758 30       0\n\n\n\nThe front location has the highest mean sales.\nThe back location has the lowest mean sales.\nleft-aisle and right-aisle are in the middle.\n\n\n\nThis looks much more different than the weekday table.\n\n\nNow we check the distribution with a boxplot.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -196,7 +196,7 @@
     "section": "Boxplot by location",
     "text": "Boxplot by location\n\n\nscreen_sales %&gt;%\n  ggplot() +\n  aes(x = location, y = units_sold, fill = location) +\n  geom_boxplot() +\n  theme_minimal()",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -206,7 +206,7 @@
     "section": "Interpreting the boxplot",
     "text": "Interpreting the boxplot\n\nThe front box is clearly higher.\nThe back box is clearly lower.\nThe aisle locations are between them.\n\n\nThe boxes overlap much less than the weekday boxes.\n\n\nThis suggests that location may matter for screen protector sales.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -216,7 +216,7 @@
     "section": "Add the observations with geom_point()",
     "text": "Add the observations with geom_point()\n\n\nscreen_sales %&gt;%\n  ggplot() +\n  aes(x = location, y = units_sold, fill = location) +\n  geom_boxplot() +\n  geom_point() +\n  theme_minimal()",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -226,7 +226,7 @@
     "section": "Again, points overlap",
     "text": "Again, points overlap\n\ngeom_point() puts all observations for the same location on one vertical line.\nSome points hide other points.\nWe can see the general pattern, but the raw data are still crowded.\n\n\nSo again we use geom_jitter().",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -236,7 +236,7 @@
     "section": "Add the observations with geom_jitter()",
     "text": "Add the observations with geom_jitter()\n\n\nscreen_sales %&gt;%\n  ggplot() +\n  aes(x = location, y = units_sold, fill = location) +\n  geom_boxplot(alpha = 0.7) +\n  geom_jitter(width = 0.15, alpha = 0.6) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nNow we see both the summary shape and the individual observations.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -246,7 +246,7 @@
     "section": "One-way ANOVA for location",
     "text": "One-way ANOVA for location\n\nNow the formal question:\n\nAre the location means different enough to reject \\(H_0\\)?\n\n\n\n\n1aov(units_sold ~ location, data = screen_sales)\n\n\n1\n\nRun ANOVA. The formula means: explain units_sold using location, with the data set named screen_sales.\n\n\n\n\nCall:\n   aov(formula = units_sold ~ location, data = screen_sales)\n\nTerms:\n                location Residuals\nSum of Squares  4844.825  1917.167\nDeg. of Freedom        3       116\n\nResidual standard error: 4.065378\nEstimated effects may be unbalanced",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -256,7 +256,7 @@
     "section": "Show the ANOVA table",
     "text": "Show the ANOVA table\n\nAgain, the first ANOVA code creates the model.\n\n\nNow we add summary() to see the ANOVA table.\n\n\n\n1aov(units_sold ~ location, data = screen_sales) %&gt;%\n2  summary()\n\n\n1\n\nRun the same ANOVA model.\n\n2\n\nShow the ANOVA table.\n\n\n\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)    \nlocation      3   4845  1614.9   97.71 &lt;2e-16 ***\nResiduals   116   1917    16.5                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -266,7 +266,7 @@
     "section": "Reading the ANOVA table",
     "text": "Reading the ANOVA table\n\naov(units_sold ~ location, data = screen_sales) %&gt;%\n  summary()\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)    \nlocation      3   4845  1614.9   97.71 &lt;2e-16 ***\nResiduals   116   1917    16.5\nThe important line is the location line.\n\n\nLet \\(k\\) = number of groups, \\(N\\) = total observations.\nDf: \\(df_A = k - 1\\) for location; \\(df_W = N - k\\) for Residuals.\nSum Sq: location row is \\(SSA = \\sum_j n_j(\\bar{x}_j - \\bar{x})^2\\).\nResiduals row is \\(SSW = \\sum_j\\sum_i (x_{ij} - \\bar{x}_j)^2\\).\nTotal variation is \\(SST = \\sum_j\\sum_i (x_{ij} - \\bar{x})^2 = SSA + SSW\\).\nMean Sq: \\(MSA = SSA / df_A\\) and \\(MSW = SSW / df_W\\).\nF value: \\(F = MSA / MSW\\).\nPr(&gt;F): the p-value, \\(P(F_{df_A,df_W} \\geq F_{\\text{observed}})\\) if \\(H_0\\) is true.\n\n\n\nFor location, the p-value is very small: R reports p &lt; 2e-16.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -276,7 +276,7 @@
     "section": "Location decision",
     "text": "Location decision\n\nFor location, the p-value is very small: R reports p &lt; 2e-16.\n\n\nThat means:\n\\[\np &lt; 0.05\n\\]\n\n\nSo we reject \\(H_0\\).\n\n\nConclusion:\n\nIn this dataset, average screen protector sales differ by location.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -286,7 +286,7 @@
     "section": "ANOVA does not tell us where",
     "text": "ANOVA does not tell us where\n\nANOVA answers one big question:\n\n\n\n“Is at least one group mean different?”\n\n\n\nBut after a significant ANOVA, we usually want to know:\n\n\n\n“Which groups are different from which?”\n\n\n\nFor that we use a Tukey test.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -296,7 +296,7 @@
     "section": "Tukey test for location",
     "text": "Tukey test for location\n\n\n1aov(units_sold ~ location, data = screen_sales) %&gt;%\n2  TukeyHSD()\n\n\n1\n\nRun the same ANOVA model again.\n\n2\n\nCompare all pairs of locations, while correcting for the fact that we are doing many comparisons.\n\n\n\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = units_sold ~ location, data = screen_sales)\n\n$location\n                             diff         lwr       upr     p adj\nfront-back              17.866667  15.1305127 20.602821 0.0000000\nleft-aisle-back          7.700000   4.9638461 10.436154 0.0000000\nright-aisle-back         9.600000   6.8638461 12.336154 0.0000000\nleft-aisle-front       -10.166667 -12.9028206 -7.430513 0.0000000\nright-aisle-front       -8.266667 -11.0028206 -5.530513 0.0000000\nright-aisle-left-aisle   1.900000  -0.8361539  4.636154 0.2738489",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -306,7 +306,7 @@
     "section": "Reading Tukey output",
     "text": "Reading Tukey output\n$location\n                             diff         lwr       upr     p adj\nfront-back              17.866667  15.1305127 20.602821 0.0000000\nleft-aisle-back          7.700000   4.9638461 10.436154 0.0000000\nright-aisle-back         9.600000   6.8638461 12.336154 0.0000000\nleft-aisle-front       -10.166667 -12.9028206 -7.430513 0.0000000\nright-aisle-front       -8.266667 -11.0028206 -5.530513 0.0000000\nright-aisle-left-aisle   1.900000  -0.8361539  4.636154 0.2738489\n\ndiff: difference between two group means.\nlwr and upr: lower and upper ends of the confidence interval.\np adj: adjusted p-value.\n\n\nIf p adj &lt; 0.05, that pair is significantly different.\n\n\nIf the confidence interval contains 0, that pair is not clearly different.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -316,7 +316,7 @@
     "section": "Visualize Tukey results",
     "text": "Visualize Tukey results\n\nThe Tukey output is useful, but it has many numbers.\n\n\nWe can also ask R to draw the Tukey confidence intervals.\n\n\n\naov(units_sold ~ location, data = screen_sales) %&gt;%\n  TukeyHSD() %&gt;%\n  plot()\n\n\n\n\n\n\n\n\n\n\nIf an interval crosses 0, that pair is not clearly different. If it does not cross 0, that pair is significantly different.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -326,7 +326,7 @@
     "section": "Tukey plot",
     "text": "Tukey plot",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -336,7 +336,7 @@
     "section": "Tukey result",
     "text": "Tukey result\n\nfront is significantly higher than back.\nfront is significantly higher than left-aisle.\nfront is significantly higher than right-aisle.\nback is significantly lower than the aisle locations.\n\n\nBut left-aisle and right-aisle are not significantly different from each other.\n\n\nBusiness interpretation:\n\nPut screen protectors in the front if you want higher sales. Left vs right aisle does not seem to matter much.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -346,7 +346,7 @@
     "section": "What to remember",
     "text": "What to remember\n\nA one-way ANOVA compares the means of more than two groups.\nThe outcome must be numeric: here, units_sold.\nThe group variable must be categorical: here, weekday or location.\nStart with summary statistics: favstats(units_sold ~ group, data = ...).\nThen visualize: geom_boxplot() and geom_jitter().\nThen test: aov(y ~ group, data = data) %&gt;% summary().\nIf ANOVA is significant, use TukeyHSD() and plot() to see which groups differ.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -356,7 +356,7 @@
     "section": "What we found",
     "text": "What we found\n\n\n\n\n\n\n\n\n\nQuestion\np-value\nDecision\nInterpretation\n\n\n\n\nSales by weekday\n0.895\nFail to reject \\(H_0\\)\nWeekday does not clearly change sales\n\n\nSales by location\n\\(&lt; 2e^{-16}\\)\nReject \\(H_0\\)\nLocation clearly changes sales\n\n\n\n\nSame dataset. Same outcome. Different grouping variable. Different conclusion.",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -366,7 +366,7 @@
     "section": "Your turn",
     "text": "Your turn\nUsing screen_sales:\n\nUse a different numeric variable: store_visitors.\nMake a boxplot of store_visitors by location.\nAdd jittered points.\nRun the ANOVA: store_visitors ~ location.\nExplain the p-value in one sentence.\n\n\nThen try the same outcome by weekday:\n\naov(store_visitors ~ weekday, data = screen_sales) %&gt;%\n  summary()\n\n\n\nAsk yourself: does weekday explain store visitors as clearly as location?\n\n\nThe most important sentence:\n\n“We reject / fail to reject \\(H_0\\) because the p-value is smaller / larger than 0.05.”",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {
@@ -376,7 +376,7 @@
     "section": "See you next week",
     "text": "See you next week",
     "crumbs": [
-      "Week 8"
+      "Anova"
     ]
   },
   {

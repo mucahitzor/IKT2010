@@ -414,14 +414,14 @@ For weekday, the p-value is about **0.895**.
 
 -   Our decision rule:
 
-    -   if $p \leq 0.05$, reject $H_0$
-    -   if $p > 0.05$, fail to reject $H_0$
+    -   if $p < \alpha = 0.05$, reject $H_0$
+    -   if $p \geq \alpha = 0.05$, fail to reject $H_0$
 
 ::: fragment
 Here:
 
 $$
-p = 0.895 > 0.05
+p = 0.895 \geq \alpha = 0.05
 $$
 :::
 
