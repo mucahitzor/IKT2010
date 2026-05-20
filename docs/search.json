@@ -194,7 +194,7 @@
     "href": "slides_week9.html#calculate-the-correlation",
     "title": "Correlation in R",
     "section": "Calculate the correlation",
-    "text": "Calculate the correlation\nQuestion: Do bigger-budget horror movies earn more money at the box office?\n\nNow we can calculate the correlation number.\n\n\n\nhorror_movies %&gt;%\n  select(budget_million, gross_million) %&gt;%\n  corr()\n\n               budget_million gross_million\nbudget_million           1.00          0.78\ngross_million            0.78          1.00\n\n\n\n\nThe correlation is about 0.78.\n\n\nThe sign is positive, and the magnitude is strong.\n\n\nSo we describe this as a strong positive correlation.",
+    "text": "Calculate the correlation\nQuestion: Do bigger-budget horror movies earn more money at the box office?\n\nNow we can calculate the correlation number.\n\n\n\nhorror_movies %&gt;%\n  select(budget_million, gross_million) %&gt;%\n  cor()\n\n               budget_million gross_million\nbudget_million      1.0000000     0.7762746\ngross_million       0.7762746     1.0000000\n\n\n\n\nThe correlation is about 0.78.\n\n\nThe sign is positive, and the magnitude is strong.\n\n\nSo we describe this as a strong positive correlation.",
     "crumbs": [
       "Correlation"
     ]
@@ -244,7 +244,7 @@
     "href": "slides_week9.html#calculate-the-correlation-1",
     "title": "Correlation in R",
     "section": "Calculate the correlation",
-    "text": "Calculate the correlation\nQuestion: Do bigger-budget horror movies earn a better return per dollar?\n\n\nhorror_movies %&gt;%\n  select(budget_million, profit_multiplier) %&gt;%\n  corr()\n\n                  budget_million profit_multiplier\nbudget_million              1.00             -0.77\nprofit_multiplier          -0.77              1.00\n\n\n\n\nThe correlation is about -0.77.\n\n\nThe sign is negative, and the magnitude is strong.\n\n\nSo we describe this as a strong negative correlation.",
+    "text": "Calculate the correlation\nQuestion: Do bigger-budget horror movies earn a better return per dollar?\n\n\nhorror_movies %&gt;%\n  select(budget_million, profit_multiplier) %&gt;%\n  cor()\n\n                  budget_million profit_multiplier\nbudget_million         1.0000000        -0.7749882\nprofit_multiplier     -0.7749882         1.0000000\n\n\n\n\nThe correlation is about -0.77.\n\n\nThe sign is negative, and the magnitude is strong.\n\n\nSo we describe this as a strong negative correlation.",
     "crumbs": [
       "Correlation"
     ]
@@ -294,7 +294,7 @@
     "href": "slides_week9.html#calculate-the-correlation-2",
     "title": "Correlation in R",
     "section": "Calculate the correlation",
-    "text": "Calculate the correlation\nQuestion: Do movies with longer titles get higher IMDb scores?\n\n\nhorror_movies %&gt;%\n  select(title_length, imdb_score) %&gt;%\n  corr()\n\n             title_length imdb_score\ntitle_length         1.00      -0.07\nimdb_score          -0.07       1.00\n\n\n\n\nThe correlation is about -0.07.\n\n\nThe value is close to zero, so the magnitude is very weak.\n\n\nSo we describe this as no clear correlation.",
+    "text": "Calculate the correlation\nQuestion: Do movies with longer titles get higher IMDb scores?\n\n\nhorror_movies %&gt;%\n  select(title_length, imdb_score) %&gt;%\n  cor()\n\n             title_length  imdb_score\ntitle_length   1.00000000 -0.06986324\nimdb_score    -0.06986324  1.00000000\n\n\n\n\nThe correlation is about -0.07.\n\n\nThe value is close to zero, so the magnitude is very weak.\n\n\nSo we describe this as no clear correlation.",
     "crumbs": [
       "Correlation"
     ]

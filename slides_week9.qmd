@@ -18,10 +18,6 @@ editor_options:
 #| message: false
 #| warning: false
 library(tidyverse)
-
-corr <- function(data) {
-  round(cor(data, use = "complete.obs"), 2)
-}
 ```
 
 # Correlation
@@ -431,7 +427,7 @@ Now we can calculate the correlation number.
 #| echo: true
 horror_movies %>%
   select(budget_million, gross_million) %>%
-  corr()
+  cor()
 ```
 :::
 
@@ -536,7 +532,7 @@ Small-budget horror films can sometimes be very efficient at the box office.
 #| echo: true
 horror_movies %>%
   select(budget_million, profit_multiplier) %>%
-  corr()
+  cor()
 ```
 :::
 
@@ -638,7 +634,7 @@ A longer title does not automatically make a better movie.
 #| echo: true
 horror_movies %>%
   select(title_length, imdb_score) %>%
-  corr()
+  cor()
 ```
 :::
 

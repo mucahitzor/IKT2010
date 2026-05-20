@@ -613,11 +613,11 @@ r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>horror_movies <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a></a>  <span class="fu">select</span>(budget_million, gross_million) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a></a>  <span class="fu">corr</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-3"><a></a>  <span class="fu">cor</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               budget_million gross_million
-budget_million           1.00          0.78
-gross_million            0.78          1.00</code></pre>
+budget_million      1.0000000     0.7762746
+gross_million       0.7762746     1.0000000</code></pre>
 </div>
 </div>
 </div>
@@ -726,11 +726,11 @@ gross_million            0.78          1.00</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>horror_movies <span class="sc">%&gt;%</span></span>
 <span id="cb12-2"><a></a>  <span class="fu">select</span>(budget_million, profit_multiplier) <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a></a>  <span class="fu">corr</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-3"><a></a>  <span class="fu">cor</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  budget_million profit_multiplier
-budget_million              1.00             -0.77
-profit_multiplier          -0.77              1.00</code></pre>
+budget_million         1.0000000        -0.7749882
+profit_multiplier     -0.7749882         1.0000000</code></pre>
 </div>
 </div>
 </div>
@@ -835,11 +835,11 @@ profit_multiplier          -0.77              1.00</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>horror_movies <span class="sc">%&gt;%</span></span>
 <span id="cb16-2"><a></a>  <span class="fu">select</span>(title_length, imdb_score) <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a></a>  <span class="fu">corr</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-3"><a></a>  <span class="fu">cor</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>             title_length imdb_score
-title_length         1.00      -0.07
-imdb_score          -0.07       1.00</code></pre>
+<pre><code>             title_length  imdb_score
+title_length   1.00000000 -0.06986324
+imdb_score    -0.06986324  1.00000000</code></pre>
 </div>
 </div>
 </div>
