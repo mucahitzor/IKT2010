@@ -86,7 +86,7 @@ peek(fifa)
 
 -   **ANOVA:** does `value_million_eur` differ across `age_group`s? (Do players peak in market value at a certain age?)
 -   **Correlation:** is `overall` rating correlated with `value_million_eur`? (Does skill set the price?)
--   **Also try:** does `value_million_eur` differ across `position`s? (Are forwards worth more than defenders — or not?)
+-   **Also try:** does `value_million_eur` differ across `position`s? (Are forwards worth more than defenders, or not?)
 
 ## 3. Box Office {#boxoffice}
 
