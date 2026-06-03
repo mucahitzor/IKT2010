@@ -6,6 +6,7 @@ project:
     - "!slides_week7.qmd"
     - "!slides_week7_tr.qmd"
     - "!week7_t/instructor_notes.qmd"
+    - "!slides_week8_tr.qmd"
 
 website:
   title: "Statistics II - Data Visualization"
@@ -24,6 +25,8 @@ website:
         text: Anova
       - href: slides_week9.qmd
         text: Correlation
+      - href: exercises_anova_correlation.qmd
+        text: "Exercise: ANOVA & Correlation"
 
 format:
   html:

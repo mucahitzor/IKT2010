@@ -1,0 +1,173 @@
+"major","field","median_earnings","share_women","unemployment_rate","grads_total"
+"Petroleum Engineering","Engineering & Computing",110000,0.121,0.0184,2339
+"Mining and Mineral Engineering","Engineering & Computing",75000,0.102,0.1172,756
+"Metallurgical Engineering","Engineering & Computing",73000,0.153,0.0241,856
+"Naval Architecture and Marine Engineering","Engineering & Computing",70000,0.107,0.0501,1258
+"Chemical Engineering","Engineering & Computing",65000,0.342,0.0611,32260
+"Nuclear Engineering","Engineering & Computing",65000,0.145,0.1772,2573
+"Actuarial Science","Business & Law",62000,0.441,0.0957,3777
+"Astronomy and Astrophysics","Sciences & Health",62000,0.536,0.0212,1792
+"Mechanical Engineering","Engineering & Computing",60000,0.12,0.0573,91227
+"Electrical Engineering","Engineering & Computing",60000,0.196,0.0592,81527
+"Computer Engineering","Engineering & Computing",60000,0.199,0.0654,41542
+"Aerospace Engineering","Engineering & Computing",60000,0.14,0.0652,15058
+"Biomedical Engineering","Engineering & Computing",60000,0.438,0.0921,14955
+"Materials Science","Engineering & Computing",60000,0.311,0.023,4279
+"Engineering Mechanics Physics and Science","Engineering & Computing",58000,0.184,0.0063,4321
+"Biological Engineering","Engineering & Computing",57100,0.321,0.0871,8925
+"Industrial and Manufacturing Engineering","Engineering & Computing",57000,0.343,0.0429,18968
+"General Engineering","Engineering & Computing",56000,0.253,0.0598,61152
+"Architectural Engineering","Engineering & Computing",54000,0.35,0.0619,2825
+"Court Reporting","Business & Law",54000,0.236,0.0117,1148
+"Computer Science","Engineering & Computing",53000,0.223,0.0632,128319
+"Electrical Engineering Technology","Engineering & Computing",52000,0.293,0.0876,11565
+"Materials Engineering and Materials Science","Engineering & Computing",52000,0.325,0.0278,2993
+"Management Information Systems and Statistics","Business & Law",51000,0.279,0.0582,18713
+"Civil Engineering","Engineering & Computing",50000,0.227,0.0706,53153
+"Construction Services","Arts & Humanities",50000,0.091,0.06,18498
+"Operations Logistics and e-Commerce","Business & Law",50000,0.325,0.0479,11732
+"Miscellaneous Engineering","Engineering & Computing",50000,0.19,0.0744,9133
+"Public Policy","Business & Law",50000,0.559,0.1284,5978
+"Environmental Engineering","Engineering & Computing",50000,0.342,0.0936,4047
+"Engineering Technologies","Engineering & Computing",50000,0.251,0.055,3600
+"Miscellaneous Fine Arts","Arts & Humanities",50000,0.41,0.0894,3340
+"Geological and Geophysical Engineering","Engineering & Computing",50000,0.322,0.075,720
+"Nursing","Sciences & Health",48000,0.896,0.0449,209394
+"Finance","Business & Law",47000,0.341,0.0607,174506
+"Economics","Social Sciences",47000,0.355,0.0991,139247
+"Business Economics","Business & Law",46000,0.431,0.0964,13302
+"Industrial Production Technologies","Engineering & Computing",46000,0.249,0.0283,4631
+"Nuclear, Industrial Radiology, and Biological Technologies","Sciences & Health",46000,0.75,0.0715,2116
+"Accounting","Business & Law",45000,0.524,0.0697,198633
+"Mathematics","Engineering & Computing",45000,0.448,0.0473,72397
+"Computer and Information Systems","Engineering & Computing",45000,0.254,0.0935,36698
+"Physics","Sciences & Health",45000,0.282,0.0482,32142
+"Medical Technologies Technicians","Sciences & Health",45000,0.754,0.037,15914
+"Information Sciences","Engineering & Computing",45000,0.244,0.0607,11913
+"Statistics and Decision Science","Engineering & Computing",45000,0.526,0.0863,6251
+"Applied Mathematics","Engineering & Computing",45000,0.434,0.0908,4939
+"Pharmacology","Sciences & Health",45000,0.708,0.0855,1762
+"Oceanography","Sciences & Health",44700,0.689,0.057,2418
+"Engineering and Industrial Management","Engineering & Computing",44000,0.174,0.0337,2906
+"Medical Assisting Services","Sciences & Health",42000,0.928,0.0425,11123
+"Mathematics and Computer Science","Engineering & Computing",42000,0.179,0,609
+"Computer Programming and Data Processing","Engineering & Computing",41300,0.269,0.114,4168
+"Cognitive Science and Biopsychology","Sciences & Health",41000,0.565,0.0752,3831
+"School Student Counseling","Arts & Humanities",41000,0.855,0.1076,818
+"International Relations","Social Sciences",40100,0.633,0.0968,28187
+"General Business","Business & Law",40000,0.436,0.0729,234590
+"Architecture","Engineering & Computing",40000,0.451,0.1133,46420
+"International Business","Business & Law",40000,0.59,0.0962,25894
+"Pharmacy Pharmaceutical Sciences and Administration","Sciences & Health",40000,0.631,0.0555,23551
+"Molecular Biology","Sciences & Health",40000,0.594,0.0844,18300
+"Miscellaneous Business & Medical Administration","Business & Law",40000,0.427,0.072,17947
+"Agriculture Production and Management","Sciences & Health",40000,0.322,0.05,14240
+"General Agriculture","Sciences & Health",40000,0.418,0.0196,10399
+"Miscellaneous Engineering Technologies","Engineering & Computing",40000,0.2,0.0525,8804
+"Mechanical Engineering Related Technologies","Engineering & Computing",40000,0.077,0.0564,4790
+"Genetics","Sciences & Health",40000,0.516,0.0341,3635
+"Miscellaneous Social Sciences","Social Sciences",40000,0.543,0.0731,3283
+"United States History","Arts & Humanities",40000,0.43,0.0472,3079
+"Industrial and Organizational Psychology","Social Sciences",40000,0.643,0.1088,3014
+"Agricultural Economics","Sciences & Health",40000,0.283,0.0772,2439
+"Physical Sciences","Sciences & Health",40000,0.377,0.0354,1436
+"Military Technologies","Arts & Humanities",40000,0,0,124
+"Chemistry","Sciences & Health",39000,0.505,0.054,66530
+"Electrical, Mechanical, and Precision Technologies and Production","Arts & Humanities",38400,0.232,0.0295,2435
+"Business Management and Administration","Business & Law",38000,0.473,0.0722,329927
+"Marketing and Marketing Research","Business & Law",38000,0.616,0.0612,205211
+"Political Science and Government","Social Sciences",38000,0.486,0.1012,182621
+"Geography","Social Sciences",38000,0.383,0.1135,18480
+"Microbiology","Sciences & Health",38000,0.581,0.0668,15232
+"Computer Administration Management and Security","Engineering & Computing",37500,0.181,0.0997,8066
+"Biochemical Sciences","Sciences & Health",37400,0.515,0.0805,39107
+"Botany","Sciences & Health",37000,0.529,0,1329
+"Computer Networking and Telecommunications","Engineering & Computing",36400,0.305,0.1518,7613
+"Geology and Earth Science","Sciences & Health",36200,0.47,0.0754,10972
+"Human Resources and Personnel Management","Business & Law",36000,0.748,0.0596,24497
+"Pre-Law and Legal Studies","Business & Law",36000,0.672,0.072,13528
+"Miscellaneous Health Medical Professions","Sciences & Health",36000,0.881,0.0814,13386
+"Public Administration","Business & Law",36000,0.476,0.1595,5629
+"Geosciences","Sciences & Health",36000,0.591,0.0244,1978
+"Social Psychology","Social Sciences",36000,0.702,0.0296,1386
+"Environmental Science","Sciences & Health",35600,0.585,0.0786,25965
+"Communications","Social Sciences",35000,0.67,0.0752,213996
+"Criminal Justice and Fire Protection","Business & Law",35000,0.475,0.0825,152824
+"Commercial Art and Graphic Design","Arts & Humanities",35000,0.69,0.0968,103480
+"Journalism","Social Sciences",35000,0.673,0.0692,72619
+"Multi-Disciplinary or General Science","Sciences & Health",35000,0.565,0.0558,62052
+"Advertising and Public Relations","Social Sciences",35000,0.758,0.068,53162
+"Area Ethnic and Civilization Studies","Arts & Humanities",35000,0.72,0.0634,31195
+"Special Needs Education","Arts & Humanities",35000,0.907,0.0415,28739
+"Physiology","Sciences & Health",35000,0.618,0.0692,22060
+"Criminology","Social Sciences",35000,0.495,0.0972,19879
+"Nutrition Sciences","Sciences & Health",35000,0.864,0.0687,18909
+"Health and Medical Administrative Services","Sciences & Health",35000,0.764,0.0896,18109
+"Communication Technologies","Engineering & Computing",35000,0.366,0.1195,18035
+"Transportation Sciences and Technologies","Arts & Humanities",35000,0.125,0.0727,15150
+"Natural Resources Management","Sciences & Health",35000,0.374,0.0666,13773
+"Neuroscience","Sciences & Health",35000,0.638,0.0485,13663
+"Multi/Interdisciplinary Studies","Social Sciences",35000,0.771,0.0709,12296
+"Atmospheric Sciences and Meteorology","Sciences & Health",35000,0.321,0.0222,4043
+"Forestry","Sciences & Health",35000,0.125,0.0967,3607
+"Soil Science","Sciences & Health",35000,0.305,0,685
+"General Education","Arts & Humanities",34000,0.813,0.0574,143718
+"History","Arts & Humanities",34000,0.449,0.0957,141951
+"French German Latin and Other Common Foreign Language Studies","Arts & Humanities",34000,0.734,0.0756,48246
+"Intercultural and International Studies","Arts & Humanities",34000,0.652,0.0836,24650
+"Social Science or History Teacher Education","Arts & Humanities",34000,0.507,0.0541,20198
+"Community and Public Health","Sciences & Health",34000,0.792,0.1121,19735
+"Mathematics Teacher Education","Arts & Humanities",34000,0.728,0.0162,14237
+"Educational Administration and Supervision","Arts & Humanities",34000,0.652,0,804
+"Health and Medical Preparatory Programs","Sciences & Health",33500,0.567,0.0698,12740
+"Miscellaneous Biology","Sciences & Health",33500,0.557,0.0585,10706
+"Biology","Sciences & Health",33400,0.602,0.0707,280709
+"Sociology","Social Sciences",33000,0.718,0.085,115433
+"Mass Media","Social Sciences",33000,0.532,0.0898,52824
+"Treatment Therapy Professions","Sciences & Health",33000,0.722,0.0598,48491
+"Hospitality Management","Business & Law",33000,0.652,0.0612,43647
+"Language and Drama Education","Arts & Humanities",33000,0.877,0.0503,30471
+"Linguistics and Comparative Language and Literature","Arts & Humanities",33000,0.734,0.1044,16601
+"Miscellaneous Education","Arts & Humanities",33000,0.64,0.0592,10150
+"Interdisciplinary Social Sciences","Social Sciences",33000,0.764,0.0923,9916
+"Ecology","Sciences & Health",33000,0.576,0.0545,9154
+"Secondary Teacher Education","Arts & Humanities",32500,0.602,0.0522,17125
+"General Medical and Health Services","Sciences & Health",32400,0.775,0.0821,33599
+"Philosophy and Religious Studies","Arts & Humanities",32200,0.417,0.0961,54814
+"Art and Music Education","Arts & Humanities",32100,0.686,0.0386,34181
+"English Language and Literature","Arts & Humanities",32000,0.701,0.0877,194673
+"Elementary Education","Arts & Humanities",32000,0.924,0.0466,170862
+"Physical Fitness Parks Recreation and Leisure","Arts & Humanities",32000,0.503,0.0515,125074
+"Liberal Arts","Arts & Humanities",32000,0.687,0.0783,71369
+"Film Video and Photographic Arts","Arts & Humanities",32000,0.423,0.1058,38761
+"General Social Sciences","Social Sciences",32000,0.607,0.1035,12920
+"Plant Science and Agronomy","Sciences & Health",32000,0.34,0.0455,7416
+"Science and Computer Teacher Education","Arts & Humanities",32000,0.684,0.0473,6483
+"Psychology","Social Sciences",31500,0.78,0.0838,393735
+"Music","Arts & Humanities",31000,0.507,0.076,60633
+"Physical and Health Education Teaching","Arts & Humanities",31000,0.445,0.0747,28213
+"Art History and Criticism","Arts & Humanities",31000,0.846,0.0603,21030
+"Fine Arts","Arts & Humanities",30500,0.667,0.0842,74440
+"Family and Consumer Sciences","Arts & Humanities",30000,0.911,0.0671,58001
+"Social Work","Social Sciences",30000,0.904,0.0688,53552
+"Animal Sciences","Sciences & Health",30000,0.752,0.0509,21573
+"Visual and Performing Arts","Arts & Humanities",30000,0.746,0.1022,16250
+"Teacher Education: Multiple Levels","Arts & Humanities",30000,0.811,0.0365,14443
+"Miscellaneous Psychology","Social Sciences",30000,0.799,0.0519,9628
+"Human Services and Community Organization","Social Sciences",30000,0.906,0.0378,9374
+"Humanities","Arts & Humanities",30000,0.697,0.0686,6652
+"Theology and Religious Vocations","Arts & Humanities",29000,0.384,0.0626,30207
+"Studio Arts","Arts & Humanities",29000,0.72,0.0896,16977
+"Cosmetology Services and Culinary Arts","Arts & Humanities",29000,0.585,0.0557,10510
+"Miscellaneous Agriculture","Sciences & Health",29000,0.728,0.0598,1488
+"Anthropology and Archeology","Arts & Humanities",28000,0.707,0.1028,38844
+"Communication Disorders Sciences and Services","Sciences & Health",28000,0.968,0.0476,38279
+"Early Childhood Education","Arts & Humanities",28000,0.969,0.0401,37589
+"Other Foreign Languages","Arts & Humanities",27500,0.69,0.1071,11204
+"Drama and Theater Arts","Arts & Humanities",27000,0.666,0.0775,43249
+"Composition and Rhetoric","Arts & Humanities",27000,0.63,0.0817,18953
+"Zoology","Sciences & Health",26000,0.637,0.0463,8409
+"Educational Psychology","Social Sciences",25000,0.817,0.0651,2854
+"Clinical Psychology","Social Sciences",25000,0.8,0.149,2838
+"Counseling Psychology","Social Sciences",23400,0.799,0.0536,4626
+"Library Science","Arts & Humanities",22000,0.878,0.1049,1098

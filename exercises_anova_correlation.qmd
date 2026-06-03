@@ -1,0 +1,131 @@
+---
+title: "Exercise: ANOVA & Correlation"
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(knitr)
+happy  <- read.csv("data/world_happiness.csv")
+fifa   <- read.csv("data/fifa_players.csv")
+movies <- read.csv("data/box_office.csv")
+majors <- read.csv("data/college_majors.csv")
+peek <- function(d, n = 5) kable(head(d, n))
+```
+
+## What you will do
+
+1.  **Pick one** of the four datasets below.
+2.  Run a **one-way ANOVA** (a numeric outcome across a categorical group). If the result is significant, run a **Tukey test** to see *which* groups differ.
+3.  Run a **correlation analysis** on two numeric variables.
+
+## How to load a dataset
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyverse)
+library(mosaic)
+
+read.csv("url of the data") %>%
+  as_tibble() -> data
+```
+
+# Pick one dataset
+
+## 1. World Happiness {#happiness}
+
+The [World Happiness Report](https://worldhappiness.report/) scores countries on how happy people say they are, and estimates how much different factors contribute.
+
+| Variable | Type | Meaning |
+|---|---|---|
+| `country` | non numeric | country name |
+| `region` | categorical | Europe, Americas, Asia, Africa & Middle East |
+| `happiness_score` | numeric | average happiness ladder score (0–10) |
+| `gdp_per_capita` | numeric | the report's GDP-per-capita score (higher = richer) |
+| `social_support` | numeric | having someone to count on |
+| `life_expectancy` | numeric | healthy-life-expectancy score |
+| `freedom` | numeric | freedom to make life choices |
+| `generosity` | numeric | generosity score |
+
+```{r}
+#| echo: false
+peek(happy)
+```
+
+-   **ANOVA:** does average `happiness_score` differ across `region`s?
+-   **Correlation:** is `gdp_per_capita` correlated with `happiness_score`? (Does money buy happiness?)
+-   **Also try:** is `generosity` correlated with `happiness_score`?
+
+## 2. FIFA Football Players {#fifa}
+
+Ratings and market values of footballers from the FIFA 19 database. Think of a player's market value as the **price of talent in a labour market**.
+
+| Variable | Type | Meaning |
+|---|---|---|
+| `name`, `nationality`, `club` | non numeric | who the player is |
+| `position` | categorical | Goalkeeper, Defender, Midfielder, Forward |
+| `reputation` | categorical | international fame: `1-star` (least) … `3-star` (most) |
+| `age` | numeric | age in years |
+| `age_group` | categorical | age band: 21 or under, 22–25, 26–29, 30+ |
+| `overall` | numeric | overall skill rating (0–100) |
+| `potential` | numeric | potential rating |
+| `value_million_eur` | numeric | market value, in million € |
+| `wage_thousand_eur` | numeric | weekly wage, in thousand € |
+
+```{r}
+#| echo: false
+peek(fifa)
+```
+
+-   **ANOVA:** does `value_million_eur` differ across `age_group`s? (Do players peak in market value at a certain age?)
+-   **Correlation:** is `overall` rating correlated with `value_million_eur`? (Does skill set the price?)
+-   **Also try:** does `value_million_eur` differ across `position`s? (Are forwards worth more than defenders — or not?)
+
+## 3. Box Office {#boxoffice}
+
+Budgets, ratings and worldwide box-office takings for Hollywood films. Think of a film as an investment.
+
+| Variable | Type | Meaning |
+|---|---|---|
+| `title` | non numeric | film title |
+| `genre` | categorical | Action, Adventure, Comedy, Drama, Horror |
+| `budget_million` | numeric | production budget, in million US$ |
+| `worldwide_gross_million` | numeric | worldwide box-office, in million US$ |
+| `imdb_rating` | numeric | IMDb rating (0–10) |
+| `rotten_tomatoes` | numeric | Rotten Tomatoes score (0–100) |
+| `running_time_min` | numeric | length in minutes |
+| `mpaa_rating` | non numeric | MPAA rating (G, PG, PG-13, R, …) |
+
+```{r}
+#| echo: false
+peek(movies)
+```
+
+-   **ANOVA:** does `worldwide_gross_million` differ across `genre`s? (Do some genres earn more?)
+-   **Correlation:** is `budget_million` correlated with `worldwide_gross_million`? (Does spending more earn more?)
+-   **Also try:** is `imdb_rating` correlated with `worldwide_gross_million`? (Do better-rated films earn more?)
+
+## 4. College Majors & Earnings {#majors}
+
+Recent US graduates by major: what they earn, how many are women, and how often they're unemployed (US Census ACS data).
+
+| Variable | Type | Meaning |
+|---|---|---|
+| `major` | non numeric | name of the major |
+| `field` | categorical | Engineering & Computing, Sciences & Health, Business & Law, Social Sciences, Arts & Humanities |
+| `median_earnings` | numeric | median earnings of recent graduates (US$) |
+| `share_women` | numeric | share of graduates who are women (0–1) |
+| `unemployment_rate` | numeric | unemployment rate (0–1) |
+| `grads_total` | numeric | number of graduates |
+
+```{r}
+#| echo: false
+peek(majors)
+```
+
+-   **ANOVA:** do `median_earnings` differ across `field`s of study? (Which fields pay most?)
+-   **Correlation:** is `share_women` correlated with `median_earnings`? (Do fields with more women pay less?)
+-   **Also try:** is `unemployment_rate` correlated with `median_earnings`?
