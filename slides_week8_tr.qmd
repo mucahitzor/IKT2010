@@ -11,6 +11,8 @@ format:
 chunk_output_type: console
 editor_options:
   chunk_output_type: console
+execute:
+  cache: true
 ---
 
 ```{r}
@@ -25,9 +27,9 @@ library(mosaic)
 
 ## t-testinden ANOVA'ya {.small-slide}
 
--   **7. Hafta**'da **iki grubun** ortalamasını karşılaştırmak için [iki örneklem t-testi]{.red-text} kullandık.
+-    **İki grubun** ortalamasını karşılaştırmak için [iki örneklem t-testi]{.red-text} kullandık.
 
--   Ama birçok gerçek soruda ikiden fazla grup vardır.
+-   İkiden fazla gruplar arası karşılaştırma içeren durumlar da oldukça yaygındır.
 
 ::: fragment
 > "Satışlar Pazartesi, Salı, Çarşamba, Perşembe ve Cuma günleri arasında farklı mı?"
@@ -46,28 +48,11 @@ library(mosaic)
 :::
 
 ::: fragment
-Bunun gibi sorular için [tek yönlü ANOVA]{.red-text} kullanırız.
-:::
-
-## Neden çok sayıda t-testi yapmıyoruz? {.small-slide}
-
--   4 konumumuz varsa şunları karşılaştırabiliriz:
-
-    -   `front` ile `back`
-    -   `front` ile `left-aisle`
-    -   `front` ile `right-aisle`
-    -   `back` ile `left-aisle`
-    -   `back` ile `right-aisle`
-    -   `left-aisle` ile `right-aisle`
-
--   Bu, daha şimdiden **6 test** demek.
-
-::: fragment
-Ne kadar çok test yaparsak, sırf şans eseri "anlamlı" bir sonuç bulma olasılığımız o kadar artar.
+Bunun gibi sorular için [tek yönlü ANOVA]{.red-text} kullanıyoruz.
 :::
 
 ::: fragment
-ANOVA önce daha büyük tek bir soru sorar:
+ANOVA (analysis of variance) nın temel sorusu şudur:
 
 > "En az bir grup ortalamasının farklı olduğuna dair kanıt var mı?"
 :::
@@ -78,9 +63,7 @@ ANOVA önce daha büyük tek bir soru sorar:
 
 -   Bir elektronik mağazasında çalıştığımızı düşünün.
 
--   Mağaza, telefonlar için [ekran koruyucu]{.red-text} satıyor.
-
--   Müdür, günlük satışları neyin etkilediğini bilmek istiyor.
+-   Mağaza, birçok elektronik ürünlerle beraber telefonlar için [ekran koruyucu]{.red-text} da satıyor.
 
 -   Beş değişkenimiz var:
 
@@ -94,23 +77,22 @@ ANOVA önce daha büyük tek bir soru sorar:
 Bugün aynı veriyi kullanarak iki farklı ANOVA sorusu soracağız.
 :::
 
-## Paketi kurun {.small-slide}
+## Gerekli Paketlerin Kurulumu  {.small-slide}
 
 ::: fragment
-Bugün kolay özet istatistikler için `mosaic` paketini kullanacağız.
+Değişkenlerin özet istatistiklerini daha kolay görmek için `mosaic` paketinin içerisinde yer alan `favstats` fonksiyonunu kullanacağız. Fonksiyonu kullanabilmek için `mosaic` paketini bir defalığına yüklememiz gerekiyor.
 :::
 
 ::: fragment
 ```{r}
 #| echo: true
 #| eval: false
-install.packages("mosaic") # <1>
+install.packages("mosaic")
 ```
 
-1.  Bunu yalnızca `mosaic`'i daha önce kurmadıysanız çalıştırın. Bir paketi bir kez kurmak yeterlidir.
 :::
 
-## Veriyi okuyalım {.small-slide}
+## Veriyi Okuyalım {.small-slide}
 
 ```{r}
 #| echo: true
@@ -142,7 +124,7 @@ screen_sales
 :::
 
 ::: fragment
-Her satır bir satış gözlemidir.
+Ekran koruyucu raflarını 120 gün boyunca farklı konumlarda denemiş, her konum ve gün için toplam satış miktarlarını kaydedip veri setimizi oluşturmuşuz. Örneğin, 1.satırdaki veri kayıdı bir pazartesi günü ekran korucu raflarının kasanın önüne koyduğumuzu ve o gün 235 müşteri geldiğini, o günkü indirim oranınımızın %10 olduğunu ve toplan ekran koruyucu satışımızın 31 olarak gerçekleştiğini gösteriyor. 2. kayıt farklı bir pazartesi günü ekran koruyucu rafının sol koridorda olduğu durumdaki kayıtları içeriyor.
 :::
 
 ::: fragment
@@ -153,7 +135,7 @@ Her satır bir satış gözlemidir.
 -   `units_sold`: kaç ekran koruyucu satıldığı
 :::
 
-## Bugün iki soru {.small-slide}
+## Bugünkü iki sorumuz {.small-slide}
 
 ### Soru 1
 
@@ -192,11 +174,11 @@ $$
 ## Hafta gününe göre ortalama satışlar {.small-slide}
 
 ::: fragment
-Herhangi bir test yapmadan önce, ilk olarak grup ortalamalarına bakarız.
+Herhangi bir test yapmadan önce, ilk olarak grup ortalamalarına bir göz atalım.
 :::
 
 ::: fragment
-`mosaic` paketinden `favstats()` fonksiyonunu kullanırız.
+`mosaic` paketinden `favstats()` fonksiyonunu kullanabiliriz.
 :::
 
 ::: fragment
@@ -207,164 +189,59 @@ favstats(units_sold ~ weekday, data = screen_sales) # <1>
 
 1.  `units_sold`'u al, `weekday`'e göre ayır ve `screen_sales` adlı veri setini kullan.
 
--   `mean` sütunu her hafta günü için ortalama satışları gösterir.
+-   `mean` sütunu her hafta günü için ortalama satışları gösteriyor.
 
--   Hafta günü ortalamalarının hepsi **24 ile 26** adet civarında.
+-   Hafta günlerinde ortalamalar **24 ile 26** adet civarında.
 
--   `sd` sütunu, satışların her hafta günü içinde oldukça değiştiğini gösterir.
+-   `sd` (standart sapma) sütunu, satışların her hafta günü içinde değişken olabildiğini gösteriyor.
 :::
 
 ::: fragment
-Yani görsel olarak çok fazla çakışma bekleriz.
-
-Ama yalnızca ortalamalara bakarak karar vermemeliyiz. Sırada bir kutu grafiği çiziyoruz.
+> Ama yalnızca ortalamalara bakarak karar vermemeliyiz. Çünkü bu veri seti bizim için 120 günlük satışları içeren bir örneklem. Bu deneyi tekrar etsek, yeni bir 120 gün boyunca satışları takip etsek, farklı sonuçlar elde edeceğiz. Amacımız, yalnızca bu örnekleme bakarak anakütle ortalamalarına dair istatistiksel bir çıkarım yapabilmek.
 :::
 
-## Hafta gününe göre kutu grafiği {.small-slide}
+
+## Haftanın günleri için tek yönlü ANOVA {.small-slide}
 
 ::: fragment
-Bir kutu grafiği için şunlara ihtiyacımız var:
+Sorumuz
 
--   `x` ekseninde bir grup değişkeni
--   `y` ekseninde bir sayısal değişken
+> Hafta içi günlerde ortalama satışlar arasında bir farklılık var mı?
 :::
 
 ::: fragment
-```{r}
-#| echo: true
-screen_sales %>%
-  ggplot() +
-  aes(x = weekday, y = units_sold) +
-  geom_boxplot()
-```
-:::
-
-## Dolgu rengi ekleyin {.small-slide}
-
-::: fragment
-Şimdi kutuları `weekday`'e göre renklendirebiliriz.
+$$
+H_0:\ \mu_{Mon} = \mu_{Tue} = \mu_{Wed} = \mu_{Thu} = \mu_{Fri}
+$$
 :::
 
 ::: fragment
-`weekday` bir değişken olduğu için `fill = weekday`'i `aes()` içine koyarız.
+$$
+H_a:\ \text{En az bir hafta günü ortalaması farklıdır.}
+$$
 :::
+
+::: fragment
+anova modeli oluşturmak için `aov(y ~ x, data = {veri seti ismi})` fonksiyonunu kullanabiliriz.
+:::
+
 
 ::: fragment
 ```{r}
 #| echo: true
-screen_sales %>%
-  ggplot() +
-  aes(x = weekday, y = units_sold, fill = weekday) +
-  geom_boxplot()
-```
-:::
-
-## Bir tema ekleyin {.small-slide}
-
-::: fragment
-Son olarak grafiği bir tema ile düzenleriz.
-:::
-
-::: fragment
-```{r}
-#| echo: true
-screen_sales %>%
-  ggplot() +
-  aes(x = weekday, y = units_sold, fill = weekday) +
-  geom_boxplot() +
-  theme_minimal()
-```
-:::
-
-## Kutu grafiğini yorumlamak {.small-slide}
-
--   Kutular benzer yüksekliklerde.
-
--   Medyanlar birbirine yakın.
-
--   Kutular çokça çakışıyor.
-
-::: fragment
-Bu durum, hafta gününün satışlarda muhtemelen büyük bir fark **yaratmadığını** düşündürüyor.
-:::
-
-::: fragment
-Ama kutu grafiği tek tek gözlemleri gizliyor. Noktaları ekleyelim.
-:::
-
-## Gözlemleri geom_point() ile ekleyin {.small-slide}
-
-::: fragment
-```{r}
-#| echo: true
-screen_sales %>%
-  ggplot() +
-  aes(x = weekday, y = units_sold, fill = weekday) +
-  geom_boxplot() +
-  geom_point() +
-  theme_minimal()
-```
-:::
-
-## geom_point() neden ideal değil {.small-slide}
-
--   Noktalar tam olarak hafta günü adının üzerine yerleştiriliyor.
-
--   İki gözlemin satış değeri aynı ya da benzerse, üst üste biniyorlar.
-
--   Bu da kaç gözlemimiz olduğunu görmeyi zorlaştırıyor.
-
-::: fragment
-Noktaları biraz sağa sola kaydırmamız gerekiyor.
-:::
-
-::: fragment
-`geom_jitter()` tam da bunu yapar.
-:::
-
-## Gözlemleri geom_jitter() ile ekleyin {.small-slide}
-
-::: fragment
-```{r}
-#| echo: true
-screen_sales %>%
-  ggplot() +
-  aes(x = weekday, y = units_sold, fill = weekday) +
-  geom_boxplot(alpha = 0.7) +
-  geom_jitter(width = 0.15, alpha = 0.6) +
-  theme_minimal()
-```
-:::
-
-::: fragment
-Artık noktaları görmek daha kolay, ama her nokta yine kendi hafta gününe ait.
-:::
-
-## Hafta günü için tek yönlü ANOVA {.small-slide}
-
-::: fragment
-Şimdi resmi soruyu soruyoruz:
-
-> Hafta günü ortalamaları $H_0$'ı reddedecek kadar farklı mı?
-:::
-
-::: fragment
-```{r}
-#| echo: true
-aov(units_sold ~ weekday, data = screen_sales) # <1>
+aov(units_sold ~ weekday, data = screen_sales) 
 ```
 
-1.  ANOVA'yı çalıştır. Formülün anlamı: `units_sold`'u `weekday` ile açıkla, `screen_sales` adlı veri setini kullan.
 :::
 
-## ANOVA tablosunu gösterin {.small-slide}
+## ANOVA tablosu {.small-slide}
 
 ::: fragment
 Önceki kod ANOVA modelini oluşturdu.
 :::
 
 ::: fragment
-Şimdi ANOVA tablosunu görmek için `summary()` ekliyoruz.
+Şimdi ANOVA tablosunu görmek için `summary()` ekleyelim.
 :::
 
 ::: fragment
@@ -374,23 +251,16 @@ aov(units_sold ~ weekday, data = screen_sales) %>% # <1>
   summary() # <2>
 ```
 
-1.  Aynı ANOVA modelini çalıştır.
+1.  ANOVA modelini çalıştır ve.
 2.  ANOVA tablosunu göster.
 :::
 
-## ANOVA tablosunu okumak {.small-slide}
+## ANOVA tablosu {.small-slide}
 
 ```{r}
 #| echo: true
-#| eval: false
 aov(units_sold ~ weekday, data = screen_sales) %>%
   summary()
-```
-
-```{.text}
-             Df Sum Sq Mean Sq F value Pr(>F)
-weekday       4     63   15.86   0.272  0.895
-Residuals   115   6699   58.25
 ```
 
 Önemli olan satır `weekday` satırı.
@@ -407,21 +277,33 @@ Residuals   115   6699   58.25
 :::
 
 ::: fragment
-Hafta günü için p-değeri yaklaşık **0,895**.
+Hafta günü için p-değeri yaklaşık **0.895**.
 :::
 
-## Hafta günü kararı {.small-slide}
+## Sonuç {.small-slide}
+
+::: fragment
+$$
+H_0:\ \mu_{Mon} = \mu_{Tue} = \mu_{Wed} = \mu_{Thu} = \mu_{Fri}
+$$
+:::
+
+::: fragment
+$$
+H_a:\ \text{En az bir hafta günü ortalaması farklıdır.}
+$$
+:::
 
 -   Karar kuralımız:
 
-    -   $p < \alpha = 0{,}05$ ise $H_0$'ı reddet
-    -   $p \geq \alpha = 0{,}05$ ise $H_0$'ı reddedemeyiz
+    -   $p < \alpha = 0{.}05$ ise $H_0$ red -> (%5 önem düzeyinde grup ortalamarının birbirinden farklı olmadığı söylenemez.)
+    -   $p \geq \alpha = 0{.}05$ ise $H_0$ reddedilemez -> (%5 önem düzeyinde grup ortalamarının birbirinden farklı olmadığı reddedilemez.)
 
 ::: fragment
 Burada:
 
 $$
-p = 0{,}895 \geq \alpha = 0{,}05
+p = 0{.}895 \geq \alpha = 0{.}05
 $$
 :::
 
@@ -440,11 +322,11 @@ Sonuç:
 ## Konuma göre ortalama satışlar {.small-slide}
 
 ::: fragment
-Şimdi aynı sonuç değişkeniyle farklı bir soru soruyoruz.
+Şimdi satışlar için farklı bir soru soruyoruz.
 :::
 
 ::: fragment
-Satışları `weekday`'e göre gruplamak yerine `location`'a göre grupluyoruz.
+Satışları `weekday`'e göre gruplamak yerine `location`'a göre grupluyoruz. Ortalama satışlar ekran korucuların lokasyonuna göre farklılık gösteriyor mu?
 :::
 
 ::: fragment
@@ -462,92 +344,22 @@ favstats(units_sold ~ location, data = screen_sales) # <1>
 -   `left-aisle` ve `right-aisle` ortada.
 :::
 
-::: fragment
-Bu, hafta günü tablosuna göre çok daha farklı görünüyor.
-:::
-
-::: fragment
-Şimdi dağılımı bir kutu grafiğiyle kontrol ediyoruz.
-:::
-
-## Konuma göre kutu grafiği {.small-slide}
-
-::: fragment
-```{r}
-#| echo: true
-screen_sales %>%
-  ggplot() +
-  aes(x = location, y = units_sold, fill = location) +
-  geom_boxplot() +
-  theme_minimal()
-```
-:::
-
-## Kutu grafiğini yorumlamak {.small-slide}
-
--   `front` kutusu belirgin biçimde daha yüksek.
-
--   `back` kutusu belirgin biçimde daha düşük.
-
--   Koridor konumları bunların arasında.
-
-::: fragment
-Kutular, hafta günü kutularına göre çok daha az çakışıyor.
-:::
-
-::: fragment
-Bu durum, konumun ekran koruyucu satışları için önemli olabileceğini düşündürüyor.
-:::
-
-## Gözlemleri geom_point() ile ekleyin {.small-slide}
-
-::: fragment
-```{r}
-#| echo: true
-screen_sales %>%
-  ggplot() +
-  aes(x = location, y = units_sold, fill = location) +
-  geom_boxplot() +
-  geom_point() +
-  theme_minimal()
-```
-:::
-
-## Yine noktalar üst üste biniyor {.small-slide}
-
--   `geom_point()`, aynı konuma ait tüm gözlemleri tek bir dikey çizgiye koyar.
-
--   Bazı noktalar diğer noktaları gizliyor.
-
--   Genel örüntüyü görebiliyoruz, ama ham veri hâlâ kalabalık.
-
-::: fragment
-Bu yüzden yine `geom_jitter()` kullanıyoruz.
-:::
-
-## Gözlemleri geom_jitter() ile ekleyin {.small-slide}
-
-::: fragment
-```{r}
-#| echo: true
-screen_sales %>%
-  ggplot() +
-  aes(x = location, y = units_sold, fill = location) +
-  geom_boxplot(alpha = 0.7) +
-  geom_jitter(width = 0.15, alpha = 0.6) +
-  theme_minimal()
-```
-:::
-
-::: fragment
-Artık hem özet şekli hem de tek tek gözlemleri görüyoruz.
-:::
-
 ## Konum için tek yönlü ANOVA {.small-slide}
 
-::: fragment
-Şimdi resmi soru:
 
+::: fragment
+$$
+H_0:\ \mu_{front} = \mu_{back} = \mu_{left} = \mu_{right}
+$$
+:::
+
+::: fragment
+$$
+H_a:\ \text{En az bir konum ortalaması farklıdır.}
+$$
+:::
+
+::: fragment
 > Konum ortalamaları $H_0$'ı reddedecek kadar farklı mı?
 :::
 
@@ -560,41 +372,30 @@ aov(units_sold ~ location, data = screen_sales) # <1>
 1.  ANOVA'yı çalıştır. Formülün anlamı: `units_sold`'u `location` ile açıkla, `screen_sales` adlı veri setini kullan.
 :::
 
-## ANOVA tablosunu gösterin {.small-slide}
+## ANOVA tablosu {.small-slide}
+
 
 ::: fragment
-Yine, ilk ANOVA kodu modeli oluşturur.
-:::
-
-::: fragment
-Şimdi ANOVA tablosunu görmek için `summary()` ekliyoruz.
+ANOVA tablosunu görmek için `summary()` fonksiyonuna pipelıyoruz.
 :::
 
 ::: fragment
 ```{r}
 #| echo: true
-aov(units_sold ~ location, data = screen_sales) %>% # <1>
-  summary() # <2>
+aov(units_sold ~ location, data = screen_sales) %>% 
+  summary() 
 ```
 
-1.  Aynı ANOVA modelini çalıştır.
-2.  ANOVA tablosunu göster.
 :::
 
-## ANOVA tablosunu okumak {.small-slide}
+## ANOVA sonucu {.small-slide}
 
 ```{r}
 #| echo: true
-#| eval: false
 aov(units_sold ~ location, data = screen_sales) %>%
   summary()
 ```
 
-```{.text}
-             Df Sum Sq Mean Sq F value Pr(>F)
-location      3   4845  1614.9   97.71 <2e-16 ***
-Residuals   116   1917    16.5
-```
 
 Önemli olan satır `location` satırı.
 
@@ -610,23 +411,22 @@ Residuals   116   1917    16.5
 :::
 
 ::: fragment
-Konum için p-değeri çok küçük: R **p < 2e-16** olarak raporluyor.
+Konum için p-değeri çok küçük: R **p < 2e-16** bu sayıyı($< 2\times 10^{-16} = < 0.0000000000000002$) bilimsel notasyon olarak raporluyor.  Yani p değeri bu sayıdan da küçük bir değer.
 :::
 
-## Konum kararı {.small-slide}
+## Sonuç {.small-slide}
 
--   `location` için p-değeri çok küçük: R `p < 2e-16` olarak raporluyor.
+-   `location` için p-değeri `p < 2e-16`
 
 ::: fragment
-Bu şu demek:
 
 $$
-p < 0{,}05
+p < \alpha = 0{.}05
 $$
 :::
 
 ::: fragment
-Yani [$H_0$'ı reddederiz]{.red-text}.
+[$H_0$ red]{.red-text}. %5 önem düzeyinde ortalama ekran koruyucu satışlarının lokasyonlara göre aynı olduğu söylenemez.
 :::
 
 ::: fragment
@@ -637,22 +437,22 @@ Sonuç:
 
 # Hangi konumlar farklı?
 
-## ANOVA nerede olduğunu söylemez {.small-slide}
+## ANOVA farklılığın hangi gruplar arasında olduğunu söylemez {.small-slide}
 
--   ANOVA büyük tek bir soruyu cevaplar:
+-   ANOVA genel bir soruyu cevaplar:
 
 ::: fragment
 > "En az bir grup ortalaması farklı mı?"
 :::
 
--   Ama anlamlı bir ANOVA'dan sonra genellikle şunu bilmek isteriz:
+-   Ama anlamlı bir ANOVA'dan sonra ($p < \alpha$) genellikle şunu bilmek isteriz:
 
 ::: fragment
-> "Hangi gruplar hangilerinden farklı?"
+> "Hangi grup/gruplarda farklılıklar var?"
 :::
 
 ::: fragment
-Bunun için bir [Tukey testi]{.red-text} kullanırız.
+Bunun için bir [Tukey testi]{.red-text} kullanabiliriz. 
 :::
 
 ## Konum için Tukey testi {.small-slide}
@@ -660,15 +460,12 @@ Bunun için bir [Tukey testi]{.red-text} kullanırız.
 ::: fragment
 ```{r}
 #| echo: true
-aov(units_sold ~ location, data = screen_sales) %>% # <1>
-  TukeyHSD() # <2>
+aov(units_sold ~ location, data = screen_sales) %>% 
+  TukeyHSD() 
 ```
-
-1.  Aynı ANOVA modelini tekrar çalıştır.
-2.  Tüm konum çiftlerini karşılaştır; çok sayıda karşılaştırma yaptığımız için bir düzeltme uygula.
 :::
 
-## Tukey çıktısını okumak {.small-slide}
+## Konum için Tukey testi {.small-slide}
 
 ```{.text}
 $location
@@ -688,21 +485,18 @@ right-aisle-left-aisle   1.900000  -0.8361539  4.636154 0.2738489
 -   `p adj`: düzeltilmiş p-değeri.
 
 ::: fragment
-`p adj < 0.05` ise o çift anlamlı biçimde farklıdır.
+$p adj < alpha = 0.05$ ise  iki grup arasındaki fark istatistiksel olarak anlamlıdır.
 :::
 
 ::: fragment
-Güven aralığı 0'ı içeriyorsa, o çift net biçimde farklı değildir.
+p değerine bakmak yerine, güven aralığının 0'ı içerip içermediğine bakarak da karar verebiliriz.
+Güven aralığı 0'ı içeriyorsa, iki grup arasındaki fark istatistiksel olarak anlamlı değildir.
 :::
 
-## Tukey sonuçlarını görselleştirin {.small-slide}
+## Tukey sonuçlarını görselleştirme {.small-slide}
 
 ::: fragment
-Tukey çıktısı yararlı, ama içinde çok sayı var.
-:::
-
-::: fragment
-R'dan Tukey güven aralıklarını çizmesini de isteyebiliriz.
+Tukey çıktısı `plot` fonksiyonuna pipelayarak görselleştirebiliriz.
 :::
 
 ::: fragment
@@ -714,9 +508,6 @@ aov(units_sold ~ location, data = screen_sales) %>%
 ```
 :::
 
-::: fragment
-Bir aralık 0'ı kesiyorsa, o çift net biçimde farklı değildir. 0'ı kesmiyorsa, o çift anlamlı biçimde farklıdır.
-:::
 
 ## Tukey grafiği
 
@@ -734,84 +525,20 @@ par(old_par)
 
 ## Tukey sonucu {.small-slide}
 
--   `front`, `back`'ten anlamlı biçimde daha yüksek.
+-   `front`, `back`'ten istatistiksel olarak anlamlı biçimde daha yüksek.
 
--   `front`, `left-aisle`'dan anlamlı biçimde daha yüksek.
+-   `front`, `left-aisle`'dan istatistiksel olarak anlamlı biçimde daha yüksek.
 
--   `front`, `right-aisle`'dan anlamlı biçimde daha yüksek.
+-   `front`, `right-aisle`'dan istatistiksel olarak anlamlı biçimde daha yüksek.
 
--   `back`, koridor konumlarından anlamlı biçimde daha düşük.
+-   `back`, koridor konumlarından istatistiksel olarak anlamlı biçimde daha düşük.
 
 ::: fragment
-Ama `left-aisle` ve `right-aisle` birbirinden anlamlı biçimde **farklı değil**.
+Ama `left-aisle` ve `right-aisle` arasında istatistiksel olarak anlamlı bir **farklı yok**.
 :::
 
 ::: fragment
-İş açısından yorum:
+Pratik olarak yorumlayabiliriz:
 
-> Daha yüksek satış istiyorsanız ekran koruyucuları öne koyun. Sol ya da sağ koridor pek fark etmiyor gibi görünüyor.
+> Daha yüksek satış istiyorsan ekran koruyucu rafını kasa önüne koyun. Sol ya da sağ koridora koymak arasında bir fark yok.
 :::
-
-# Özet
-
-## Akılda kalması gerekenler {.small-slide}
-
--   [Tek yönlü ANOVA]{.red-text} **ikiden fazla grubun** ortalamalarını karşılaştırır.
-
--   Sonuç değişkeni sayısal olmalı: burada `units_sold`.
-
--   Grup değişkeni kategorik olmalı: burada `weekday` ya da `location`.
-
--   Özet istatistiklerle başla: `favstats(units_sold ~ group, data = ...)`.
-
--   Sonra görselleştir: `geom_boxplot()` ve `geom_jitter()`.
-
--   Sonra test et: `aov(y ~ group, data = data) %>% summary()`.
-
--   ANOVA anlamlıysa, hangi grupların farklı olduğunu görmek için `TukeyHSD()` ve `plot()` kullan.
-
-## Ne bulduk {.small-slide}
-
-| Soru | p-değeri | Karar | Yorum |
-|---|---:|---|---|
-| Hafta gününe göre satışlar | 0,895 | $H_0$'ı reddedemeyiz | Hafta günü satışları net biçimde değiştirmiyor |
-| Konuma göre satışlar | $< 2e^{-16}$ | $H_0$'ı reddet | Konum satışları net biçimde değiştiriyor |
-
-::: fragment
-Aynı veri seti. Aynı sonuç değişkeni. Farklı gruplama değişkeni. Farklı sonuç.
-:::
-
-## Sıra sizde {.small-slide}
-
-`screen_sales`'i kullanarak:
-
-1.  Farklı bir sayısal değişken kullan: `store_visitors`.
-2.  `store_visitors`'ın `location`'a göre kutu grafiğini yap.
-3.  Kaydırılmış (jitter) noktalar ekle.
-4.  ANOVA'yı çalıştır: `store_visitors ~ location`.
-5.  p-değerini bir cümleyle açıkla.
-
-::: fragment
-Sonra aynı sonucu hafta gününe göre dene:
-
-```{r}
-#| echo: true
-#| eval: false
-aov(store_visitors ~ weekday, data = screen_sales) %>%
-  summary()
-```
-:::
-
-::: fragment
-Kendinize sorun: `weekday`, mağaza ziyaretçilerini `location` kadar net açıklıyor mu?
-:::
-
-::: fragment
-En önemli cümle:
-
-> "p-değeri 0,05'ten küçük / büyük olduğu için $H_0$'ı reddederiz / reddedemeyiz."
-:::
-
-# Sorular?
-
-## Gelecek hafta görüşürüz
